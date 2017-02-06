@@ -1,0 +1,123 @@
+sitemap home label="Falcons Fire Home"
+{
+  Frame label="Light Control" {
+    Switch item=GreatRoomSwitch
+    Switch item=BasementStairsSwitch
+    Slider item=BasementArt
+  }
+  Frame label="Indoor" {
+    Group item=IndoorTemperature
+    Group item=IndoorHumidity
+    Text item=Nest_hvac_state
+    Switch item=NestHome_away mappings=[home="Home",away="Away"]
+  }
+  Frame label="Outdoor" {
+    Text item=Temperature_OWM
+    Text item=Humidity
+  }
+  Frame label="Home Theater" {
+    Selection item=Home_Theater_Mode icon="video" mappings=[0=off, 1=Cable, 2=Chromecast, 3=FireTV, 4=Pandora, 5=PC, 6=Unknown]
+    Text item=Home_Theater_Feedback icon="video"
+    Setpoint item=integraVolume icon="video" minValue=0 maxValue=45 step=1 visibility=[Home_Theater_Mode>0]
+    Selection item=Bar_Speaker_Mode icon="video" mappings=[0=off, 4=Pandora, 6=Unknown]
+    Setpoint item=integraZ2Volume icon="video" minValue=0 maxValue=45 step=1 visibility=[Bar_Speaker_Mode>0]
+  }
+  Frame {
+  Text label="Advanced" icon="settings"{
+    Text label="PIR" icon="switch" {
+        Frame label="PIR Great Room" {
+          Text item=GREATROOM_PIR_MOTION
+          Text item=GREATROOM_PIR_TAMPER
+          Text item=GREATROOM_PIR_BATTERY
+          Text item=GREATROOM_PIR_LIGHT
+        }
+        Frame label="PIR Basement" {
+          Text item=BASEMENT_PIR_MOTION
+          Text item=BASEMENT_PIR_TAMPER
+          Text item=BASEMENT_PIR_BATTERY
+          Text item=BASEMENT_PIR_LIGHT
+        }
+        Frame label="PIR Upstairs" {
+          Text item=UPSTAIRS_PIR_MOTION
+          Text item=UPSTAIRS_PIR_TAMPER
+          Text item=UPSTAIRS_PIR_BATTERY
+          Text item=UPSTAIRS_PIR_LIGHT
+        }
+    }
+    Text label="Dimmers" icon="switch" {
+      Slider item=Living_Room_Lamp_Dimmer sendFrequency=200 switchSupport
+      Slider item=Kitchen_UnderCabinet1_Dimmer sendFrequency=200 switchSupport
+      Slider item=Kitchen_UnderCabinet2_Dimmer sendFrequency=200 switchSupport
+      Slider item=BasementProjectorSpot sendFrequency=200 switchSupport
+      Slider item=Christmas_Tree sendFrequency=200 switchSupport
+      Switch item=MasterBathFanSwitch
+      Switch item=MasterBathToiletFanSwitch
+      Switch item=OutdoorModule
+      Switch item=Humidifier
+      Switch item=Dehumidifier
+      Text item=Sunrise_Time
+      Text item=Sunset_Time
+      Switch item=TriggerTimer
+    }
+    Text label="Basement Theater" icon="cellar" {
+      Frame {
+        Switch     item=epsonPower         label="Epson Projector Power"
+      }
+      Frame label="Main" {
+        Switch item=integraPower
+        Selection item=integraSource mappings=[0="DVD", 1="CBL/SAT", 2="GAME", 3="AUX1", 4="AUX2", 5="PC", 16="BD/DVD", 17="STRM BOX", 18="TV", 34="PHONO", 35="CD", 36="FM", 43="NET/USB", 45=Airplay, 127=OFF]
+        Selection item=integraListenMode mappings=[0=Stereo, 1=Direct, 2=Surround, 15=Mono, 31="Whole House Mode", 66="THX Cinema", 31="Whole House"]
+        Text item=integraAudio
+        Text item=integraVideo
+      }
+      Frame label="Bar Speakers" {
+        Switch item=integraZ2Power
+        Selection item=integraZ2Source mappings=[43="NET/USB", 45="Airplay", 127="OFF"]
+      }
+    }
+    Text label="Nest Thermostat" icon="temperature" {
+      Text item=Nest_hvac_state
+      Switch item=NestHome_away mappings=[home="Home",away="Away"]
+      Text item=Nest_ambient_temperature_f
+      Setpoint item=Nest_target_temperature_f minValue=50 maxValue=80 step=1 visibility=[NestHome_away=="home"]
+      Text item=Nest_humidity
+      Switch item=Nest_hvac_mode mappings=[heat="Heat",cool="Cool","heat-cool"="Auto",off="Off"]
+      Text item=Nest_last_connection
+    }
+    Switch item=GarageDoorShutter
+    Group item=devicePresence icon="present"
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-0"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==0]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-10"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==10]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-20"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==20]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-30"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==30]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-40"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==40]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-50"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==50]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-60"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==60]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-70"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==70]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-80"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==80]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-90"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==90]
+    Text item=FrontDoor_Doorbell_Battery	icon="battery-100"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==100]
+    Switch item=openhabNotifications
+    Switch item=openhabNotificationsAway
+    Switch item=BasementPIRLightControl
+    Switch item=GreatRoomPIRLightControl
+    Switch item=PIRMotionDetection
+    Switch item=HomeTheaterSwitch
+    Text label="Set Nest to Home at [%s]" item=alarmMessage icon="clock" {
+        Frame label="Time" {
+            Setpoint item=alarmHour minValue=0 maxValue=23 step=1
+            Setpoint item=alarmMinute minValue=0 maxValue=55 step=5
+        }
+        Frame label="Weekday" {
+            Switch item=alarmMonday
+            Switch item=alarmTuesday
+            Switch item=alarmWednesday
+            Switch item=alarmThursday
+            Switch item=alarmFriday
+            Switch item=alarmSaturday
+            Switch item=alarmSunday
+        }
+    }
+  }
+  }
+}
