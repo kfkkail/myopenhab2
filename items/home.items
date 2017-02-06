@@ -118,8 +118,8 @@ Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 /* Use the Astro binding to see when it's dark or light outside. Using a light sensor would be
   even better, but that's not too hard to hack in later */
 
-DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]"  { channel="astro:sun:home:rise#start" }
-DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]"   { channel="astro:sun:home:set#start" }
+DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]"
+DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]"
 
 /* Device Presence Detection */
 Switch someoneIsHome "Someone Is Home!" <present> (devicePresence)
@@ -130,8 +130,8 @@ Switch wifi_Andrea "Andrea Wifi"  <present> (devicePresence)      {nh="192.168.0
 Switch openhabNotifications "Notifications"
 Switch openhabNotificationsAway "Notifications Away"
 
-Number   Temperature_OWM   "Outside Temperature [%.1f °F]"   <temperature> {weather="locationId=home, type=temperature, property=current, unit=fahrenheit"}
-Number   Humidity      "Outside Humidity [%d %%]"        <water> {weather="locationId=home, type=atmosphere, property=humidity"}
+Number   Temperature_OWM   "Outside Temperature [%.1f °F]"   <temperature> {weather="locationId=home-OWM, type=temperature, property=current, unit=fahrenheit"}
+Number   Humidity      "Outside Humidity [%d %%]"        <water> {weather="locationId=home-OWM, type=atmosphere, property=humidity"}
 
 Switch PIRMotionDetection "PIR Motion Detection"
 
