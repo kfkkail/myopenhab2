@@ -1,3 +1,20 @@
+//Persistence Groups
+Group gMyOpenHAB // for Items that are exposed to IFTTT
+Group gChart // for Items to persist for charting
+Group gHistory // for Items to preserve their history
+//Group gRestore // for Items to restore on startup (currently everything so commented out)
+
+Group nestThermostat "Nest Thermostat"
+Group integraBasement "Home Theater"
+Group plugDimmers "All Plug Dimmers"
+Group devicePresence "Device Presence"
+Group Lights_Random
+Group lightsAtNight // Basically a christmas light controller
+
+Group:Number:AVG IndoorTemperature "Indoor Average Temperature [%.1f °F]" <temperature>
+Group:Number:AVG IndoorHumidity "Indoor Average Humidity [%.0f %%]" <water>
+/* Nest binding Items */
+
 DateTime Nest_last_connection "Last Nest Connection [%1$tm/%1$td %1$tH:%1$tM]"  {nest="<[last_connection]"}
 
 /* Structures - change Home to your structure's name */
@@ -42,3 +59,118 @@ Number   Nest_away_temperature_low_f "Away Temperature Low [%.1f °F]"       (ne
 //Switch   Nest_is_online "Is Online [%s]"                                    {nest="<[thermostats(Hallway).is_online]"}
 DateTime Nest_last_connection "Last Connection [%1$tm/%1$td/%1$tY %1$tH:%1$tM:%1$tS]" <calendar> (nestThermostat) {nest="<[thermostats(Hallway).last_connection]"}
 String   Nest_hvac_state "HVAC State [%s]"                                  <temperature> (nestThermostat) {nest="<[thermostats(Hallway).hvac_state]"}
+
+/* Integra Receiver binding Items */
+
+Switch integraPower           "Integra Receiver Power"      (integraBasement) {onkyo="INIT:integrareceiver:POWER_QUERY, ON:integrareceiver:POWER_ON, OFF:integrareceiver:POWER_OFF"}
+//Number integraSleep           "Sleep Timer [%d Min]"      {onkyo="INIT:integrareceiver:#SLPQSTN, 0:integrareceiver:#SLPOFF, *:integrareceiver:#SLP%02X, 0:integrareceiver:#SLPOFF"}
+Switch integraMute            "Mute"                      (integraBasement) {onkyo="INIT:integrareceiver:MUTE_QUERY, ON:integrareceiver:MUTE, OFF:integrareceiver:UNMUTE"}
+Dimmer integraVolume          "Volume [%d]"               (integraBasement) {onkyo="INIT:integrareceiver:VOLUME_QUERY, INCREASE:integrareceiver:VOLUME_UP, DECREASE:integrareceiver:VOLUME_DOWN, *:integrareceiver:VOLUME_SET"}
+Number integraSource          "Source"                    <video> (integraBasement) {onkyo="INIT:integrareceiver:SOURCE_QUERY, INCREASE:integrareceiver:SOURCE_UP, DECREASE:integrareceiver:SOURCE_DOWN, *:integrareceiver:SOURCE_SET"}
+Number integraListenMode     "Listen Mode"                <video> {onkyo="INIT:integrareceiver:LISTEN_MODE_QUERY, INCREASE:integrareceiver:LISTEN_MODE_UP, DECREASE:integrareceiver:LISTEN_MODE_DOWN, *:integrareceiver:#LMD%02X"}
+String integraAudio           "Audio [%s]"                <video> (integraBasement) {onkyo="INIT:integrareceiver:#IFAQSTN"}
+String integraVideo           "Video [%s]"                <video> {onkyo="INIT:integrareceiver:#IFVQSTN"}
+//Zone 2
+Switch integraZ2Power         "Zone 2 Power"              (integraBasement) {onkyo="INIT:integrareceiver:ZONE2_POWER_QUERY, ON:integrareceiver:ZONE2_POWER_ON, OFF:integrareceiver:ZONE2_POWER_OFF"}
+Switch integraZ2Mute          "Zone 2 Mute"               (integraBasement) {onkyo="INIT:integrareceiver:ZONE2_MUTE_QUERY:, ON:integrareceiver:ZONE2_MUTE, OFF:integrareceiver:ZONE2_UNMUTE"}
+Dimmer integraZ2Volume        "Zone 2 Volume [%d]"        (integraBasement) {onkyo="INIT:integrareceiver:ZONE2_VOLUME_QUERY, INCREASE:integrareceiver:ZONE2_VOLUME_UP, DECREASE:integrareceiver:ZONE2_VOLUME_DOWN, *:integrareceiver:ZONE2_VOLUME_SET"}
+Number integraZ2Source        "Zone 2 Source"             <video> (integraBasement) {onkyo="INIT:integrareceiver:ZONE2_SOURCE_QUERY, INCREASE:integrareceiver:ZONE2_SOURCE_UP, DECREASE:integrareceiver:ZONE2_SOURCE_DOWN, *:integrareceiver:ZONE2_SOURCE_SET"}
+//NET/USB
+String integraNETPlayStatus   "Play Status [%s]"          (integraBasement) {onkyo="INIT:integrareceiver:NETUSB_PLAY_STATUS_QUERY"}
+Switch integraNETPlay         "Play"                      (integraBasement) {onkyo="ON:integrareceiver:NETUSB_OP_PLAY", autoupdate="false"}
+Switch integraNETPause        "Pause"                     (integraBasement) {onkyo="ON:integrareceiver:NETUSB_OP_PAUSE", autoupdate="false"}
+Switch integraNETStop         "Stop"                      (integraBasement) {onkyo="ON:integrareceiver:NETUSB_OP_STOP", autoupdate="false"}
+Number integraNETService      "Service"                   {onkyo="INIT:integrareceiver:#NSVQST, *:integrareceiver:#NSV%02X0"}
+Number integraNETList         "Select List Item"          {onkyo="*:integrareceiver:#NLSL%01X"}
+
+//Epson Projector
+Switch HomeTheaterSwitch "Turn On Home Theater w/ Switch"
+Switch epsonPower                          <projector_benq> { epsonprojector="hometheaterprojector:Power:60000" }
+String epsonPowerState                     { epsonprojector="hometheaterprojector:PowerState:60000" }
+
+/* Scene Controller for Home Theater */
+
+Number Home_Theater_Mode        "Home Theater Mode"
+String Home_Theater_Feedback    "Home Theater Feedback [%s]"
+Number Home_Theater_State       "Home Theater State"
+Number Bar_Speaker_Mode         "Bar Speaker Mode"
+
+Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers) {channel="zwave:device:f8a447cd:node2:switch_dimmer"}
+Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers) {channel="zwave:device:f8a447cd:node3:switch_dimmer"}
+Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers) {channel="zwave:device:f8a447cd:node7:switch_dimmer"}
+Dimmer Christmas_Tree "Christmas Tree [%d %%]" {channel="zwave:device:f8a447cd:node23:switch_dimmer"}
+Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB) {channel="zwave:device:f8a447cd:node18:switch_binary"}
+Switch MasterBathFanSwitch "Master Bath Shower Fan" {channel="zwave:device:f8a447cd:node20:switch_binary, refresh_interval=60"}
+Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" {channel="zwave:device:f8a447cd:node26:switch_binary, refresh_interval=60"}
+Number GreatRoomSwitch_State "Great Room Switch State"
+Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB) {channel="zwave:device:f8a447cd:node5:switch_dimmer"}
+Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" {channel="zwave:device:f8a447cd:node6:switch_dimmer"}
+Dimmer BasementArt "Basement Art Dimmer [%d %%]" {channel="zwave:device:f8a447cd:node19:switch_dimmer"}
+Switch OutdoorModule "Outdoor Module" (lightsAtNight) {channel="22:command=SWITCH_BINARY"} //Add channel information
+Switch Dehumidifier "Dehumidifier" {channel="zwave:device:f8a447cd:node24:switch_binary"}
+Switch Humidifier "Humidifier" {channel="zwave:device:f8a447cd:node25:switch_binary"}
+Switch TriggerTimer "Light Timer Trigger"
+
+Contact Doorbell {channel="14:command=ALARM"}
+Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {channel="zwave:device:f8a447cd:node14:battery-level"}
+Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
+
+/* Use the Astro binding to see when it's dark or light outside. Using a light sensor would be
+  even better, but that's not too hard to hack in later */
+
+DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]"  { channel="astro:sun:home:rise#start" }
+DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]"   { channel="astro:sun:home:set#start" }
+
+/* Device Presence Detection */
+Switch someoneIsHome "Someone Is Home!" <present> (devicePresence)
+Switch wifi_Kail "Kail Wifi"      <present> (devicePresence)      {nh="192.168.0.206"}
+Switch wifi_Andrea "Andrea Wifi"  <present> (devicePresence)      {nh="192.168.0.207"}
+
+//Enable & Disable Notifications
+Switch openhabNotifications "Notifications"
+Switch openhabNotificationsAway "Notifications Away"
+
+Number   Temperature_OWM   "Outside Temperature [%.1f °F]"   <temperature> {weather="locationId=home, type=temperature, property=current, unit=fahrenheit"}
+Number   Humidity      "Outside Humidity [%d %%]"        <water> {weather="locationId=home, type=atmosphere, property=humidity"}
+
+Switch PIRMotionDetection "PIR Motion Detection"
+
+Switch UpstairsPIRLightControl "Upstairs PIR Light Control"
+Contact UPSTAIRS_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node21:alarm_burglar"}
+Number UPSTAIRS_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node21:battery-level"}
+Number UPSTAIRS_PIR_TEMPERATURE "Upstairs Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node21:sensor_temperature"}
+Number UPSTAIRS_PIR_LIGHT "Upstairs Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node21:sensor_luminance"}
+Number UPSTAIRS_PIR_REL_HUMID "Upstairs Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f8a447cd:node21:sensor_relhumidity"}
+Contact UPSTAIRS_PIR_MOTION "Upstairs Motion [%s]" <motion> {channel="zwave:device:f8a447cd:node21:sensor_binary"}
+
+Switch GreatRoomPIRLightControl "Great Room PIR Light Control"
+Contact GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node15:alarm_burglar"}
+Number GREATROOM_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node15:battery-level"}
+Number GREATROOM_PIR_TEMPERATURE "Great Room Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node15:sensor_temperature"}
+Number GREATROOM_PIR_LIGHT "Great Room Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node15:sensor_luminance"}
+Number GREATROOM_PIR_REL_HUMID "Great Room Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f8a447cd:node15:sensor_relhumidity"}
+Contact GREATROOM_PIR_MOTION "Great Room Motion [%s]" <motion> {channel="zwave:device:f8a447cd:node15:sensor_binary"}
+
+Switch BasementPIRLightControl "Basement PIR Light Control"
+Contact BASEMENT_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node17:alarm_burglar"}
+Number BASEMENT_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node17:battery-level"}
+Number BASEMENT_PIR_TEMPERATURE "Basement Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node17:sensor_temperature"}
+Number BASEMENT_PIR_LIGHT "Basement Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node17:sensor_luminance"}
+Number BASEMENT_PIR_REL_HUMID "Basement Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f8a447cd:node17:sensor_relhumidity"}
+Contact BASEMENT_PIR_MOTION "Basement Motion [%s]" <motion> {channel="zwave:device:f8a447cd:node17:sensor_binary"}
+
+Rollershutter GarageDoorShutter "Garage Door" <garagedoor> (gMyOpenHAB) {myq="0"}
+
+//Alarm to set Nest to Home, after being away
+Switch  alarmMonday     "Monday"     <switch>
+Switch  alarmTuesday   "Tuesday"   <switch>
+Switch  alarmWednesday   "Wednesday"   <switch>
+Switch  alarmThursday "Thursday" <switch>
+Switch  alarmFriday    "Friday"    <switch>
+Switch  alarmSaturday    "Saturday"    <switch>
+Switch  alarmSunday    "Sunday"    <switch>
+
+String alarmMessage "%s"
+
+Number alarmHour "Hour [%d]" <clock>
+Number alarmMinute "Minute [%d]" <clock>
