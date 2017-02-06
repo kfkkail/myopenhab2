@@ -1,0 +1,148 @@
+import org.openhab.model.script.actions.Timer
+
+rule "System Start Init"
+	when
+		System started
+	then
+		createTimer(now.plusSeconds(60)) [|
+			logDebug("rules", "System Started - Initialize Values")
+			sendCommand(openhabNotifications , OFF)
+			sendCommand(BasementPIRLightControl , ON)
+			sendCommand(GreatRoomPIRLightControl , ON)
+			sendCommand(UpstairsPIRLightControl, ON)
+			sendCommand(PIRMotionDetection , ON)
+			sendCommand(GreatRoomSwitch_State, 0)
+			sendCommand(Home_Theater_State, 0)
+			sendCommand(Bar_Speaker_Mode, 0)
+			postUpdate(alarmHour,  8)
+		  postUpdate(alarmMinute, 15)
+		  postUpdate(alarmMonday,     OFF)
+		  postUpdate(alarmTuesday,   OFF)
+		  postUpdate(alarmWednesday,   OFF)
+		  postUpdate(alarmThursday, OFF)
+		  postUpdate(alarmFriday,    OFF)
+		  postUpdate(alarmSaturday,    OFF)
+		  postUpdate(alarmSunday,    OFF)]
+end
+
+rule "NestHome_away Notification"
+	when
+		Item NestHome_away changed
+	then
+		if (openhabNotifications.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Nest State changed to " + NestHome_away.state)
+		}
+end
+
+rule "epsonPower Notification"
+	when
+		Item epsonPower changed
+	then
+		if (openhabNotifications.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Projector State changed to " + epsonPower.state)
+		}
+end
+
+rule "Great Room PIR changed"
+	when
+		Item GREATROOM_PIR_MOTION changed
+	then
+		if (PIRMotionDetection.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Great Room PIR Motion updated to " + GREATROOM_PIR_MOTION.state)
+		}
+end
+
+var Timer timerGreatRoomPIR
+var Timer timerBasementPIR
+var Timer timerDoorbell
+
+rule "Check on Basement PIR Battery"
+    when
+        Item BASEMENT_PIR_TEMPERATURE updated
+    then
+    	logDebug("rules", "BASEMENT_PIR_TEMPERATURE updated - clear basement PIR's dead timer")
+	timerBasementPIR.cancel
+	timerBasementPIR = createTimer(now.plusDays(1)) [|
+                sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + BASEMENT_PIR_BATTERY.state + "%")]
+    end
+
+rule "Check on Great Room PIR Battery"
+    when
+        Item GREATROOM_PIR_TEMPERATURE updated
+    then
+    	logDebug("rules", "GREATROOM_PIR_TEMPERATURE updated - clear great room PIR's dead timer")
+    	timerGreatRoomPIR.cancel
+	timerGreatRoomPIR = createTimer(now.plusDays(1)) [|
+                sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + GREATROOM_PIR_BATTERY.state + "%")]
+    end
+
+rule "Check on Doorbell Battery"
+    when
+        Item FrontDoor_Doorbell_Battery updated
+    then
+    	logDebug("rules", "FrontDoor_Doorbell_Battery updated - clear Doorbell's dead timer")
+    	timerDoorbell.cancel
+	timerDoorbell = createTimer(now.plusDays(3)) [|
+                sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + FrontDoor_Doorbell_Battery.state + "%")]
+    end
+
+/*
+rule "Great Room PIR Tamper changed"
+	when
+		Item GREATROOM_PIR_TAMPER changed
+	then
+		if (PIRMotionDetection.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Great Room PIR Tamper updated to " + GREATROOM_PIR_TAMPER.state)
+		}
+end
+*/
+rule "Basement PIR changed"
+	when
+		Item BASEMENT_PIR_MOTION changed
+	then
+		if (PIRMotionDetection.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Basement PIR Motion updated to " + BASEMENT_PIR_MOTION.state)
+		}
+end
+
+/*
+rule "Basement PIR Tamper changed"
+	when
+		Item BASEMENT_PIR_TAMPER changed
+	then
+		if (PIRMotionDetection.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Basement PIR Tamper updated to " + BASEMENT_PIR_TAMPER.state)
+		}
+end
+*/
+/*
+rule "someoneIsHome Notification"
+	when
+		Item someoneIsHome changed
+	then
+		if (openhabNotifications.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "someoneIsHome changed to " + someoneIsHome.state)
+		}
+end
+
+
+rule "Living_Room_Lamp_Dimmer Notification"
+	when
+		Item Living_Room_Lamp_Dimmer changed
+	then
+		if (openhabNotifications.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Living_Room_Lamp_Dimmer changed to " + Living_Room_Lamp_Dimmer.state)
+		}
+end
+
+rule "Kitchen_UnderCabinetX_Dimmer Notification"
+	when
+		Item Kitchen_UnderCabinet1_Dimmer changed or
+		Item Kitchen_UnderCabinet2_Dimmer changed
+	then
+		if (openhabNotifications.state == ON) {
+		 	sendNotification("kfkkail@gmail.com", "Kitchen_UnderCabinetX_Dimmer changed to " + Kitchen_UnderCabinet1_Dimmer.state)
+		}
+end
+
+*/

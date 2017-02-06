@@ -1,0 +1,167 @@
+val boolean doorbellRang = false
+var Timer sunsetTimer
+var Timer dawnTimer
+var Timer preDawnTimer
+
+rule "Turn Off Lights at Midnight for the Night"
+  when
+    Time cron "0 0 0 ? * * *"
+  then
+    logDebug("rules", "Midnight - Turn OFF Lights at Midnight")
+
+    sendCommand(OutdoorModule, OFF)
+    sendCommand(GarageDoorShutter, DOWN)
+end
+
+
+rule "Turn On/Off Lights at Dusk/Dawn"
+  when
+    Time cron "0 0 2 ? * * *" or
+    Item TriggerTimer changed to ON
+  then
+    var DateTime daystart = new DateTime((Sunrise_Time.state as DateTimeType).calendar.timeInMillis)
+    var DateTime dayend = new DateTime((Sunset_Time.state as DateTimeType).calendar.timeInMillis)
+    logDebug("rules","Sunrise_Time: "+Sunrise_Time.state)
+    logDebug("rules","Sunset_Time: "+Sunset_Time.state)
+    logDebug("rules","Day Starts: "+daystart)
+    logDebug("rules","Day Ends: "+dayend)
+
+    // Cancel Timers to avoid reschedule
+    if(sunsetTimer!=null) {
+      logDebug("rules", "Timer sunsetTimer Cancelled")
+      sunsetTimer.cancel()
+    }
+    if(preDawnTimer!=null) {
+      logDebug("rules", "Timer preDawnTimer Cancelled")
+      preDawnTimer.cancel()
+    }
+    if(dawnTimer!=null) {
+      logDebug("rules", "Timer dawnTimer Cancelled")
+      dawnTimer.cancel()
+    }
+
+    logDebug("rules","Create sunsetTimer")
+    //dayend.minusMinutes(15)
+    sunsetTimer = createTimer(dayend.minusMinutes(15)) [|
+      logDebug("rules","sunsetTimer ended - Turn On Christmas Lights")
+      sendCommand(OutdoorModule, ON)
+      ]
+
+    logDebug("rules","Create preDawnTimer")
+    //daystart.minusMinutes(150)
+    preDawnTimer = createTimer(daystart.minusMinutes(60)) [|
+      logDebug("rules","preDawnTimer ended - Turn On Christmas Lights")
+      sendCommand(OutdoorModule, ON)
+      ]
+
+    logDebug("rules","Create dawnTimer")
+    //daystart.plusMinutes(15)
+    dawnTimer = createTimer(daystart.plusMinutes(15)) [|
+      logDebug("rules","dawnTimer ended - Turn Off Christmas Lights")
+      sendCommand(OutdoorModule, OFF)
+      ]
+
+    logDebug("rules","Sunset Timer: "+sunsetTimer)
+    logDebug("rules","Predawn Timer: "+preDawnTimer)
+    logDebug("rules","Dawn Timer: "+dawnTimer)
+end
+
+rule "Great Room Light Switch!"
+  when
+    Item GreatRoomSwitch received update
+  then
+    logDebug("rules", "GreatRoomSwitch_State = " + GreatRoomSwitch_State.state)
+    if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
+    	postUpdate(GreatRoomSwitch_State, 0)
+    }
+
+    if (GreatRoomSwitch.state == ON && GreatRoomSwitch_State.state == 0) {
+      sendCommand(GreatRoomSwitch_State, 1)
+      logDebug("rules", "GreatRoomSwitch ON - Turn ON Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
+      sendCommand(Living_Room_Lamp_Dimmer, 100)
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
+      sendCommand(Christmas_Tree, 100)
+      createTimer(now.plusSeconds(1)) [|
+      	sendCommand(GreatRoomSwitch_State, 0)]
+    } else if (GreatRoomSwitch.state == OFF  && GreatRoomSwitch_State.state == 0) {
+      sendCommand(GreatRoomSwitch_State, 1)
+      logDebug("rules", "GreatRoomSwitch OFF - Turn OFF Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
+      sendCommand(Living_Room_Lamp_Dimmer, 0)
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+      sendCommand(Christmas_Tree, 0)
+      createTimer(now.plusSeconds(1)) [|
+      	sendCommand(GreatRoomSwitch_State, 0)]
+    }
+end
+
+rule "doorbell Basement Light Notification"
+	when
+		Item Doorbell received update
+	then
+		var currentLightState = BasementProjectorSpot.state
+		var newLightState = if (currentLightState > 0) 0 else 100
+
+		logDebug("rules", "doorbellRange " + doorbellRang + " " + Doorbell.state)
+
+		if (doorbellRang == false) {
+			sendCommand(BasementProjectorSpot, newLightState)
+			sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
+			logDebug("rules", "Doorbell Range - Notify with Basement Spot Light")
+			doorbellRang = true
+			createTimer(now.plusSeconds(1)) [|
+				sendCommand(BasementProjectorSpot, currentLightState)]
+			createTimer(now.plusSeconds(5)) [|
+				doorbellRang = false]
+		}
+end
+
+rule "Basement Switch Turn off ProjectorSpotLights"
+  when
+    Item BasementStairsSwitch received update
+  then
+    if(BasementStairsSwitch.state == OFF) {
+    	logDebug("rules", "BasementStairsSwitch OFF - Turn Off BasementProjectorSpot")
+    	sendCommand(BasementProjectorSpot, 0)
+    	sendCommand(BasementArt, 0)
+    }
+end
+
+rule "Basement Light PIR Motion"
+  when
+    Item BASEMENT_PIR_MOTION changed
+  then
+    if(BasementPIRLightControl.state == ON && BasementStairsSwitch.state == OFF) {
+      if(BASEMENT_PIR_MOTION.state == OPEN  && BASEMENT_PIR_LIGHT.state <= 20) {
+        logDebug("rules", "Basement Motion Detected - Turn On BasementProjectorSpot")
+        sendCommand(BasementProjectorSpot, 100)
+        sendCommand(BasementArt, 100)
+      } else if (BASEMENT_PIR_MOTION.state == CLOSED) {
+        logDebug("rules", "Basement Motion No Longer Detected - Turn Off BasementProjectorSpot")
+        sendCommand(BasementProjectorSpot, 0)
+        sendCommand(BasementArt, 0)
+      }
+    }
+end
+
+rule "Great Room Light PIR Motion"
+  when
+    Item GREATROOM_PIR_MOTION changed or
+    Item UPSTAIRS_PIR_MOTION changed
+  then
+    if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF)
+      if((GREATROOM_PIR_MOTION.state == OPEN || UPSTAIRS_PIR_MOTION.state == OPEN)  && GREATROOM_PIR_LIGHT.state <= 15) {
+        logDebug("rules", "Great Room Motion Detected - Turn On Living_Room_Lamp_Dimmer")
+        sendCommand(Living_Room_Lamp_Dimmer, 30)
+        sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
+        sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
+	      sendCommand(Christmas_Tree, 100)
+      } else if (GREATROOM_PIR_MOTION.state == CLOSED && UPSTAIRS_PIR_MOTION.state == CLOSED) {
+        logDebug("rules", "Great Room Motion No Longer Detected - Turn Off Living_Room_Lamp_Dimmer")
+        sendCommand(Living_Room_Lamp_Dimmer, 0)
+        sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+        sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+	      sendCommand(Christmas_Tree, 0)
+      }
+end

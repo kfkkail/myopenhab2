@@ -1,0 +1,176 @@
+// Sending Commands for Home Theater to Receiver
+rule "Home Theater Mode"
+  when
+    Item Home_Theater_Mode changed
+  then
+    logDebug("rules", "Home_Theater_Mode Changed - Send Commands")
+
+    // If someone changes Home_Theater_Mode via gui, change receiver state
+
+    // OFF
+    if (Home_Theater_Mode.state == 0) {
+      if (epsonPower.state == ON) {
+        sendCommand(BasementProjectorSpot, 100)
+        sendCommand(BasementArt, 100)
+        sendCommand(epsonPower, OFF)
+      }
+      if (integraPower.state == ON) {
+        sendCommand(integraPower, OFF)
+      }
+
+    // CABLE
+    } else if (Home_Theater_Mode.state == 1) {
+      if (epsonPower.state == OFF) {
+        sendCommand(epsonPower, ON)
+      }
+      if (integraPower.state == OFF) {
+        sendCommand(integraPower, ON)
+      }
+      if (integraSource.state != 1) {
+        sendCommand(integraSource, 1)
+      }
+
+    // CHROMECAST
+    } else if (Home_Theater_Mode.state == 2) {
+      if (epsonPower.state == OFF) {
+        sendCommand(epsonPower, ON)
+      }
+      if (integraPower.state == OFF) {
+        sendCommand(integraPower, ON)
+      }
+      if (integraSource.state != 17) {
+        sendCommand(integraSource, 17)
+      }
+
+    // FIRE TV
+    } else if (Home_Theater_Mode.state == 3) {
+      if (integraPower.state == OFF) {
+        sendCommand(integraPower, ON)
+      }
+      if (integraSource.state != 35) {
+        sendCommand(integraSource, 35)
+      }
+
+    // PANDORA NET
+    } else if (Home_Theater_Mode.state == 4) {
+      if (epsonPower.state == OFF) {
+        sendCommand(epsonPower, ON)
+      }
+      if (integraPower.state == OFF) {
+        sendCommand(integraPower, ON)
+      }
+      if (integraSource.state != 43) {
+        sendCommand(integraSource, 43)
+      }
+
+    // PC
+    } else if (Home_Theater_Mode.state == 5) {
+      if (epsonPower.state == OFF) {
+        sendCommand(epsonPower, ON)
+      }
+      if (integraPower.state == OFF) {
+        sendCommand(integraPower, ON)
+      }
+      if (integraSource.state != 5) {
+        sendCommand(integraSource, 5)
+      }
+    }
+  end
+
+rule "Set Home Theater Mode Feedback"
+  when
+    Item integraPower changed or
+    Item integraSource changed
+  then
+    //If someone changes state of receiver manually, change Home_Theater_Feedback
+      logDebug("rules", "integraPower OR integraSource OR System Start - Set Home_Theater_Feedback")
+      if (integraPower.state == OFF) {
+        sendCommand(Home_Theater_Feedback, "Off")
+      } else if (integraPower.state == ON && integraSource.state == 1) {
+        sendCommand(Home_Theater_Feedback, "Cable")
+      } else if (integraPower.state == ON && integraSource.state == 17) {
+        sendCommand(Home_Theater_Feedback, "Chromecast")
+      } else if (integraPower.state == ON && integraSource.state == 5) {
+        sendCommand(Home_Theater_Feedback, "FireTV")
+      } else if (integraPower.state == ON && integraSource.state == 43) {
+      sendCommand(Home_Theater_Feedback, "Pandora")
+      } else if (integraPower.state == ON && integraSource.state == 5) {
+        sendCommand(Home_Theater_Feedback, "PC")
+      } else {
+        sendCommand(Home_Theater_Feedback, "Unknown")
+      }
+  end
+
+// Sending Commands for Bar Speaker Mode to Receiver
+
+rule "Bar Speaker Mode"
+  when
+    Item Bar_Speaker_Mode changed
+  then
+    logDebug("rules", "Bar Speaker Mode Rule Ran")
+
+    if (Bar_Speaker_Mode.state == 0) {
+      if (integraZ2Power.state != OFF) {
+        sendCommand(integraZ2Power, OFF)
+      }
+    else if (Bar_Speaker_Mode.state == 4 {
+      if (integraZ2Power.state != ON) {
+        sendCommand(integraZ2Power, ON)
+      }
+      if (integraZ2Source.state != 43) {
+        sendCommand(integraZ2Source, 43)
+      }
+    }
+  end
+
+rule "Set Bar Speaker Mode"
+  when
+    Item integraZ2Power changed or
+    Item integraZ2Source changed
+  then
+    logDebug("rules", "integraZ2Power OR integraZ2Source OR System Start - Set Bar_Speaker_Mode")
+
+    if (integraZ2Power.state == OFF) {
+      sendCommand(Bar_Speaker_Mode, 0)
+    } else if (integraZ2Power.state == ON && integraZ2Source == 43) {
+      sendCommand(Bar_Speaker_Mode, 4)
+    } else {
+      sendCommand(Bar_Speaker_Mode, 6)
+    }
+  end
+
+
+// New Theater States
+
+rule "Starting Up Home Theater State = 3"
+  when
+    Item epsonPower changed to ON or
+    Item integraPower changed to ON
+  then
+    callScript("startup_home_theater.script")
+  end
+
+rule "Starting Up Home Theater State = 3 Basement Stair Switch"
+  when
+    Item BasementStairsSwitch changed to ON
+  then
+    if(HomeTheaterSwitch.state == ON) {
+      logDebug("rules","BasementStairsSwitch changed to ON - Startup Home Theater")
+      callScript("startup_home_theater.script")
+    }
+  end
+
+/*  Don't need this one right now, since we are using a timeout in Starting up state. No trigger that moves from starting up to ON
+rule "ON & OFF Home Theater State = 1 & 0"
+  when
+  then
+  end
+*/
+
+rule "Shutting Down Home Theater State = 2"
+  when
+    Item epsonPower changed to OFF or
+    Item integraPower changed to OFF
+  then
+    callScript("shutdown_home_theater.script")
+  end

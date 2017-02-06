@@ -1,0 +1,49 @@
+// Cron Jobs
+
+rule "Turn Off Auto-Away Heat"
+  when
+    Time cron "0 */10 15-18 ? * MON-FRI *"
+  then
+    if (Nest_ambient_temperature_f.state < 69 && Nest_can_heat.state == ON && NestHome_away.state == "auto-away") {
+      logDebug("rules", "Winter Nest - Set to Home")
+      sendCommand(NestHome_away, "home")
+    }
+  end
+  
+rule "Turn Off Auto-Away Cool"
+  when
+    Time cron "0 */10 15-18 ? * MON-FRI *"
+  then
+    if (Nest_ambient_temperature_f.state >= 73 && Nest_can_cool.state == ON && NestHome_away.state == "auto-away") {
+      logDebug("rules", "Summer Nest - Set to Home")
+      sendCommand(NestHome_away, "home")
+    }
+  end
+
+rule "I'm Away - Turn On Motion Detection"
+  when
+    Time cron "0 0 8 ? * MON-FRI *" or
+    NestHome_away changed to "auto-away"
+  then
+    //Right now, just using auto away or cron to turn on motion detection
+    logDebug("rules", "Turn On Motion Detection")
+    sendCommand(PIRMotionDetection , ON)
+    sendCommand(GarageDoorShutter, DOWN)
+    createTimer(now.plusMinutes(60), [|
+      if(GarageDoorShutter.state == "UP") {
+        sendNotification("kfkkail@gmail.com", "You Idiot! You left the garage door open!")
+        sendCommand(GarageDoorShutter, DOWN)
+      }
+    ])
+  end
+  
+rule "I'm Home - Turn Off Motion Detection"
+  when
+    Time cron "0 0 16 ? * MON-FRI *"
+  then
+    //Right now, just using cron to turn off motion detection
+    if(NestHome_away.state != "away") {
+      logDebug("rules", "I'm Home - Turn Off Motion Detection")
+      sendCommand(PIRMotionDetection , OFF)
+    }
+  end

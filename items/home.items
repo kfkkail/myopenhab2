@@ -136,7 +136,7 @@ Number   Humidity      "Outside Humidity [%d %%]"        <water> {weather="locat
 Switch PIRMotionDetection "PIR Motion Detection"
 
 Switch UpstairsPIRLightControl "Upstairs PIR Light Control"
-Contact UPSTAIRS_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node21:alarm_burglar"}
+Contact UPSTAIRS_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:15a15926c62:node21:sensor_binary"}
 Number UPSTAIRS_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node21:battery-level"}
 Number UPSTAIRS_PIR_TEMPERATURE "Upstairs Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node21:sensor_temperature"}
 Number UPSTAIRS_PIR_LIGHT "Upstairs Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node21:sensor_luminance"}
@@ -144,7 +144,7 @@ Number UPSTAIRS_PIR_REL_HUMID "Upstairs Humidity [%.0f %%]" <water> (IndoorHumid
 Contact UPSTAIRS_PIR_MOTION "Upstairs Motion [%s]" <motion> {channel="zwave:device:f8a447cd:node21:sensor_binary"}
 
 Switch GreatRoomPIRLightControl "Great Room PIR Light Control"
-Contact GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node15:alarm_burglar"}
+Contact GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:15a15926c62:node15:sensor_binary"}
 Number GREATROOM_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node15:battery-level"}
 Number GREATROOM_PIR_TEMPERATURE "Great Room Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node15:sensor_temperature"}
 Number GREATROOM_PIR_LIGHT "Great Room Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node15:sensor_luminance"}
@@ -152,7 +152,7 @@ Number GREATROOM_PIR_REL_HUMID "Great Room Humidity [%.0f %%]" <water> (IndoorHu
 Contact GREATROOM_PIR_MOTION "Great Room Motion [%s]" <motion> {channel="zwave:device:f8a447cd:node15:sensor_binary"}
 
 Switch BasementPIRLightControl "Basement PIR Light Control"
-Contact BASEMENT_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f8a447cd:node17:alarm_burglar"}
+Contact BASEMENT_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:15a15926c62:node17:sensor_binary"}
 Number BASEMENT_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f8a447cd:node17:battery-level"}
 Number BASEMENT_PIR_TEMPERATURE "Basement Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f8a447cd:node17:sensor_temperature"}
 Number BASEMENT_PIR_LIGHT "Basement Light Level [%.0f %%]" <slider> {channel="zwave:device:f8a447cd:node17:sensor_luminance"}

@@ -1,0 +1,59 @@
+var Number currentUpstairsHumidity
+var Number currentBasementHumidity
+var Number currentOutsideTemperature
+var Number humidityTarget
+
+//Set Current Upstairs Humidity or Default
+if(UPSTAIRS_PIR_REL_HUMID.state == NULL) {
+  currentUpstairsHumidity = 50
+} else {
+  currentUpstairsHumidity = UPSTAIRS_PIR_REL_HUMID.state
+}
+
+//Set Outside Temperature or Default
+if(Temperature_OWM.state == NULL) {
+  currentOutsideTemperature = 70
+} else {
+  currentOutsideTemperature = Temperature_OWM.state
+}
+
+//Set Basement Hummidity or Default
+if(BASEMENT_PIR_REL_HUMID.state == NULL) {
+  currentBasementHumidity = 50
+} else {
+  currentBasementHumidity = BASEMENT_PIR_REL_HUMID.state
+}
+
+if(currentOutsideTemperature > 50) {
+  humidityTarget = 45
+} else if(currentOutsideTemperature > 20) {
+  humidityTarget = 40
+} else if(currentOutsideTemperature > 10) {
+  humidityTarget = 35
+} else if(currentOutsideTemperature > 0) {
+  humidityTarget = 30
+} else if(currentOutsideTemperature > -10) {
+  humidityTarget = 25
+} else {
+  humidityTarget = 10
+}
+
+logDebug("rules","Humidity target is "+humidityTarget)
+
+if(currentUpstairsHumidity < humidityTarget) {
+  logDebug("rules","Humidity below target, start humidifier")
+  sendCommand(Humidifier, ON)
+} else {
+  logDebug("rules","Humidity above target, stop humidifier")
+  sendCommand(Humidifier, OFF)
+}
+
+if(currentBasementHumidity > 55) {
+ logDebug("rules","Humidity above 55, start dehumidifier")
+ sendCommand(Dehumidifier, ON)
+} else if(currentBasementHumidity > 45) {
+ //Do nothing hysteresis
+} else {
+ logDebug("rules","Humidity below 45, stop dehumidifier")
+ sendCommand(Dehumidifier, OFF)
+}

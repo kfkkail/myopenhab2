@@ -1,0 +1,17 @@
+var Number wakeUpDimmer
+
+wakeUpDimmer=BasementArt.state
+while(wakeUpDimmer>0){
+  wakeUpDimmer=wakeUpDimmer-1
+  if(wakeUpDimmer < 0) {
+    wakeUpDimmer = 0
+  }
+  if(Home_Theater_State.state != 1) {
+      wakeUpDimmer = 0
+  } else {
+      sendCommand(BasementArt,wakeUpDimmer)
+  }
+  Thread::sleep(500)
+}
+
+logDebug("rules", "Done Dimming")
