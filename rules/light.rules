@@ -9,7 +9,7 @@ rule "Turn Off Lights at Midnight for the Night"
   then
     logDebug("rules", "Midnight - Turn OFF Lights at Midnight")
 
-    sendCommand(OutdoorModule, OFF)
+    //sendCommand(OutdoorModule, OFF)
     sendCommand(GarageDoorShutter, DOWN)
 end
 
@@ -44,21 +44,21 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     //dayend.minusMinutes(15)
     sunsetTimer = createTimer(dayend.minusMinutes(15)) [|
       logDebug("rules","sunsetTimer ended - Turn On Christmas Lights")
-      sendCommand(OutdoorModule, ON)
+      //sendCommand(OutdoorModule, ON)
       ]
 
     logDebug("rules","Create preDawnTimer")
     //daystart.minusMinutes(150)
     preDawnTimer = createTimer(daystart.minusMinutes(60)) [|
       logDebug("rules","preDawnTimer ended - Turn On Christmas Lights")
-      sendCommand(OutdoorModule, ON)
+      //sendCommand(OutdoorModule, ON)
       ]
 
     logDebug("rules","Create dawnTimer")
     //daystart.plusMinutes(15)
     dawnTimer = createTimer(daystart.plusMinutes(15)) [|
       logDebug("rules","dawnTimer ended - Turn Off Christmas Lights")
-      sendCommand(OutdoorModule, OFF)
+      //sendCommand(OutdoorModule, OFF)
       ]
 
     logDebug("rules","Sunset Timer: "+sunsetTimer)
@@ -133,11 +133,11 @@ rule "Basement Light PIR Motion"
     Item BASEMENT_PIR_MOTION changed
   then
     if(BasementPIRLightControl.state == ON && BasementStairsSwitch.state == OFF) {
-      if(BASEMENT_PIR_MOTION.state == OPEN  && BASEMENT_PIR_LIGHT.state <= 20) {
+      if(BASEMENT_PIR_MOTION.state == ON  && BASEMENT_PIR_LIGHT.state <= 20) {
         logDebug("rules", "Basement Motion Detected - Turn On BasementProjectorSpot")
         sendCommand(BasementProjectorSpot, 100)
         sendCommand(BasementArt, 100)
-      } else if (BASEMENT_PIR_MOTION.state == CLOSED) {
+      } else if (BASEMENT_PIR_MOTION.state == OFF) {
         logDebug("rules", "Basement Motion No Longer Detected - Turn Off BasementProjectorSpot")
         sendCommand(BasementProjectorSpot, 0)
         sendCommand(BasementArt, 0)
@@ -151,17 +151,25 @@ rule "Great Room Light PIR Motion"
     Item UPSTAIRS_PIR_MOTION changed
   then
     if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF)
-      if((GREATROOM_PIR_MOTION.state == OPEN || UPSTAIRS_PIR_MOTION.state == OPEN)  && GREATROOM_PIR_LIGHT.state <= 15) {
+      if((GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON)  && GREATROOM_PIR_LIGHT.state <= 15) {
         logDebug("rules", "Great Room Motion Detected - Turn On Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 30)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
 	      sendCommand(Christmas_Tree, 100)
-      } else if (GREATROOM_PIR_MOTION.state == CLOSED && UPSTAIRS_PIR_MOTION.state == CLOSED) {
+      } else if (GREATROOM_PIR_MOTION.state == OFF && UPSTAIRS_PIR_MOTION.state == OFF) {
         logDebug("rules", "Great Room Motion No Longer Detected - Turn Off Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
 	      sendCommand(Christmas_Tree, 0)
       }
+end
+
+rule "Say Test"
+  when
+    Item TriggerTimer changed
+  then
+    logDebug("rules","Say Test")
+    say("This is a test.")
 end
