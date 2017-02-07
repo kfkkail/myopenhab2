@@ -26,7 +26,7 @@ then
 
     if (minute < 10) { msg = msg + "0" }
     msg = msg + alarmMinute.state.format("%d")
-    postUpdate(alarmMessage,msg)
+    sendCommand(alarmMessage,msg)
 
     // calculate the alarm time [min]
     var int alarm1

@@ -72,7 +72,7 @@ rule "Great Room Light Switch!"
   then
     logDebug("rules", "GreatRoomSwitch_State = " + GreatRoomSwitch_State.state)
     if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
-    	postUpdate(GreatRoomSwitch_State, 0)
+    	sendCommand(GreatRoomSwitch_State, 0)
     }
 
     if (GreatRoomSwitch.state == ON && GreatRoomSwitch_State.state == 0) {
