@@ -111,7 +111,7 @@ Switch Dehumidifier "Dehumidifier" {channel="zwave:device:15a15926c62:node24:swi
 Switch Humidifier "Humidifier" {channel="zwave:device:15a15926c62:node25:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
 
-Contact Doorbell
+Switch "Doorbell" Doorbell {channel="zwave:device:15a15926c62:node14:notification_power_management"}
 Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {channel="zwave:device:15a15926c62:node14:battery-level"}
 Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 
