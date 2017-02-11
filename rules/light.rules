@@ -106,7 +106,7 @@ rule "doorbell Basement Light Notification"
       doorbellRang = false
     }
     logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
-		var currentLightState = Integer::parseInt(BasementProjectorSpot.state)
+		var currentLightState = (BasementProjectorSpot.state as DecimalType)
 		var newLightState = if (currentLightState > 0) 0 else 100
 
 		if (doorbellRang == false) {
