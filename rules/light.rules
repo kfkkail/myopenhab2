@@ -1,3 +1,5 @@
+import java.lang.Integer.*
+
 val boolean doorbellRang = false
 var Timer sunsetTimer
 var Timer dawnTimer
@@ -103,6 +105,7 @@ rule "doorbell Basement Light Notification"
     if (doorbellRang == NULL) {
       doorbellRang = false
     }
+    logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
 		var currentLightState = Integer::parseInt(BasementProjectorSpot.state)
 		var newLightState = if (currentLightState > 0) 0 else 100
 
