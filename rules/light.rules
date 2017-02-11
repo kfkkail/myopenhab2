@@ -101,6 +101,7 @@ rule "doorbell Basement Light Notification"
 		Item Doorbell received update
 	then
 		var currentLightState = BasementProjectorSpot.state
+    logDebug("rules", "BasementProjectorSpot " + BasementProjectorSpot.state)
 		var newLightState = if (currentLightState > 0) 0 else 100
 
 		logDebug("rules", "doorbellRang " + doorbellRang + " " + Doorbell.state)
