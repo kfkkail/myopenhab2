@@ -103,13 +103,8 @@ rule "doorbell Basement Light Notification"
     if (doorbellRang == NULL) {
       doorbellRang = false
     }
-		var currentLightState = BasementProjectorSpot.state
-    logDebug("rules", "BasementProjectorSpot " + BasementProjectorSpot.state)
-    logDebug("rules", "currentLightState " + currentLightState)
+		var currentLightState = Integer::parseInt(BasementProjectorSpot.state)
 		var newLightState = if (currentLightState > 0) 0 else 100
-    logDebug("rules", "newLightState " + newLightState)
-
-		logDebug("rules", "doorbellRang " + doorbellRang + " " + Doorbell.state)
 
 		if (doorbellRang == false) {
 			sendCommand(BasementProjectorSpot, newLightState)
