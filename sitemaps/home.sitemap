@@ -52,7 +52,6 @@ sitemap home label="Falcons Fire Home"
       Slider item=Christmas_Tree sendFrequency=200 switchSupport
       Switch item=MasterBathFanSwitch
       Switch item=MasterBathToiletFanSwitch
-      Switch item=OutdoorModule
       Switch item=Humidifier
       Switch item=Dehumidifier
       Text item=Sunrise_Time
