@@ -6,7 +6,7 @@ while(wakeUpDimmer>0){
   if(wakeUpDimmer < 0) {
     wakeUpDimmer = 0
   }
-  if(Home_Theater_State.state != 1 || BasementArt.state != (wakeUpDimmer-1)) {
+  if(Home_Theater_State.state != 1 || BasementArt.state != (wakeUpDimmer+1)) {
     wakeUpDimmer = 0
   } else {
     sendCommand(BasementArt,wakeUpDimmer)
