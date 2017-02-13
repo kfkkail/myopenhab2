@@ -2,7 +2,7 @@
 This is the repository I'm using to hold my house openhab configuration.
 
 # Configuration
-* Ubuntu 14.04.4 LTS on laptop
+* Raspberry Pi 3 Model B
 * Nest Binding
   * Nest Thermostat Gen 2
 * Z-Wave Binding
