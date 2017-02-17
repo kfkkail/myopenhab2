@@ -8,6 +8,8 @@ Group nestThermostat "Nest Thermostat"
 Group integraBasement "Home Theater"
 Group plugDimmers "All Plug Dimmers"
 Group devicePresence "Device Presence"
+Group:Dimmer:OR(100, 0) dimmers "Dimmers [(%d)]"
+Group:Switch:OR(ON, OFF) switches "Switches [(%d)]"
 Group Lights_Random
 Group lightsAtNight // Basically a christmas light controller
 
@@ -95,20 +97,20 @@ String Home_Theater_Feedback    "Home Theater Feedback [%s]"
 Number Home_Theater_State       "Home Theater State"
 Number Bar_Speaker_Mode         "Bar Speaker Mode"
 
-Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers) {channel="zwave:device:15a15926c62:node2:switch_dimmer"}
-Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers) {channel="zwave:device:15a15926c62:node3:switch_dimmer"}
-Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers) {channel="zwave:device:15a15926c62:node7:switch_dimmer"}
-Dimmer Christmas_Tree "Christmas Tree [%d %%]" {channel="zwave:device:15a15926c62:node23:switch_dimmer"}
-Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB) {channel="zwave:device:15a15926c62:node18:switch_binary"}
-Switch MasterBathFanSwitch "Master Bath Shower Fan" {channel="zwave:device:15a15926c62:node20:switch_binary"}
-Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" {channel="zwave:device:15a15926c62:node26:switch_binary"}
+Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:15a15926c62:node2:switch_dimmer"}
+Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:15a15926c62:node3:switch_dimmer"}
+Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:15a15926c62:node7:switch_dimmer"}
+Dimmer Christmas_Tree "Christmas Tree [%d %%]" (dimmers) {channel="zwave:device:15a15926c62:node23:switch_dimmer"}
+Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB, switches) {channel="zwave:device:15a15926c62:node18:switch_binary"}
+Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches) {channel="zwave:device:15a15926c62:node20:switch_binary"}
+Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches) {channel="zwave:device:15a15926c62:node26:switch_binary"}
 Number GreatRoomSwitch_State "Great Room Switch State"
-Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB) {channel="zwave:device:15a15926c62:node5:switch_dimmer"}
-Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" {channel="zwave:device:15a15926c62:node6:switch_dimmer"}
-Dimmer BasementArt "Basement Art Dimmer [%d %%]" {channel="zwave:device:15a15926c62:node19:switch_dimmer"}
+Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) {channel="zwave:device:15a15926c62:node5:switch_dimmer"}
+Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers) {channel="zwave:device:15a15926c62:node6:switch_dimmer"}
+Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers) {channel="zwave:device:15a15926c62:node19:switch_dimmer"}
 //Switch OutdoorModule "Outdoor Module" (lightsAtNight) {channel="22:command=SWITCH_BINARY"} //Add channel information
-Switch Dehumidifier "Dehumidifier" {channel="zwave:device:15a15926c62:node24:switch_binary"}
-Switch Humidifier "Humidifier" {channel="zwave:device:15a15926c62:node25:switch_binary"}
+Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:15a15926c62:node24:switch_binary"}
+Switch Humidifier "Humidifier" (switches) {channel="zwave:device:15a15926c62:node25:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
 
 Switch "Doorbell" Doorbell {channel="zwave:device:15a15926c62:node14:notification_power_management"}

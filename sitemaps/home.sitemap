@@ -1,9 +1,8 @@
 sitemap home label="Falcons Fire Home"
 {
   Frame label="Light Control" {
-    Switch item=GreatRoomSwitch
-    Switch item=BasementStairsSwitch
-    Slider item=BasementArt
+    Group item=switches
+    Group item=dimmers
   }
   Frame label="Indoor" {
     Group item=IndoorTemperature
