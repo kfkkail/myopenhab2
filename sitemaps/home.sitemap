@@ -18,9 +18,9 @@ sitemap home label="Falcons Fire Home"
   Frame label="Home Theater" {
     Selection item=Home_Theater_Mode icon="video" mappings=[0=off, 1=Cable, 2=Chromecast, 3=FireTV, 4=Pandora, 5=PC, 6=Unknown]
     Text item=Home_Theater_Feedback icon="video"
-    Setpoint item=integraVolume icon="video" minValue=0 maxValue=45 step=1 visibility=[Home_Theater_Mode>0]
+    Setpoint item=integraVolume icon="video" minValue=0 maxValue=60 step=1 visibility=[Home_Theater_Mode>0]
     Selection item=Bar_Speaker_Mode icon="video" mappings=[0=off, 4=Pandora, 6=Unknown]
-    Setpoint item=integraZ2Volume icon="video" minValue=0 maxValue=45 step=1 visibility=[Bar_Speaker_Mode>0]
+    Setpoint item=integraZ2Volume icon="video" minValue=0 maxValue=60 step=1 visibility=[Bar_Speaker_Mode>0]
   }
   Frame {
   Text label="Advanced" icon="settings"{
@@ -43,20 +43,6 @@ sitemap home label="Falcons Fire Home"
           Text item=UPSTAIRS_PIR_BATTERY
           Text item=UPSTAIRS_PIR_LIGHT
         }
-    }
-    Text label="Dimmers" icon="switch" {
-      Slider item=Living_Room_Lamp_Dimmer sendFrequency=200 switchSupport
-      Slider item=Kitchen_UnderCabinet1_Dimmer sendFrequency=200 switchSupport
-      Slider item=Kitchen_UnderCabinet2_Dimmer sendFrequency=200 switchSupport
-      Slider item=BasementProjectorSpot sendFrequency=200 switchSupport
-      Slider item=Christmas_Tree sendFrequency=200 switchSupport
-      Switch item=MasterBathFanSwitch
-      Switch item=MasterBathToiletFanSwitch
-      Switch item=Humidifier
-      Switch item=Dehumidifier
-      Text item=Sunrise_Time
-      Text item=Sunset_Time
-      Switch item=TriggerTimer
     }
     Text label="Basement Theater" icon="cellar" {
       Frame {
@@ -102,6 +88,9 @@ sitemap home label="Falcons Fire Home"
     Switch item=GreatRoomPIRLightControl
     Switch item=PIRMotionDetection
     Switch item=HomeTheaterSwitch
+    Text item=Sunrise_Time
+    Text item=Sunset_Time
+    Switch item=TriggerTimer
     Text label="Set Nest to Home at [%s]" item=alarmMessage icon="clock" {
         Frame label="Time" {
             Setpoint item=alarmHour minValue=0 maxValue=23 step=1
