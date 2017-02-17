@@ -120,8 +120,8 @@ Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 /* Use the Astro binding to see when it's dark or light outside. Using a light sensor would be
   even better, but that's not too hard to hack in later */
 
-DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]"
-DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]"
+DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise>
+DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset>
 
 /* Device Presence Detection */
 Switch someoneIsHome "Someone Is Home!" <present> (devicePresence)
