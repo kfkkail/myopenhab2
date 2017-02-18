@@ -8,7 +8,7 @@ Group nestThermostat "Nest Thermostat"
 Group integraBasement "Home Theater"
 Group plugDimmers "All Plug Dimmers"
 Group devicePresence "Device Presence"
-Group:Dimmer:OR(ON, OFF) dimmers "Dimmers [(%d)]"
+Group:Switch:OR(ON, OFF) dimmers "Dimmers [(%d)]"
 Group:Switch:OR(ON, OFF) switches "Switches [(%d)]"
 Group Lights_Random
 Group lightsAtNight // Basically a christmas light controller
