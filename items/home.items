@@ -10,7 +10,7 @@ Group plugDimmers "All Plug Dimmers"
 Group devicePresence "Device Presence"
 Group:Switch:OR(ON, OFF) dimmers "Dimmers [(%d)]"
 Group:Switch:OR(ON, OFF) switches "Switches [(%d)]"
-Group:Switch:OR(ON, OFF) motionDetected "Motion?"
+Group:Switch:OR(ON, OFF) motionDetected "Motion? [(%d)]"
 Group Lights_Random
 Group lightsAtNight // Basically a christmas light controller
 
