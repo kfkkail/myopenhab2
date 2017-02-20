@@ -3,6 +3,8 @@ sitemap home label="Falcons Fire Home"
   Frame label="Light Control" {
     Group item=switches
     Group item=dimmers
+    Switch item=GarageDoorShutter
+    Group item=motionDetected
   }
   Frame label="Indoor" {
     Group item=IndoorTemperature
@@ -69,7 +71,6 @@ sitemap home label="Falcons Fire Home"
       Switch item=Nest_hvac_mode mappings=[heat="Heat",cool="Cool","heat-cool"="Auto",off="Off"]
       Text item=Nest_last_connection
     }
-    Switch item=GarageDoorShutter
     Group item=devicePresence icon="present"
     Text item=FrontDoor_Doorbell_Battery	icon="battery-0"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==0]
     Text item=FrontDoor_Doorbell_Battery	icon="battery-10"	label="Doorbell Battery [%d %%]"	visibility=[Doorbell_Battery_Icon==10]
