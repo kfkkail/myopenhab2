@@ -177,3 +177,5 @@ String alarmMessage "%s"
 
 Number alarmHour "Hour [%d]" <clock>
 Number alarmMinute "Minute [%d]" <clock>
+
+Switch TalkControl "Talk Control"

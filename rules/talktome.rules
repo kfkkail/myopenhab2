@@ -1,0 +1,35 @@
+val boolean alreadyTalkedOnce = false
+
+rule "Allow Talking with Great Room Motion"
+  when
+    Time cron "0 0 15 ? * MON-FRI"
+    // Turn on afternoon during week
+  then
+    logDebug("rules", "Allow Blind Open Control with Great Room Motion")
+
+    sendCommand(TalkControl, ON)
+end
+
+rule "Disable Blind Open Control with Great Room Motion and Close Blinds"
+when
+    Channel 'astro:sun:home:set#event' triggered START 
+then
+    logDebug("rules", "Disable Blind Open Control with Great Room Motion")
+
+    sendCommand(TalkControl, OFF)
+    
+    createTimer(now.plusSeconds(10)) [|
+      alreadyTalkedOnce = false
+    ]
+end
+
+rule "Talk to me"
+when
+    Item GREATROOM_PIR_MOTION changed from OFF to ON
+then
+    logDebug("rules", "Talk to me when Talk Control is enabled")
+    if(TalkControl.state == ON && alreadyTalkedOnce == false) {
+      say("Welcome Home Andrea!")
+      alreadyTalkedOnce = true
+    }
+end

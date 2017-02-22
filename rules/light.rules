@@ -171,11 +171,3 @@ rule "Great Room Light PIR Motion"
 	      sendCommand(Christmas_Tree, 0)
       }
 end
-
-rule "Say Test"
-  when
-    Item TriggerTimer changed
-  then
-    logDebug("rules","Say Test")
-    say("This is a test.")
-end
