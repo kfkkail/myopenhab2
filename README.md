@@ -22,6 +22,7 @@ This is the repository I'm using to hold my house openhab configuration.
 * Weather Binding
 * Chamberlain MyQ Binding
   * Chamberlain CIGBU Internet Gateway For MyQ Enabled Garage Door Openers
+* Chromecast Binding
 
 # Works in Progress
 * Samsung TV serial or IP binding
