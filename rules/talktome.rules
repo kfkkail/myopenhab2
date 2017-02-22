@@ -10,11 +10,11 @@ rule "Allow Talking with Great Room Motion"
     sendCommand(TalkControl, ON)
 end
 
-rule "Disable Blind Open Control with Great Room Motion and Close Blinds"
+rule "Disable Talk Control"
 when
     Channel 'astro:sun:home:set#event' triggered START 
 then
-    logDebug("rules", "Disable Blind Open Control with Great Room Motion")
+    logDebug("rules", "Disable Talk Control")
 
     sendCommand(TalkControl, OFF)
     
