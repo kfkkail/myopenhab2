@@ -51,7 +51,7 @@ if(currentUpstairsHumidity < humidityTarget) {
 if(currentBasementHumidity > 55) {
  logDebug("rules","Humidity above 55, start dehumidifier")
  sendCommand(Dehumidifier, ON)
-} else if(currentBasementHumidity > 45) {
+} else if(currentBasementHumidity > 50) {
  //Do nothing hysteresis
 } else {
  logDebug("rules","Humidity below 45, stop dehumidifier")
