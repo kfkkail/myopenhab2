@@ -1,0 +1,39 @@
+val boolean alreadyOpenedOnce = false
+
+rule "Allow Blind Open Control with Great Room Motion"
+  when
+    Time cron "0 0 15 ? * MON-FRI"
+    // Turn on afternoon during week
+  then
+    logDebug("rules", "Allow Blind Open Control with Great Room Motion")
+
+    sendCommand(BlindOpenControl, ON)
+end
+
+rule "Disable Blind Open Control with Great Room Motion and Close Blinds"
+when
+    Channel 'astro:sun:home:set#event' triggered START 
+then
+    logDebug("rules", "Disable Blind Open Control with Great Room Motion")
+
+    sendCommand(BlindOpenControl, OFF)
+    
+    createTimer(now.plusMinutes(10)) [|
+      logDebug("rules", "10 minutes after Sunset - Close Blinds")
+      sendCommand(Blind1, 100)
+      sendCommand(Blind2, 100)
+      alreadyOpenedOnce = false
+    ]
+end
+
+rule "Open Blinds"
+when
+    Item GREATROOM_PIR_MOTION changed from OFF to ON
+then
+    logDebug("rules", "Open the Blinds when Blind Open Control is enabled")
+    if(BlindOpenControl.state == ON && alreadyClosedOnce == false) {
+      sendCommand(Blind1, 0)
+      sendCommand(Blind2, 0)
+      alreadyOpenedOnce = true
+    }
+end
