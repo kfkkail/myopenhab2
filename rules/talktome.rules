@@ -12,12 +12,12 @@ end
 
 rule "Disable Talk Control"
 when
-    Channel 'astro:sun:local:set#event' triggered START 
+    Channel 'astro:sun:local:set#event' triggered START
 then
     logDebug("rules", "Disable Talk Control")
 
     sendCommand(TalkControl, OFF)
-    
+
     createTimer(now.plusSeconds(10)) [|
       alreadyTalkedOnce = false
     ]
@@ -27,8 +27,8 @@ rule "Talk to me"
 when
     Item GREATROOM_PIR_MOTION changed from OFF to ON
 then
-    logDebug("rules", "Talk to me when Talk Control is enabled")
     if(TalkControl.state == ON && alreadyTalkedOnce == false) {
+      logDebug("rules", "Welcome Andrea Home!")
       say("Welcome Home Andrea!")
       alreadyTalkedOnce = true
     }
