@@ -5,14 +5,14 @@ rule "Allow Talking with Great Room Motion"
     Time cron "0 0 15 ? * MON-FRI"
     // Turn on afternoon during week
   then
-    logDebug("rules", "Allow Blind Open Control with Great Room Motion")
+    logDebug("rules", "Enable TalkControl with Great Room Motion")
 
     sendCommand(TalkControl, ON)
 end
 
 rule "Disable Talk Control"
 when
-    Channel 'astro:sun:home:set#event' triggered START 
+    Channel 'astro:sun:local:set#event' triggered START 
 then
     logDebug("rules", "Disable Talk Control")
 
