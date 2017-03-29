@@ -9,7 +9,7 @@ rule "Turn Off Auto-Away Heat"
       sendCommand(NestHome_away, "home")
     }
   end
-  
+
 rule "Turn Off Auto-Away Cool"
   when
     Time cron "0 */10 15-18 ? * MON-FRI *"
@@ -36,13 +36,13 @@ rule "I'm Away - Turn On Motion Detection"
       }
     ])
   end
-  
+
 rule "I'm Home - Turn Off Motion Detection"
   when
     Time cron "0 0 16 ? * MON-FRI *"
   then
     //Right now, just using cron to turn off motion detection
-    if(NestHome_away.state != "away") {
+    if(OwnerPresence.state == "home") {
       logDebug("rules", "I'm Home - Turn Off Motion Detection")
       sendCommand(PIRMotionDetection , OFF)
     }

@@ -125,6 +125,7 @@ DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise>
 DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset>
 
 /* Device Presence Detection */
+String OwnerPresence "Owner Presence" <present> (devicePresence)
 Switch someoneIsHome "Someone Is Home!" <present> (devicePresence)
 Switch wifi_Kail "Kail Wifi"      <present> (devicePresence)      {nh="192.168.0.206"}
 Switch wifi_Andrea "Andrea Wifi"  <present> (devicePresence)      {nh="192.168.0.207"}
