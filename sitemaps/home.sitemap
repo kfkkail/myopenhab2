@@ -10,7 +10,6 @@ sitemap home label="Falcons Fire Home"
   Frame label="Indoor" {
     Group item=IndoorTemperature
     Group item=IndoorTemperature
-    Group item=IndoorTemperature
     Group item=IndoorHumidity
     Text item=Nest_hvac_state
     Setpoint item=Nest_target_temperature_f minValue=60 maxValue=80 step=1
