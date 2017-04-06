@@ -1,1 +1,4 @@
 *myq.cfg
+*.DS_Store
+*.apdisk
+*.TemporaryItems*
