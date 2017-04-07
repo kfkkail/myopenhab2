@@ -88,7 +88,7 @@ Number integraNETList         "Select List Item"          {onkyo="*:integrarecei
 
 //Epson Projector
 Switch HomeTheaterSwitch "Turn On Home Theater w/ Switch"
-Switch epsonPower                          <projector_benq> { epsonprojector="*hometheaterprojector:Power:60000" }
+Switch epsonPower                          <projector_benq> { epsonprojector="hometheaterprojector:Power:60000" }
 //String epsonPowerState                     { epsonprojector="*hometheaterprojector:PowerState:60000" }
 
 /* Scene Controller for Home Theater */
