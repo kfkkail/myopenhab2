@@ -29,7 +29,7 @@ when
 then
     if(TalkControl.state == ON && alreadyTalkedOnce == false) {
       logDebug("rules", "Welcome Andrea Home!")
-      say("Welcome Home Andrea!")
+      say("Welcome Home Andrea! Your husband really loves you. I can see it in his eyes!")
       alreadyTalkedOnce = true
     }
 end
