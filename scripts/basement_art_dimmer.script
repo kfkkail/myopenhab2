@@ -1,7 +1,9 @@
 var Number wakeUpDimmer
 
 wakeUpDimmer=BasementArt.state
+logDebug("rules", "Dimmer " + wakeUpDimmer)
 while(wakeUpDimmer>0){
+  logDebug("rules", "Dimmer " + wakeUpDimmer)
   wakeUpDimmer=wakeUpDimmer-1
   if(wakeUpDimmer < 0) {
     wakeUpDimmer = 0
@@ -9,7 +11,8 @@ while(wakeUpDimmer>0){
   if(Home_Theater_State.state != 1 || BasementArt.state != (wakeUpDimmer+1)) {
     wakeUpDimmer = 0
   } else {
-    sendCommand(BasementArt, wakeUpDimmer)
+   logDebug("rules", "Send Dimmer Command " + wakeUpDimmer)
+   sendCommand(BasementArt, wakeUpDimmer)
   }
   Thread::sleep(500)
 }
