@@ -101,7 +101,7 @@ Number Bar_Speaker_Mode         "Bar Speaker Mode"
 Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:15a15926c62:node2:switch_dimmer"}
 Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:15a15926c62:node3:switch_dimmer"}
 Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:15a15926c62:node7:switch_dimmer"}
-Dimmer Christmas_Tree "Christmas Tree [%d %%]" (dimmers) {channel="zwave:device:15a15926c62:node23:switch_dimmer"}
+Dimmer Living_Room_Balls "Light Balls [%d %%]" (dimmers) {channel="zwave:device:15a15926c62:node23:switch_dimmer"}
 Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB, switches) {channel="zwave:device:15a15926c62:node18:switch_binary"}
 Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches) {channel="zwave:device:15a15926c62:node20:switch_binary"}
 Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches) {channel="zwave:device:15a15926c62:node26:switch_binary"}

@@ -83,7 +83,7 @@ rule "Great Room Light Switch!"
       sendCommand(Living_Room_Lamp_Dimmer, 100)
       sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
       sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
-      sendCommand(Christmas_Tree, 100)
+      sendCommand(Living_Room_Balls, 30)
       createTimer(now.plusSeconds(1)) [|
       	sendCommand(GreatRoomSwitch_State, 0)]
     } else if (GreatRoomSwitch.state == OFF  && GreatRoomSwitch_State.state == 0) {
@@ -92,7 +92,7 @@ rule "Great Room Light Switch!"
       sendCommand(Living_Room_Lamp_Dimmer, 0)
       sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
       sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
-      sendCommand(Christmas_Tree, 0)
+      sendCommand(Living_Room_Balls, 0)
       createTimer(now.plusSeconds(1)) [|
       	sendCommand(GreatRoomSwitch_State, 0)]
     }
