@@ -8,7 +8,10 @@ while(wakeUpDimmer>0){
   if(wakeUpDimmer < 0) {
     wakeUpDimmer = 0
   }
-  if(Home_Theater_State.state != 1 || BasementArt.state != (wakeUpDimmer+1)) {
+  if(Home_Theater_State.state != 1 ||
+    BasementArt.state > (wakeUpDimmer+5) ||
+    BasementArt.state < (wakeUpDimmer-5)) {
+    logDebug("rules", "Dimmer to zero!")
     wakeUpDimmer = 0
   } else {
    logDebug("rules", "Send Dimmer Command " + wakeUpDimmer)
