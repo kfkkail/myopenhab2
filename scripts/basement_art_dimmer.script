@@ -4,12 +4,9 @@ wakeUpDimmer=BasementArt.state
 logDebug("rules", "Dimmer " + wakeUpDimmer)
 while(wakeUpDimmer>0){
   wakeUpDimmer=wakeUpDimmer-1
-  logDebug("rules", "Dimmer " + wakeUpDimmer)
   if(wakeUpDimmer < 0) {
     wakeUpDimmer = 0
   }
-  logDebug("rules", "Home Theater State: " + Home_Theater_State.state)
-  logDebug("rules", "Dimmer again: " + wakeUpDimmer)
   if(Home_Theater_State.state != 1 ||
     BasementArt.state > (wakeUpDimmer+2) ||
     BasementArt.state < (wakeUpDimmer-2)) {
