@@ -132,6 +132,13 @@ rule "Living_Room_Lamp_Dimmer Notification"
 		}
 end
 
+rule "garageDoorEntry Notification"
+	when
+		Item garageDoorEntry changed
+	then
+	    sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
+end
+
 rule "Kitchen_UnderCabinetX_Dimmer Notification"
 	when
 		Item Kitchen_UnderCabinet1_Dimmer changed or
