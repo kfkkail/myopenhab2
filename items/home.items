@@ -181,4 +181,4 @@ Number alarmMinute "Minute [%d]" <clock>
 
 Switch TalkControl "Talk Control"
 
-Switch garageDoorEntry "Door Garage Entry" {channel="zwave:device:15a15926c62:node32:sensor_binary"}
+Switch garageDoorEntry "Door Garage Entry" {channel="zwave:device:15a15926c62:node36:sensor_door"}
