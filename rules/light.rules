@@ -157,6 +157,7 @@ rule "Great Room Light PIR Motion"
     Item UPSTAIRS_PIR_MOTION changed
   then
     if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF)
+      logDebug("Great Room Light PIR Motion: Great Room: " + GREATROOM_PIR_MOTION.state + " Upstairs: " + UPSTAIRS_PIR_MOTION.state)
       if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON) {
         logDebug("rules", "Great Room Motion Detected - Turn On Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 100)

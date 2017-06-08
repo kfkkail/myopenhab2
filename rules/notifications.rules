@@ -136,7 +136,8 @@ rule "garageDoorEntry Notification"
 	when
 		Item garageDoorEntry changed
 	then
-	    sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
+		logDebug("garageDoorEntry changed to " + garageDoorEntry.state)
+		sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
 end
 
 rule "Kitchen_UnderCabinetX_Dimmer Notification"
