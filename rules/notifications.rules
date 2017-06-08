@@ -49,39 +49,39 @@ rule "Great Room PIR changed"
 		}
 end
 
-var Timer timerGreatRoomPIR
-var Timer timerBasementPIR
-var Timer timerDoorbell
-
-rule "Check on Basement PIR Battery"
-    when
-        Item BASEMENT_PIR_TEMPERATURE updated
-    then
-    	logDebug("rules", "BASEMENT_PIR_TEMPERATURE updated - clear basement PIR's dead timer")
-	timerBasementPIR.cancel
-	timerBasementPIR = createTimer(now.plusDays(1)) [|
-                sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + BASEMENT_PIR_BATTERY.state + "%")]
-    end
-
-rule "Check on Great Room PIR Battery"
-    when
-        Item GREATROOM_PIR_TEMPERATURE updated
-    then
-    	logDebug("rules", "GREATROOM_PIR_TEMPERATURE updated - clear great room PIR's dead timer")
-    	timerGreatRoomPIR.cancel
-	timerGreatRoomPIR = createTimer(now.plusDays(1)) [|
-                sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + GREATROOM_PIR_BATTERY.state + "%")]
-    end
-
-rule "Check on Doorbell Battery"
-    when
-        Item FrontDoor_Doorbell_Battery updated
-    then
-    	logDebug("rules", "FrontDoor_Doorbell_Battery updated - clear Doorbell's dead timer")
-    	timerDoorbell.cancel
-	timerDoorbell = createTimer(now.plusDays(3)) [|
-                sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + FrontDoor_Doorbell_Battery.state + "%")]
-    end
+// var Timer timerGreatRoomPIR
+// var Timer timerBasementPIR
+// var Timer timerDoorbell
+//
+// rule "Check on Basement PIR Battery"
+//     when
+//         Item BASEMENT_PIR_TEMPERATURE updated
+//     then
+//     	logDebug("rules", "BASEMENT_PIR_TEMPERATURE updated - clear basement PIR's dead timer")
+// 	timerBasementPIR.cancel
+// 	timerBasementPIR = createTimer(now.plusDays(1)) [|
+//                 sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + BASEMENT_PIR_BATTERY.state + "%")]
+//     end
+//
+// rule "Check on Great Room PIR Battery"
+//     when
+//         Item GREATROOM_PIR_TEMPERATURE updated
+//     then
+//     	logDebug("rules", "GREATROOM_PIR_TEMPERATURE updated - clear great room PIR's dead timer")
+//     	timerGreatRoomPIR.cancel
+// 	timerGreatRoomPIR = createTimer(now.plusDays(1)) [|
+//                 sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + GREATROOM_PIR_BATTERY.state + "%")]
+//     end
+//
+// rule "Check on Doorbell Battery"
+//     when
+//         Item FrontDoor_Doorbell_Battery updated
+//     then
+//     	logDebug("rules", "FrontDoor_Doorbell_Battery updated - clear Doorbell's dead timer")
+//     	timerDoorbell.cancel
+// 	timerDoorbell = createTimer(now.plusDays(3)) [|
+//                 sendNotification("kfkkail@gmail.com", "Basement PIR Battery needs changed - " + FrontDoor_Doorbell_Battery.state + "%")]
+//     end
 
 /*
 rule "Great Room PIR Tamper changed"
@@ -135,7 +135,6 @@ rule "garageDoorEntry Notification"
 	when
 		Item garageDoorEntry changed
 	then
-		logDebug("garageDoorEntry Notification " + garageDoorEntry.state)
 		sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
 end
 
