@@ -135,6 +135,7 @@ rule "garageDoorEntry Notification"
 	when
 		Item garageDoorEntry changed
 	then
+		logDebug("garageDoorEntry Notification " + garageDoorEntry.state)
 		sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
 end
 
