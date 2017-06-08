@@ -112,7 +112,6 @@ rule "Basement PIR Tamper changed"
 		}
 end
 */
-/*
 rule "someoneIsHome Notification"
 	when
 		Item someoneIsHome changed
@@ -136,7 +135,6 @@ rule "garageDoorEntry Notification"
 	when
 		Item garageDoorEntry changed
 	then
-		logDebug("garageDoorEntry changed to " + garageDoorEntry.state)
 		sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
 end
 
@@ -149,5 +147,3 @@ rule "Kitchen_UnderCabinetX_Dimmer Notification"
 		 	sendNotification("kfkkail@gmail.com", "Kitchen_UnderCabinetX_Dimmer changed to " + Kitchen_UnderCabinet1_Dimmer.state)
 		}
 end
-
-*/
