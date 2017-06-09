@@ -154,16 +154,17 @@ end
 rule "Great Room Light PIR Motion"
   when
     Item GREATROOM_PIR_MOTION changed or
-    Item UPSTAIRS_PIR_MOTION changed
+    Item UPSTAIRS_PIR_MOTION changed or
+    Item garageDoorEntry changed
   then
     if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF)
       logDebug("Great Room Light PIR Motion: Great Room: " + GREATROOM_PIR_MOTION.state + " Upstairs: " + UPSTAIRS_PIR_MOTION.state)
-      if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON) {
+      if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON || garageDoorEntry.state == OPEN) {
         logDebug("rules", "Great Room Motion Detected - Turn On Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 100)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
-      } else if (GREATROOM_PIR_MOTION.state == OFF && UPSTAIRS_PIR_MOTION.state == OFF) {
+      } else if (GREATROOM_PIR_MOTION.state == OFF && UPSTAIRS_PIR_MOTION.state == OFF && garageDoorEntry.state == CLOSED) {
         logDebug("rules", "Great Room Motion No Longer Detected - Turn Off Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
