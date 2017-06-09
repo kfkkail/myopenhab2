@@ -1,4 +1,4 @@
-import java.lang.Integer.*
+// import java.lang.Integer.*
 //
 // val boolean doorbellRang = false
 // var Timer sunsetTimer
@@ -122,34 +122,34 @@ import java.lang.Integer.*
 // 				doorbellRang = false]
 // 		}
 // end
-
-rule "Basement Switch Turn off ProjectorSpotLights"
-  when
-    Item BasementStairsSwitch received update
-  then
-    if(BasementStairsSwitch.state == OFF) {
-    	logDebug("rules", "BasementStairsSwitch OFF - Turn Off BasementProjectorSpot")
-    	sendCommand(BasementProjectorSpot, 0)
-    	sendCommand(BasementArt, 0)
-    }
-end
-
-rule "Basement Light PIR Motion"
-  when
-    Item BASEMENT_PIR_MOTION changed
-  then
-    if(BasementPIRLightControl.state == ON && BasementStairsSwitch.state == OFF) {
-      if(BASEMENT_PIR_MOTION.state == ON  && BASEMENT_PIR_LIGHT.state <= 20) {
-        logDebug("rules", "Basement Motion Detected - Turn On BasementProjectorSpot")
-        sendCommand(BasementProjectorSpot, 100)
-        sendCommand(BasementArt, 100)
-      } else if (BASEMENT_PIR_MOTION.state == OFF) {
-        logDebug("rules", "Basement Motion No Longer Detected - Turn Off BasementProjectorSpot")
-        sendCommand(BasementProjectorSpot, 0)
-        sendCommand(BasementArt, 0)
-      }
-    }
-end
+// 
+// rule "Basement Switch Turn off ProjectorSpotLights"
+//   when
+//     Item BasementStairsSwitch received update
+//   then
+//     if(BasementStairsSwitch.state == OFF) {
+//     	logDebug("rules", "BasementStairsSwitch OFF - Turn Off BasementProjectorSpot")
+//     	sendCommand(BasementProjectorSpot, 0)
+//     	sendCommand(BasementArt, 0)
+//     }
+// end
+//
+// rule "Basement Light PIR Motion"
+//   when
+//     Item BASEMENT_PIR_MOTION changed
+//   then
+//     if(BasementPIRLightControl.state == ON && BasementStairsSwitch.state == OFF) {
+//       if(BASEMENT_PIR_MOTION.state == ON  && BASEMENT_PIR_LIGHT.state <= 20) {
+//         logDebug("rules", "Basement Motion Detected - Turn On BasementProjectorSpot")
+//         sendCommand(BasementProjectorSpot, 100)
+//         sendCommand(BasementArt, 100)
+//       } else if (BASEMENT_PIR_MOTION.state == OFF) {
+//         logDebug("rules", "Basement Motion No Longer Detected - Turn Off BasementProjectorSpot")
+//         sendCommand(BasementProjectorSpot, 0)
+//         sendCommand(BasementArt, 0)
+//       }
+//     }
+// end
 
 rule "Great Room Light PIR Motion"
   when
