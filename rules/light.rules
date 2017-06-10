@@ -171,3 +171,16 @@ rule "Great Room Light PIR Motion"
       }
     }
 end
+
+rule "Kitchen Undercabinet"
+  when
+    Item Kitchen_UnderCabinet changed
+  then
+    if (Kitchen_UnderCabinet.state == ON) {
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 100);
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 100);
+    } else if (Kitchen_UnderCabinet.state == OFF) {
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 0);
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 0);
+    }
+end
