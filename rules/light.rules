@@ -122,7 +122,7 @@
 // 				doorbellRang = false]
 // 		}
 // end
-// 
+//
 // rule "Basement Switch Turn off ProjectorSpotLights"
 //   when
 //     Item BasementStairsSwitch received update
@@ -157,9 +157,9 @@ rule "Great Room Light PIR Motion"
     Item UPSTAIRS_PIR_MOTION changed or
     Item garageDoorEntry changed
   then
-    logDebug("Great Room Light PIR Motion: Great Room: " + GREATROOM_PIR_MOTION.state + " Upstairs: " + UPSTAIRS_PIR_MOTION.state + " GarageDoorEntry " + garageDoorEntry.state)
+    // logDebug("Great Room Light PIR Motion: Great Room: " + GREATROOM_PIR_MOTION.state + " Upstairs: " + UPSTAIRS_PIR_MOTION.state + " GarageDoorEntry " + garageDoorEntry.state)
     if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF) {
-      logDebug("Great Room Light PIR Motion: Great Room: " + GREATROOM_PIR_MOTION.state + " Upstairs: " + UPSTAIRS_PIR_MOTION.state)
+      // logDebug("Great Room Light PIR Motion: Great Room: " + GREATROOM_PIR_MOTION.state + " Upstairs: " + UPSTAIRS_PIR_MOTION.state)
       if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON || garageDoorEntry.state == OPEN) {
         logDebug("rules", "Great Room Motion Detected - Turn On Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 100)
