@@ -155,15 +155,15 @@ rule "Great Room Light PIR Motion"
   when
     Item GREATROOM_PIR_MOTION changed or
     Item UPSTAIRS_PIR_MOTION changed or
-    Item garageDoorEntry changed
+    Item garageDoorEntry_state changed
   then
     if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF) {
-      if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON || garageDoorEntry.state == OPEN) {
+      if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON || garageDoorEntry_state.state == 1) {
         logDebug("rules", "Great Room Motion Detected - Turn On Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 100)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
-      } else if (GREATROOM_PIR_MOTION.state == OFF && UPSTAIRS_PIR_MOTION.state == OFF) {
+      } else if (GREATROOM_PIR_MOTION.state == OFF && UPSTAIRS_PIR_MOTION.state == OFF && garageDoorEntry_state.state == 0) {
         logDebug("rules", "Great Room Motion No Longer Detected - Turn Off Living_Room_Lamp_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
@@ -172,15 +172,29 @@ rule "Great Room Light PIR Motion"
     }
 end
 
+rule "GarageDoorEntry_state"
+  when
+    Item garageDoorEntry changed
+  then
+  if (garageDoorEntry.state == OPEN) {
+    sendCommand(garageDoorEntry_state, 1)
+  } else if (garageDoorEntry.state == CLOSED) {
+    createTimer(dayend.minusMinutes(15)) [|
+      logDebug("rules","timer expired - set garageDoorEntry_state to 0")
+      sendCommand(garageDoorEntry_state, 0)
+    ]
+  }
+end
+
 rule "Kitchen Undercabinet"
   when
     Item Kitchen_UnderCabinet changed
   then
     if (Kitchen_UnderCabinet.state == ON) {
-      sendCommand(Kitchen_UnderCabinet1_Dimmer, 100);
-      sendCommand(Kitchen_UnderCabinet2_Dimmer, 100);
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
     } else if (Kitchen_UnderCabinet.state == OFF) {
-      sendCommand(Kitchen_UnderCabinet1_Dimmer, 0);
-      sendCommand(Kitchen_UnderCabinet2_Dimmer, 0);
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
     }
 end
