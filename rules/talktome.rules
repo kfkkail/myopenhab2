@@ -25,11 +25,11 @@ end
 
 rule "Talk to me"
 when
-    Item GREATROOM_PIR_MOTION changed from OFF to ON
+    Item garageDoorEntry_state changed from 0 to 1
 then
     if(TalkControl.state == ON && alreadyTalkedOnce == false) {
       logDebug("rules", "Welcome Andrea Home!")
-      say("Welcome Home Andrea! Your husband really loves you. I can see it in his eyes!")
+      say("Alright, I guess you're home. Welcome Home!")
       alreadyTalkedOnce = true
     }
 end

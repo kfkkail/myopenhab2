@@ -4,6 +4,7 @@ val boolean doorbellRang = false
 var Timer sunsetTimer
 var Timer dawnTimer
 var Timer preDawnTimer
+var Timer doorTimer
 
 rule "Turn Off Lights at Midnight for the Night"
   when
@@ -160,7 +161,7 @@ rule "Great Room Light PIR Motion"
     if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF) {
       if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON || garageDoorEntry_state.state == 1) {
         logDebug("rules", "Great Room Motion Detected - Turn On Living_Room_Lamp_Dimmer")
-        sendCommand(Living_Room_Lamp_Dimmer, 100)
+        sendCommand(Living_Room_Lamp_Dimmer, 20)
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
       } else if (GREATROOM_PIR_MOTION.state == OFF && UPSTAIRS_PIR_MOTION.state == OFF && garageDoorEntry_state.state == 0) {
@@ -178,9 +179,10 @@ rule "GarageDoorEntry_state"
   then
   if (garageDoorEntry.state == OPEN) {
     logDebug("rules","timer expired - set garageDoorEntry_state to 1")
+    doorTimer.cancel()
     sendCommand(garageDoorEntry_state, 1)
   } else if (garageDoorEntry.state == CLOSED) {
-    createTimer(now.plusSeconds(60)) [|
+    doorTimer = createTimer(now.plusSeconds(60)) [|
       logDebug("rules","timer expired - set garageDoorEntry_state to 0")
       sendCommand(garageDoorEntry_state, 0)
     ]
