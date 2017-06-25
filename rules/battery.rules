@@ -1,3 +1,13 @@
+rule "UPSTAIRS_PIR_BATTERY Notification"
+	when
+		Item UPSTAIRS_PIR_BATTERY received update
+	then
+		logDebug("rules", "UPSTAIRS_PIR_BATTERY updated to " + UPSTAIRS_PIR_BATTERY.state + "%")
+		if (UPSTAIRS_PIR_BATTERY.state <= 10) {
+		 	sendNotification("kfkkail@gmail.com", "Upstairs PIR batteries 2xAAA - " + UPSTAIRS_PIR_BATTERY.state + "%")
+		}
+end
+
 rule "BASEMENT_PIR_BATTERY Notification"
 	when
 		Item BASEMENT_PIR_BATTERY received update
@@ -29,7 +39,7 @@ rule "FrontDoor_Doorbell_Battery Notification"
 end
 
 rule "FrontDoor_Doorbell_Battery Icon"
-    when 
+    when
     	Item FrontDoor_Doorbell_Battery received update
     then
     	if (FrontDoor_Doorbell_Battery.state>=0 && FrontDoor_Doorbell_Battery.state<5) {
