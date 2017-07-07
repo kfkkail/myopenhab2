@@ -115,7 +115,7 @@ Switch Humidifier "Humidifier" (switches) {channel="zwave:device:15a15926c62:nod
 Switch TriggerTimer "Light Timer Trigger"
 Switch Kitchen_UnderCabinet "Kitchen Undercabinet" (gMyOpenHAB)
 
-Switch "Doorbell" Doorbell {channel="zwave:device:15a15926c62:node14:notification_power_management"}
+Switch Doorbell "Doorbell" {channel="zwave:device:15a15926c62:node14:notification_power_management"}
 Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {channel="zwave:device:15a15926c62:node14:battery-level"}
 Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 
