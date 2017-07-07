@@ -113,7 +113,7 @@ rule "Bar Speaker Mode"
       if (integraZ2Power.state != OFF) {
         sendCommand(integraZ2Power, OFF)
       }
-    else if (Bar_Speaker_Mode.state == 4) {
+    } else if (Bar_Speaker_Mode.state == 4) {
       if (integraZ2Power.state != ON) {
         sendCommand(integraZ2Power, ON)
       }
