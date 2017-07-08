@@ -1,10 +1,10 @@
-import java.lang.Integer.*
-
 val boolean doorbellRang = false
 var Timer sunsetTimer
 var Timer dawnTimer
 var Timer preDawnTimer
 var Timer doorTimer
+var currentLightState
+var newLightState
 
 rule "Turn Off Lights at Midnight for the Night"
   when
@@ -107,8 +107,8 @@ rule "doorbell Basement Light Notification"
       doorbellRang = false
     }
     logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
-		var currentLightState = (BasementProjectorSpot.state as DecimalType)
-		var newLightState = if (currentLightState > 0) 0 else 100
+		currentLightState = (BasementProjectorSpot.state as DecimalType)
+		newLightState = if (currentLightState > 0) 0 else 100
 
 		if (doorbellRang == false) {
 			sendCommand(BasementProjectorSpot, newLightState)
