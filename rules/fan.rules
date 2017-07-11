@@ -19,8 +19,10 @@ rule "Turn on fan, but only let it run for 15 minutes"
         timerMasterBathShower.cancel
       ]
     } else {
-      logDebug("rules","Master Bath Shower Fan Turned Off - Cancel Timer")
-      timerMasterBathShower.cancel
+      if(timerMasterBathShower!=null) {
+        logDebug("rules","Master Bath Shower Fan Turned Off - Cancel Timer")
+        timerMasterBathShower.cancel
+      }
     }
   end
 
@@ -41,7 +43,9 @@ rule "Turn on fan, but only let it run for 15 minutes"
         timerMasterBathToilet.cancel
       ]
     } else {
-      logDebug("rules","Master Bath Toilet Fan Turned Off - Cancel Timer")
-      timerMasterBathToilet.cancel
+      if(timerMasterBathToilet!=null) {
+        logDebug("rules","Master Bath Toilet Fan Turned Off - Cancel Timer")
+        timerMasterBathToilet.cancel
+      }
     }
   end
