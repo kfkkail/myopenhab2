@@ -1,1 +1,1 @@
-onkyo:onkyoAVR:integrareceiver [ipAddress="192.168.0.202", port="60128"]
+onkyo:onkyoAVR:myOnkyo [ipAddress="192.168.0.202", port=60128]
