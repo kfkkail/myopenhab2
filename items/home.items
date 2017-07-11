@@ -65,6 +65,8 @@ String   Nest_hvac_state "HVAC State [%s]"                                  <tem
 
 /* Integra Receiver binding Items */
 
+Switch avr1Z1_Power  "Power"       <switch>      { channel="onkyo:onkyoAVR:integrareceiver:zone1#power" }
+
 Switch integraPower           "Integra Receiver Power"      (integraBasement) {onkyo="INIT:integrareceiver:POWER_QUERY, ON:integrareceiver:POWER_ON, OFF:integrareceiver:POWER_OFF"}
 //Number integraSleep           "Sleep Timer [%d Min]"      {onkyo="INIT:integrareceiver:#SLPQSTN, 0:integrareceiver:#SLPOFF, *:integrareceiver:#SLP%02X, 0:integrareceiver:#SLPOFF"}
 Switch integraMute            "Mute"                      (integraBasement) {onkyo="INIT:integrareceiver:MUTE_QUERY, ON:integrareceiver:MUTE, OFF:integrareceiver:UNMUTE"}
