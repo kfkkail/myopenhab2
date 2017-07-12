@@ -6,12 +6,12 @@ rule "Turn on fan, but only let it run for 15 minutes"
     Item MasterBathFanSwitch changed
   then
     if(MasterBathFanSwitch.state == ON) {
-      logDebug("rules", "Master Bath Shower Fan Turned On - Start Timer")
       if(timerMasterBathShower!=null) {
         logDebug("rules", "Master Bath Shower Fan Turned On - Cancel Previous Timer")
         timerMasterBathShower.cancel
       }
 
+      logDebug("rules", "Master Bath Shower Fan Turned On - Start Timer")
       timerMasterBathShower = createTimer(now.plusMinutes(15)) [|
         logDebug("rules", "Master Bath Shower Fan Timer Expired - Turn Off")
         sendCommand(MasterBathFanSwitch, OFF)
@@ -30,12 +30,12 @@ rule "Turn on fan, but only let it run for 15 minutes"
     Item MasterBathToiletFanSwitch changed
   then
     if(MasterBathToiletFanSwitch.state == ON) {
-      logDebug("rules", "Master Bath Toilet Fan Turned On - Start Timer")
       if(timerMasterBathToilet!=null) {
         logDebug("rules", "Master Bath Toilet Fan Turned On - Cancel Previous Timer")
         timerMasterBathToilet.cancel
       }
 
+      logDebug("rules", "Master Bath Toilet Fan Turned On - Start Timer")
       timerMasterBathToilet = createTimer(now.plusMinutes(15)) [|
         logDebug("rules", "Master Bath Toilet Fan Timer Expired - Turn Off")
         sendCommand(MasterBathToiletFanSwitch, OFF)
