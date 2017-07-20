@@ -122,8 +122,8 @@ Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 /* Use the Astro binding to see when it's dark or light outside. Using a light sensor would be
   even better, but that's not too hard to hack in later */
 
-DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise>
-DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset>
+DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise> { channel="astro:sun:home:rise#start" }
+DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset> { channel="astro:sun:home:set#start" }
 
 /* Device Presence Detection */
 String OwnerPresence "Owner Presence" <present> (devicePresence, gMyOpenHAB)
