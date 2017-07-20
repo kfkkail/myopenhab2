@@ -108,7 +108,7 @@ rule "doorbell Basement Light Notification"
     }
     logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
 		currentLightState = (BasementProjectorSpot.state as DecimalType)
-		newLightState = if (currentLightState > 0) 0 else 100
+		newLightState = if (currentLightState > 0) 0 as DecimalType else 100 as DecimalType
 
 		if (doorbellRang == false) {
 			sendCommand(BasementProjectorSpot, newLightState)
