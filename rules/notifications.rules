@@ -21,7 +21,7 @@ rule "System Start Init"
 	  sendCommand(alarmFriday,    OFF)
 	  sendCommand(alarmSaturday,    OFF)
 	  sendCommand(alarmSunday,    OFF)
-	  if (OwnerPresence.state != "home" or OwnerPresence.state != "away") {
+	  if (OwnerPresence.state != "home" || OwnerPresence.state != "away") {
 		  sendCommand(OwnerPresence, "home")
 	  }
 end
