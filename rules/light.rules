@@ -107,12 +107,12 @@ rule "doorbell Basement Light Notification"
       doorbellRang = false
     }
     logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
-		currentLightState = Integer::parseInt(BasementProjectorSpot.state)
+		currentLightState = BasementProjectorSpot.state
 		newLightState = if (currentLightState > 0) 0 else 100
 
 		if (doorbellRang == false) {
+      sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
       BasementProjectorSpot.sendCommand(newLightState)
-			sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
 			logDebug("rules", "Doorbell Rang - Notify with Basement Spot Light")
 			doorbellRang = true
 			createTimer(now.plusSeconds(1)) [|
