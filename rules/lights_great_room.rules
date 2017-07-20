@@ -1,0 +1,80 @@
+var Timer doorTimer
+
+rule "Great Room Light Switch!"
+  when
+    Item GreatRoomSwitch received update
+  then
+    logDebug("rules", "GreatRoomSwitch_State = " + GreatRoomSwitch_State.state)
+    if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
+    	sendCommand(GreatRoomSwitch_State, 0)
+    }
+
+    if (GreatRoomSwitch.state == ON && GreatRoomSwitch_State.state == 0) {
+      sendCommand(GreatRoomSwitch_State, 1)
+      logDebug("rules", "GreatRoomSwitch ON - Turn ON Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
+      sendCommand(Living_Room_Lamp_Dimmer, 100)
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
+      sendCommand(Living_Room_Balls, 30)
+      createTimer(now.plusSeconds(1)) [|
+      	sendCommand(GreatRoomSwitch_State, 0)]
+    } else if (GreatRoomSwitch.state == OFF  && GreatRoomSwitch_State.state == 0) {
+      sendCommand(GreatRoomSwitch_State, 1)
+      logDebug("rules", "GreatRoomSwitch OFF - Turn OFF Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
+      sendCommand(Living_Room_Lamp_Dimmer, 0)
+      sendCommand(Living_Room_Balls, 0)
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+      createTimer(now.plusSeconds(1)) [|
+      	sendCommand(GreatRoomSwitch_State, 0)]
+    }
+end
+
+rule "Great Room Light PIR Motion"
+  when
+    Item GREATROOM_PIR_MOTION changed or
+    Item UPSTAIRS_PIR_MOTION changed or
+    Item garageDoorEntry_state changed
+  then
+    if(GreatRoomPIRLightControl.state == ON && GreatRoomSwitch.state == OFF) {
+      if(GREATROOM_PIR_MOTION.state == ON || UPSTAIRS_PIR_MOTION.state == ON) {
+        logDebug("rules", "Great Room Motion Detected - Turn On Kitchen Lights")
+        sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
+        sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
+      } else if (GREATROOM_PIR_MOTION.state == OFF && UPSTAIRS_PIR_MOTION.state == OFF) {
+        logDebug("rules", "Great Room Motion No Longer Detected - Turn Off Kitchen Lights")
+        sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+        sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+      }
+    }
+end
+
+
+rule "GarageDoorEntry_state"
+  when
+    Item garageDoorEntry changed
+  then
+  if (garageDoorEntry.state == OPEN) {
+    logDebug("rules","timer expired - set garageDoorEntry_state to 1")
+    doorTimer.cancel()
+    sendCommand(garageDoorEntry_state, 1)
+  } else if (garageDoorEntry.state == CLOSED) {
+    doorTimer = createTimer(now.plusSeconds(60)) [|
+      logDebug("rules","timer expired - set garageDoorEntry_state to 0")
+      sendCommand(garageDoorEntry_state, 0)
+    ]
+  }
+end
+
+rule "Kitchen Undercabinet"
+  when
+    Item Kitchen_UnderCabinet changed
+  then
+    if (Kitchen_UnderCabinet.state == ON) {
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
+    } else if (Kitchen_UnderCabinet.state == OFF) {
+      sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+      sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+    }
+end
