@@ -3,8 +3,8 @@ var Timer sunsetTimer
 var Timer dawnTimer
 var Timer preDawnTimer
 var Timer doorTimer
-var currentLightState
-var newLightState
+var int currentLightState
+var int newLightState
 
 rule "Turn Off Lights at Midnight for the Night"
   when
@@ -107,7 +107,7 @@ rule "doorbell Basement Light Notification"
       doorbellRang = false
     }
     logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
-		currentLightState = (BasementProjectorSpot.state)
+		currentLightState = (BasementProjectorSpot.state as int)
 		newLightState = if (currentLightState > 0) 0 else 100
 
 		if (doorbellRang == false) {
