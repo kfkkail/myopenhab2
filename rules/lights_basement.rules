@@ -2,30 +2,30 @@ var int currentLightState
 var int newLightState
 val boolean doorbellRang = false
 
-rule "doorbell Basement Light Notification"
-	when
-		Item Doorbell changed from OFF to ON
-	then
-    if (doorbellRang == NULL) {
-      doorbellRang = false
-    }
-    logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
-		currentLightState = BasementProjectorSpot.state
-		newLightState = if (currentLightState > 0) 0 else 100
+// rule "doorbell Basement Light Notification"
+// 	when
+// 		Item Doorbell changed from OFF to ON
+// 	then
+//     if (doorbellRang == NULL) {
+//       doorbellRang = false
+//     }
+//     logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
+// 		currentLightState = BasementProjectorSpot.state
+// 		newLightState = if (currentLightState > 0) 0 else 100
 
-		if (doorbellRang == false) {
-      sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
-      BasementProjectorSpot.sendCommand(newLightState)
-			logDebug("rules", "Doorbell Rang - Notify with Basement Spot Light")
-			doorbellRang = true
-			createTimer(now.plusSeconds(1)) [|
-        logDebug("rules", "1 second later - turn spot back to current light state " + currentLightState)
-        BasementProjectorSpot.sendCommand(currentLightState)]
-			createTimer(now.plusSeconds(5)) [|
-        logDebug("rules", "5 seconds later - doorbellRang back to false")
-				doorbellRang = false]
-		}
-end
+// 		if (doorbellRang == false) {
+//       sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
+//       BasementProjectorSpot.sendCommand(newLightState)
+// 			logDebug("rules", "Doorbell Rang - Notify with Basement Spot Light")
+// 			doorbellRang = true
+// 			createTimer(now.plusSeconds(1)) [|
+//         logDebug("rules", "1 second later - turn spot back to current light state " + currentLightState)
+//         BasementProjectorSpot.sendCommand(currentLightState)]
+// 			createTimer(now.plusSeconds(5)) [|
+//         logDebug("rules", "5 seconds later - doorbellRang back to false")
+// 				doorbellRang = false]
+// 		}
+// end
 
 rule "Basement Switch Turn off ProjectorSpotLights"
   when
