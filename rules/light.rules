@@ -1,9 +1,6 @@
-val boolean doorbellRang = false
 var Timer sunsetTimer
 var Timer dawnTimer
 var Timer preDawnTimer
-var int currentLightState
-var int newLightState
 
 rule "Turn Off Lights at Midnight for the Night"
   when
@@ -66,57 +63,4 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     logDebug("rules","Sunset Timer: "+sunsetTimer)
     logDebug("rules","Predawn Timer: "+preDawnTimer)
     logDebug("rules","Dawn Timer: "+dawnTimer)
-end
-
-rule "doorbell Basement Light Notification"
-	when
-		Item Doorbell changed from OFF to ON
-	then
-    if (doorbellRang == NULL) {
-      doorbellRang = false
-    }
-    logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
-		currentLightState = BasementProjectorSpot.state
-		newLightState = if (currentLightState > 0) 0 else 100
-
-		if (doorbellRang == false) {
-      sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
-      BasementProjectorSpot.sendCommand(newLightState)
-			logDebug("rules", "Doorbell Rang - Notify with Basement Spot Light")
-			doorbellRang = true
-			createTimer(now.plusSeconds(1)) [|
-        logDebug("rules", "1 second later - turn spot back to current light state " + currentLightState)
-        BasementProjectorSpot.sendCommand(currentLightState)]
-			createTimer(now.plusSeconds(5)) [|
-        logDebug("rules", "5 seconds later - doorbellRang back to false")
-				doorbellRang = false]
-		}
-end
-
-rule "Basement Switch Turn off ProjectorSpotLights"
-  when
-    Item BasementStairsSwitch received update
-  then
-    if(BasementStairsSwitch.state == OFF) {
-    	logDebug("rules", "BasementStairsSwitch OFF - Turn Off BasementProjectorSpot")
-    	sendCommand(BasementProjectorSpot, 0)
-    	sendCommand(BasementArt, 0)
-    }
-end
-
-rule "Basement Light PIR Motion"
-  when
-    Item BASEMENT_PIR_MOTION changed
-  then
-    if(BasementPIRLightControl.state == ON && BasementStairsSwitch.state == OFF) {
-      if(BASEMENT_PIR_MOTION.state == ON  && BASEMENT_PIR_LIGHT.state <= 20) {
-        logDebug("rules", "Basement Motion Detected - Turn On BasementProjectorSpot")
-        sendCommand(BasementProjectorSpot, 100)
-        sendCommand(BasementArt, 100)
-      } else if (BASEMENT_PIR_MOTION.state == OFF) {
-        logDebug("rules", "Basement Motion No Longer Detected - Turn Off BasementProjectorSpot")
-        sendCommand(BasementProjectorSpot, 0)
-        sendCommand(BasementArt, 0)
-      }
-    }
 end
