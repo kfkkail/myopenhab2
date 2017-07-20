@@ -18,8 +18,8 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     Time cron "0 0 2 ? * * *" or
     Item TriggerTimer changed to ON
   then
-    var DateTime daystart = new DateTime((Sunrise_Time.state as DateTimeType).calendar.timeInMillis)
-    var DateTime dayend = new DateTime((Sunset_Time.state as DateTimeType).calendar.timeInMillis)
+    var DateTime daystart = new DateTime((Sunrise_Time.state).calendar.timeInMillis)
+    var DateTime dayend = new DateTime((Sunset_Time.state).calendar.timeInMillis)
     logDebug("rules","Sunrise_Time: "+Sunrise_Time.state)
     logDebug("rules","Sunset_Time: "+Sunset_Time.state)
     logDebug("rules","Day Starts: "+daystart)
