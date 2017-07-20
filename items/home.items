@@ -67,17 +67,17 @@ String   Nest_hvac_state "HVAC State [%s]"                                  <tem
 
 Switch integraPower           "Integra Receiver Power"      (integraBasement) { channel="onkyo:onkyoAVR:86c0782c:zone1#power" }
 //Number integraSleep           "Sleep Timer [%d Min]"      {onkyo="INIT:integrareceiver:#SLPQSTN, 0:integrareceiver:#SLPOFF, *:integrareceiver:#SLP%02X, 0:integrareceiver:#SLPOFF"}
-// Switch integraMute            "Mute"                      (integraBasement) {channel=""}
-// Dimmer integraVolume          "Volume [%d]"               (integraBasement) {channel=""}
+Switch integraMute            "Mute"                      (integraBasement) {channel="onkyo:onkyoAVR:86c0782c:zone1#mute"}
+Dimmer integraVolume          "Volume [%d]"               (integraBasement) {channel="onkyo:onkyoAVR:86c0782c:zone1#volume"}
 Number integraSource          "Source"                    <video> (integraBasement) {channel="onkyo:onkyoAVR:86c0782c:zone1#input"}
 // Number integraListenMode     "Listen Mode"                <video> {channel=""}
 // String integraAudio           "Audio [%s]"                <video> (integraBasement) {channel=""}
 // String integraVideo           "Video [%s]"                <video> {channel=""}
 //Zone 2
-// Switch integraZ2Power         "Zone 2 Power"              (integraBasement) {channel=""}
-// Switch integraZ2Mute          "Zone 2 Mute"               (integraBasement) {channel=""}
-// Dimmer integraZ2Volume        "Zone 2 Volume [%d]"        (integraBasement) {channel=""}
-// Number integraZ2Source        "Zone 2 Source"             <video> (integraBasement) {channel=""}
+Switch integraZ2Power         "Zone 2 Power"              (integraBasement) {channelonkyo:onkyoAVR:86c0782c:zone2#power
+Switch integraZ2Mute          "Zone 2 Mute"               (integraBasement) {channel="onkyo:onkyoAVR:86c0782c:zone2#mute"}
+Dimmer integraZ2Volume        "Zone 2 Volume [%d]"        (integraBasement) {channel="onkyo:onkyoAVR:86c0782c:zone2#volume"}
+Number integraZ2Source        "Zone 2 Source"             <video> (integraBasement) {channel="onkyo:onkyoAVR:86c0782c:zone2#input"}
 //NET/USB
 // String integraNETPlayStatus   "Play Status [%s]"          (integraBasement) {channel=""}
 // Switch integraNETPlay         "Play"                      (integraBasement) {channel="", autoupdate="false"}
