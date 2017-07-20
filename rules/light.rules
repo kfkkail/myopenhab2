@@ -117,7 +117,7 @@ rule "doorbell Basement Light Notification"
 			doorbellRang = true
 			createTimer(now.plusSeconds(1)) [|
         logDebug("rules", "1 second later - turn spot back to current light state " + currentLightState)
-        BasementProjectorSpot.sendCommand(currentLightState)
+        BasementProjectorSpot.sendCommand(currentLightState)]
 			createTimer(now.plusSeconds(5)) [|
         logDebug("rules", "5 seconds later - doorbellRang back to false")
 				doorbellRang = false]
