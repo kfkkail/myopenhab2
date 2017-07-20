@@ -6,21 +6,19 @@ rule "doorbell Basement Light Notification"
 	when
 		Item Doorbell changed from OFF to ON
 	then
-    if (doorbellRang == NULL) {
-      doorbellRang = false
-    }
-    logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
-		currentLightState = BasementProjectorSpot.state
-    logDebug("rules","currentLightState " + currentLightState)
-    if (currentLightState.toInteger > 0) {
-      newLightState = 0
-    } else {
-      newLightState = 100
-    }
-    logDebug("rules","newLightState " + newLightState)
-
-		if (doorbellRang == false) {
+    if (doorbellRang == false) {
       sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
+
+      logDebug("rules","BasementProjectorSpot " + BasementProjectorSpot.state)
+      currentLightState = BasementProjectorSpot.state
+      logDebug("rules","currentLightState " + currentLightState)
+      if (currentLightState == 0) {
+        newLightState = 100
+      } else {
+        newLightState = 0
+      }
+      logDebug("rules","newLightState " + newLightState)
+		
       BasementProjectorSpot.sendCommand(newLightState)
 			logDebug("rules", "Doorbell Rang - Notify with Basement Spot Light")
 			doorbellRang = true
