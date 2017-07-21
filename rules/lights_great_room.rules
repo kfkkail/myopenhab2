@@ -23,8 +23,10 @@ rule "Great Room Light Switch!"
         logDebug("rules", "GreatRoomSwitch OFF - Turn OFF Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
         sendCommand(Living_Room_Lamp_Dimmer, 0)
         sendCommand(Living_Room_Balls, 0)
-        sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
-        sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+        if (GreatRoomLightState.state == OFF) {
+            sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+            sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+        }
         createTimer(now.plusSeconds(1)) [|
       	    sendCommand(GreatRoomSwitch_State, 0)]
     }
