@@ -186,3 +186,4 @@ Contact garageDoorEntry "Garage Door Entry" {channel="zwave:device:ebcd2d3b:node
 Number garageDoorEntryBattery "Garage Door Entry Battery" {channel="zwave:device:ebcd2d3b:node39:battery-level"}
 Switch garageDoorEntrySwitch "Garage Door Entry" {channel="zwave:device:ebcd2d3b:node39:alarm_access"}
 Number garageDoorEntry_state "Garage Door Entry State"
+Switch GreatRoomLightState "Great Room Light State"
