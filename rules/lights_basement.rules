@@ -44,7 +44,7 @@ rule "Basement Light PIR Motion"
     Item BASEMENT_PIR_MOTION changed
   then
     if(BasementPIRLightControl.state == ON && BasementStairsSwitch.state == OFF) {
-      if(BASEMENT_PIR_MOTION.state == ON  && BASEMENT_PIR_LIGHT.state <= 20) {
+      if(BASEMENT_PIR_MOTION.state == ON) {
         logDebug("rules", "Basement Motion Detected - Turn On BasementProjectorSpot")
         sendCommand(BasementProjectorSpot, 100)
         sendCommand(BasementArt, 100)
