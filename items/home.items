@@ -94,6 +94,8 @@ Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 
 DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise> { channel="astro:sun:be04c866:rise#start" }
 DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset> { channel="astro:sun:be04c866:set#start" }
+Text Season "Season" {channel="astro:sun:be04c866:season#name"}
+Text SunPhase "Sun Phase" {channel="astro:sun:be04c866:phase#name"}
 
 /* Device Presence Detection */
 String OwnerPresence "Owner Presence" <present> (devicePresence, gMyOpenHAB)
@@ -134,7 +136,7 @@ Number BASEMENT_PIR_LIGHT "Basement Light Level [%.0f %%]" <slider> {channel="zw
 Number BASEMENT_PIR_REL_HUMID "Basement Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:ebcd2d3b:node17:sensor_relhumidity"}
 Switch BASEMENT_PIR_MOTION "Basement Motion [%s]" <motion> (motionDetected) {channel="zwave:device:ebcd2d3b:node17:sensor_binary"}
 
-Rollershutter GarageDoorShutter "Garage Door" <garagedoor> (gMyOpenHAB) {myq="0"}
+// Rollershutter GarageDoorShutter "Garage Door" <garagedoor> (gMyOpenHAB) {myq="0"}
 
 //Alarm to set Nest to Home, after being away
 Switch  alarmMonday     "Monday"     <switch>

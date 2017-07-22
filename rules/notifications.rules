@@ -1,103 +1,103 @@
 rule "System Start Init"
-	when
-		System started
-	then
-		logDebug("rules", "System Started - Initialize Values")
-		sendCommand(openhabNotifications , OFF)
-		sendCommand(BasementPIRLightControl , ON)
-		sendCommand(GreatRoomPIRLightControl , ON)
-		sendCommand(UpstairsPIRLightControl, ON)
-		sendCommand(PIRMotionDetection , ON)
-		sendCommand(HomeTheaterSwitch, ON)
-		sendCommand(GreatRoomSwitch_State, 0)
-		sendCommand(Home_Theater_State, 0)
-		sendCommand(Bar_Speaker_Mode, 0)
-		sendCommand(alarmHour,  8)
-		sendCommand(alarmMinute, 15)
-		sendCommand(alarmMonday,     OFF)
-		sendCommand(alarmTuesday,   OFF)
-		sendCommand(alarmWednesday,   OFF)
-		sendCommand(alarmThursday, OFF)
-		sendCommand(alarmFriday,    OFF)
-		sendCommand(alarmSaturday,    OFF)
-		sendCommand(alarmSunday,    OFF)
-		if (OwnerPresence.state != "home" || OwnerPresence.state != "away") {
-			sendCommand(OwnerPresence, "home")
-		}
+when
+  System started
+then
+  logDebug("rules", "System Started - Initialize Values")
+  sendCommand(openhabNotifications , OFF)
+  sendCommand(BasementPIRLightControl , ON)
+  sendCommand(GreatRoomPIRLightControl , ON)
+  sendCommand(UpstairsPIRLightControl, ON)
+  sendCommand(PIRMotionDetection , ON)
+  sendCommand(HomeTheaterSwitch, ON)
+  sendCommand(GreatRoomSwitch_State, 0)
+  sendCommand(Home_Theater_State, 0)
+  sendCommand(Bar_Speaker_Mode, 0)
+  sendCommand(alarmHour,  8)
+  sendCommand(alarmMinute, 15)
+  sendCommand(alarmMonday,     OFF)
+  sendCommand(alarmTuesday,   OFF)
+  sendCommand(alarmWednesday,   OFF)
+  sendCommand(alarmThursday, OFF)
+  sendCommand(alarmFriday,    OFF)
+  sendCommand(alarmSaturday,    OFF)
+  sendCommand(alarmSunday,    OFF)
+  if (OwnerPresence.state != "home" || OwnerPresence.state != "away") {
+    sendCommand(OwnerPresence, "home")
+  }
 end
 
 rule "NestHome_away Notification"
-	when
-		Item NestHome_away changed
-	then
-		if (openhabNotifications.state == ON) {
-		 	sendNotification("kfkkail@gmail.com", "Nest State changed to " + NestHome_away.state)
-		}
+when
+  Item NestHome_away changed
+then
+  if (openhabNotifications.state == ON) {
+    sendNotification("kfkkail@gmail.com", "Nest State changed to " + NestHome_away.state)
+  }
 end
 
 rule "epsonPower Notification"
-	when
-		Item epsonPower changed
-	then
-		if (openhabNotifications.state == ON) {
-		 	sendNotification("kfkkail@gmail.com", "Projector State changed to " + epsonPower.state)
-		}
+when
+  Item epsonPower changed
+then
+  if (openhabNotifications.state == ON) {
+    sendNotification("kfkkail@gmail.com", "Projector State changed to " + epsonPower.state)
+  }
 end
 
 rule "Great Room PIR changed"
-	when
-		Item GREATROOM_PIR_MOTION changed
-	then
-		if (PIRMotionDetection.state == ON) {
-		 	sendNotification("kfkkail@gmail.com", "Great Room PIR Motion updated to " + GREATROOM_PIR_MOTION.state)
-		}
+when
+  Item GREATROOM_PIR_MOTION changed
+then
+  if (PIRMotionDetection.state == ON) {
+    sendNotification("kfkkail@gmail.com", "Great Room PIR Motion updated to " + GREATROOM_PIR_MOTION.state)
+  }
 end
 
 rule "Basement PIR changed"
-	when
-		Item BASEMENT_PIR_MOTION changed
-	then
-		if (PIRMotionDetection.state == ON) {
-		 	sendNotification("kfkkail@gmail.com", "Basement PIR Motion updated to " + BASEMENT_PIR_MOTION.state)
-		}
+when
+  Item BASEMENT_PIR_MOTION changed
+then
+  if (PIRMotionDetection.state == ON) {
+    sendNotification("kfkkail@gmail.com", "Basement PIR Motion updated to " + BASEMENT_PIR_MOTION.state)
+  }
 end
 
 rule "someoneIsHome Notification"
-	when
-		Item someoneIsHome changed
-	then
-		if (openhabNotifications.state == ON) {
-		 	sendNotification("kfkkail@gmail.com", "someoneIsHome changed to " + someoneIsHome.state)
-		}
+when
+  Item someoneIsHome changed
+then
+  if (openhabNotifications.state == ON) {
+    sendNotification("kfkkail@gmail.com", "someoneIsHome changed to " + someoneIsHome.state)
+  }
 end
 
 
 rule "Living_Room_Lamp_Dimmer Notification"
-	when
-		Item Living_Room_Lamp_Dimmer changed
-	then
-		if (openhabNotifications.state == ON) {
-		 	sendNotification("kfkkail@gmail.com", "Living_Room_Lamp_Dimmer changed to " + Living_Room_Lamp_Dimmer.state)
-		}
+when
+  Item Living_Room_Lamp_Dimmer changed
+then
+  if (openhabNotifications.state == ON) {
+    sendNotification("kfkkail@gmail.com", "Living_Room_Lamp_Dimmer changed to " + Living_Room_Lamp_Dimmer.state)
+  }
 end
 
 rule "garageDoorEntry Notification"
-	when
-		Item garageDoorEntry changed
-	then
-		if (PIRMotionDetection.state == ON) {
-			sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
-		}
+when
+  Item garageDoorEntry changed
+then
+  if (PIRMotionDetection.state == ON) {
+    sendNotification("kfkkail@gmail.com", "garageDoorEntry changed to " + garageDoorEntry.state)
+  }
 end
 
 rule "Kitchen_UnderCabinetX_Dimmer Notification"
-	when
-		Item Kitchen_UnderCabinet1_Dimmer changed or
-		Item Kitchen_UnderCabinet2_Dimmer changed
-	then
-		if (openhabNotifications.state == ON) {
-		 	sendNotification("kfkkail@gmail.com", "Kitchen_UnderCabinetX_Dimmer changed to " + Kitchen_UnderCabinet1_Dimmer.state)
-		}
+when
+  Item Kitchen_UnderCabinet1_Dimmer changed or
+  Item Kitchen_UnderCabinet2_Dimmer changed
+then
+  if (openhabNotifications.state == ON) {
+    sendNotification("kfkkail@gmail.com", "Kitchen_UnderCabinetX_Dimmer changed to " + Kitchen_UnderCabinet1_Dimmer.state)
+  }
 end
 
 // Might come back and do this again.

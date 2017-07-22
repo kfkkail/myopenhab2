@@ -1,34 +1,22 @@
 val boolean alreadyTalkedOnce = false
 
 rule "Allow Talking with Great Room Motion"
-  when
-    Time cron "0 0 15 ? * MON-FRI"
-    // Turn on afternoon during week
-  then
-    logDebug("rules", "Enable TalkControl with Great Room Motion")
-
-    sendCommand(TalkControl, ON)
-end
-
-rule "Disable Talk Control"
 when
-    Channel 'astro:sun:local:set#event' triggered START
+  Time cron "0 0 15 ? * MON-FRI"
+  // Turn on afternoon during week
 then
-    logDebug("rules", "Disable Talk Control")
+  logDebug("rules", "Enable TalkControl with Great Room Motion")
 
-    sendCommand(TalkControl, OFF)
-
-    createTimer(now.plusSeconds(10)) [|
-      alreadyTalkedOnce = false
-    ]
+  sendCommand(TalkControl, ON)
+  alreadyTalkedOnce = false
 end
 
 rule "Talk to me"
 when
-    Item garageDoorEntry_state changed from 0 to 1
+  Item garageDoorEntry_state changed from 0 to 1
 then
-    if (TalkControl.state == ON && alreadyTalkedOnce == false) {
-      logDebug("rules", "Welcome Andrea Home!")
-      alreadyTalkedOnce = true
-    }
+  if (TalkControl.state == ON && alreadyTalkedOnce == false) {
+    logDebug("rules", "Welcome Andrea Home!")
+    alreadyTalkedOnce = true
+  }
 end

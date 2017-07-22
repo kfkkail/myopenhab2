@@ -3,7 +3,6 @@ sitemap home label="Falcons Fire Home"
   Frame label="Light Control" {
     Group item=switches
     Group item=dimmers
-    Switch item=GarageDoorShutter
     Group item=motionDetected
     Switch item=OwnerPresence mappings=[home="Home", away="Away"]
     Switch item=garageDoorEntrySwitch
@@ -16,6 +15,8 @@ sitemap home label="Falcons Fire Home"
     Switch item=NestHome_away mappings=[home="Home",away="Away"]
   }
   Frame label="Outdoor" {
+    Text item=Season
+    Text item=SunPhase
     Text item=Temperature_OWM
     Text item=Humidity
   }

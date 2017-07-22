@@ -3,8 +3,8 @@ var java.util.concurrent.locks.ReentrantLock lock1 = new java.util.concurrent.lo
 
 rule "Set Alarm"
 when
-    Item alarmHour changed or
-    Item alarmMinute changed
+  Item alarmHour changed or
+  Item alarmMinute changed
 then
   // If the UI to change the Alarm time is clicked several times the code below
   // is subject to race conditions. Therefore we make sure that all events
@@ -54,31 +54,31 @@ then
 
     // create a new timer using the calculated delta [min]
     timer1 = createTimer(now.plusMinutes(delta1)) [|
-        // This code will be executed if the timer triggers
-        // ************************************************
-        // check if alarm clock is armed for this weekday
-        var Number day = now.getDayOfWeek
-        if (((day == 1) && (alarmMonday.state == ON))     ||
-            ((day == 2) && (alarmTuesday.state == ON))   ||
-            ((day == 3) && (alarmWednesday.state == ON))   ||
-            ((day == 4) && (alarmThursday.state == ON)) ||
-            ((day == 5) && (alarmFriday.state == ON))    ||
-            ((day == 6) && (alarmSaturday.state == ON))    ||
-            ((day == 7) && (alarmSunday.state == ON))) {
-                // The things to do if the alarm clock is enabled for this day of week:
-                // ...
-                // ...
-                logDebug("rules", "Alarm triggered - Set Nest to Home")
-                sendNotification("kfkkail@gmail.com", "Alarm triggered - Set Nest to Home")
-                sendCommand(NestHome_away,"home")
-           }
-           // Re-Arm the timer to trigger again tomorrow (same time)
-           timer1.reschedule(now.plusHours(24))
-        // ************************************************
-        // Here the code ends that executes once the timer triggers
-        ]
+      // This code will be executed if the timer triggers
+      // ************************************************
+      // check if alarm clock is armed for this weekday
+      var Number day = now.getDayOfWeek
+      if (((day == 1) && (alarmMonday.state == ON))     ||
+          ((day == 2) && (alarmTuesday.state == ON))   ||
+          ((day == 3) && (alarmWednesday.state == ON))   ||
+          ((day == 4) && (alarmThursday.state == ON)) ||
+          ((day == 5) && (alarmFriday.state == ON))    ||
+          ((day == 6) && (alarmSaturday.state == ON))    ||
+          ((day == 7) && (alarmSunday.state == ON))) {
+        // The things to do if the alarm clock is enabled for this day of week:
+        // ...
+        // ...
+        logDebug("rules", "Alarm triggered - Set Nest to Home")
+        sendNotification("kfkkail@gmail.com", "Alarm triggered - Set Nest to Home")
+        sendCommand(NestHome_away,"home")
+      }
+          // Re-Arm the timer to trigger again tomorrow (same time)
+      timer1.reschedule(now.plusHours(24))
+      // ************************************************
+      // Here the code ends that executes once the timer triggers
+    ]
   } finally  {
-     // release the lock - we are ready to process the next event
-     lock1.unlock()
+    // release the lock - we are ready to process the next event
+    lock1.unlock()
   }
 end

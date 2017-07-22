@@ -1,78 +1,78 @@
 rule "UPSTAIRS_PIR_BATTERY Notification"
-	when
-		Item UPSTAIRS_PIR_BATTERY received update
-	then
-		logDebug("rules", "UPSTAIRS_PIR_BATTERY updated to " + UPSTAIRS_PIR_BATTERY.state + "%")
-		if (UPSTAIRS_PIR_BATTERY.state <= 10) {
-		 	sendNotification("kfkkail@gmail.com", "Upstairs PIR batteries 2xAAA - " + UPSTAIRS_PIR_BATTERY.state + "%")
-		}
+when
+  Item UPSTAIRS_PIR_BATTERY received update
+then
+  logDebug("rules", "UPSTAIRS_PIR_BATTERY updated to " + UPSTAIRS_PIR_BATTERY.state + "%")
+  if (UPSTAIRS_PIR_BATTERY.state <= 10) {
+    sendNotification("kfkkail@gmail.com", "Upstairs PIR batteries 2xAAA - " + UPSTAIRS_PIR_BATTERY.state + "%")
+  }
 end
 
 rule "BASEMENT_PIR_BATTERY Notification"
-	when
-		Item BASEMENT_PIR_BATTERY received update
-	then
-		logDebug("rules", "BASEMENT_PIR_BATTERY updated to " + BASEMENT_PIR_BATTERY.state + "%")
-		if (BASEMENT_PIR_BATTERY.state <= 10) {
-		 	sendNotification("kfkkail@gmail.com", "Basement PIR batteries 2xAAA - " + BASEMENT_PIR_BATTERY.state + "%")
-		}
+when
+  Item BASEMENT_PIR_BATTERY received update
+then
+  logDebug("rules", "BASEMENT_PIR_BATTERY updated to " + BASEMENT_PIR_BATTERY.state + "%")
+  if (BASEMENT_PIR_BATTERY.state <= 10) {
+    sendNotification("kfkkail@gmail.com", "Basement PIR batteries 2xAAA - " + BASEMENT_PIR_BATTERY.state + "%")
+  }
 end
 
 rule "GREATROOM_PIR_BATTERY Notification"
-	when
-		Item GREATROOM_PIR_BATTERY received update
-	then
-		logDebug("rules", "GREATROOM_PIR_BATTERY updated to " + GREATROOM_PIR_BATTERY.state + "%")
-		if (GREATROOM_PIR_BATTERY.state <= 10) {
-		 	sendNotification("kfkkail@gmail.com", "Great Room PIR batteries 2xAAA - " + GREATROOM_PIR_BATTERY.state + "%")
-		}
+when
+  Item GREATROOM_PIR_BATTERY received update
+then
+  logDebug("rules", "GREATROOM_PIR_BATTERY updated to " + GREATROOM_PIR_BATTERY.state + "%")
+  if (GREATROOM_PIR_BATTERY.state <= 10) {
+    sendNotification("kfkkail@gmail.com", "Great Room PIR batteries 2xAAA - " + GREATROOM_PIR_BATTERY.state + "%")
+  }
 end
 
 rule "FrontDoor_Doorbell_Battery Notification"
-	when
-		Item FrontDoor_Doorbell_Battery received update
-	then
-		logDebug("rules", "FrontDoor_Doorbell_Battery updated to " + FrontDoor_Doorbell_Battery.state + "%")
-		if (FrontDoor_Doorbell_Battery.state <= 10) {
-		 	sendNotification("kfkkail@gmail.com", "Doorbell batteries 2xAA - " + FrontDoor_Doorbell_Battery.state + "%")
-		}
+when
+  Item FrontDoor_Doorbell_Battery received update
+then
+  logDebug("rules", "FrontDoor_Doorbell_Battery updated to " + FrontDoor_Doorbell_Battery.state + "%")
+  if (FrontDoor_Doorbell_Battery.state <= 10) {
+    sendNotification("kfkkail@gmail.com", "Doorbell batteries 2xAA - " + FrontDoor_Doorbell_Battery.state + "%")
+  }
 end
 
 rule "FrontDoor_Doorbell_Battery Icon"
-    when
-    	Item FrontDoor_Doorbell_Battery received update
-    then
-    	if (FrontDoor_Doorbell_Battery.state>=0 && FrontDoor_Doorbell_Battery.state<5) {
-    		sendCommand(Doorbell_Battery_Icon, 0)
-    	}
-    	if (FrontDoor_Doorbell_Battery.state>=5 && FrontDoor_Doorbell_Battery.state<11) {
-    		sendCommand(Doorbell_Battery_Icon, 10)
-    	}
-    	if (FrontDoor_Doorbell_Battery.state>=11 && FrontDoor_Doorbell_Battery.state<21) {
-    		sendCommand(Doorbell_Battery_Icon, 20)
-    	}
-    	if (FrontDoor_Doorbell_Battery.state>=21 && FrontDoor_Doorbell_Battery.state<31) {
-    		sendCommand(Doorbell_Battery_Icon, 30)
-    	}
-			if (FrontDoor_Doorbell_Battery.state>=31 && FrontDoor_Doorbell_Battery.state<41) {
-    		sendCommand(Doorbell_Battery_Icon, 40)
-    	}
-			if (FrontDoor_Doorbell_Battery.state>=41 && FrontDoor_Doorbell_Battery.state<51) {
-    		sendCommand(Doorbell_Battery_Icon, 50)
-    	}
-			if (FrontDoor_Doorbell_Battery.state>=51 && FrontDoor_Doorbell_Battery.state<61) {
-    		sendCommand(Doorbell_Battery_Icon, 60)
-    	}
-			if (FrontDoor_Doorbell_Battery.state>=61 && FrontDoor_Doorbell_Battery.state<71) {
-    		sendCommand(Doorbell_Battery_Icon, 70)
-    	}
-			if (FrontDoor_Doorbell_Battery.state>=71 && FrontDoor_Doorbell_Battery.state<81) {
-    		sendCommand(Doorbell_Battery_Icon, 80)
-    	}
-			if (FrontDoor_Doorbell_Battery.state>=81 && FrontDoor_Doorbell_Battery.state<91) {
-    		sendCommand(Doorbell_Battery_Icon, 90)
-    	}
-			if (FrontDoor_Doorbell_Battery.state>=91 && FrontDoor_Doorbell_Battery.state<=100) {
-    		sendCommand(Doorbell_Battery_Icon, 100)
-    	}
+when
+  Item FrontDoor_Doorbell_Battery received update
+then
+  if (FrontDoor_Doorbell_Battery.state>=0 && FrontDoor_Doorbell_Battery.state<5) {
+    sendCommand(Doorbell_Battery_Icon, 0)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=5 && FrontDoor_Doorbell_Battery.state<11) {
+    sendCommand(Doorbell_Battery_Icon, 10)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=11 && FrontDoor_Doorbell_Battery.state<21) {
+    sendCommand(Doorbell_Battery_Icon, 20)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=21 && FrontDoor_Doorbell_Battery.state<31) {
+    sendCommand(Doorbell_Battery_Icon, 30)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=31 && FrontDoor_Doorbell_Battery.state<41) {
+    sendCommand(Doorbell_Battery_Icon, 40)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=41 && FrontDoor_Doorbell_Battery.state<51) {
+    sendCommand(Doorbell_Battery_Icon, 50)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=51 && FrontDoor_Doorbell_Battery.state<61) {
+    sendCommand(Doorbell_Battery_Icon, 60)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=61 && FrontDoor_Doorbell_Battery.state<71) {
+    sendCommand(Doorbell_Battery_Icon, 70)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=71 && FrontDoor_Doorbell_Battery.state<81) {
+    sendCommand(Doorbell_Battery_Icon, 80)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=81 && FrontDoor_Doorbell_Battery.state<91) {
+    sendCommand(Doorbell_Battery_Icon, 90)
+  }
+  if (FrontDoor_Doorbell_Battery.state>=91 && FrontDoor_Doorbell_Battery.state<=100) {
+    sendCommand(Doorbell_Battery_Icon, 100)
+  }
   end

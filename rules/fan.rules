@@ -2,49 +2,49 @@ var Timer timerMasterBathToilet
 var Timer timerMasterBathShower
 
 rule "Turn on fan, but only let it run for 15 minutes"
-  when
-    Item MasterBathFanSwitch changed
-  then
-    if(MasterBathFanSwitch.state == ON) {
-      if(timerMasterBathShower!=null) {
-        logDebug("rules", "Master Bath Shower Fan Turned On - Cancel Previous Timer")
-        timerMasterBathShower.cancel
-      }
-
-      logDebug("rules", "Master Bath Shower Fan Turned On - Start Timer")
-      timerMasterBathShower = createTimer(now.plusMinutes(15)) [|
-        logDebug("rules", "Master Bath Shower Fan Timer Expired - Turn Off")
-        sendCommand(MasterBathFanSwitch, OFF)
-        timerMasterBathShower.cancel
-      ]
-    } else {
-      if(timerMasterBathShower!=null) {
-        logDebug("rules","Master Bath Shower Fan Turned Off - Cancel Timer")
-        timerMasterBathShower.cancel
-      }
+when
+  Item MasterBathFanSwitch changed
+then
+  if(MasterBathFanSwitch.state == ON) {
+    if(timerMasterBathShower!=null) {
+      logDebug("rules", "Master Bath Shower Fan Turned On - Cancel Previous Timer")
+      timerMasterBathShower.cancel
     }
-  end
+
+    logDebug("rules", "Master Bath Shower Fan Turned On - Start Timer")
+    timerMasterBathShower = createTimer(now.plusMinutes(15)) [|
+      logDebug("rules", "Master Bath Shower Fan Timer Expired - Turn Off")
+      sendCommand(MasterBathFanSwitch, OFF)
+      timerMasterBathShower.cancel
+    ]
+  } else {
+    if(timerMasterBathShower!=null) {
+      logDebug("rules","Master Bath Shower Fan Turned Off - Cancel Timer")
+      timerMasterBathShower.cancel
+    }
+  }
+end
 
 rule "Turn on fan, but only let it run for 15 minutes"
-  when
-    Item MasterBathToiletFanSwitch changed
-  then
-    if(MasterBathToiletFanSwitch.state == ON) {
-      if(timerMasterBathToilet!=null) {
-        logDebug("rules", "Master Bath Toilet Fan Turned On - Cancel Previous Timer")
-        timerMasterBathToilet.cancel
-      }
-
-      logDebug("rules", "Master Bath Toilet Fan Turned On - Start Timer")
-      timerMasterBathToilet = createTimer(now.plusMinutes(15)) [|
-        logDebug("rules", "Master Bath Toilet Fan Timer Expired - Turn Off")
-        sendCommand(MasterBathToiletFanSwitch, OFF)
-        timerMasterBathToilet.cancel
-      ]
-    } else {
-      if(timerMasterBathToilet!=null) {
-        logDebug("rules","Master Bath Toilet Fan Turned Off - Cancel Timer")
-        timerMasterBathToilet.cancel
-      }
+when
+  Item MasterBathToiletFanSwitch changed
+then
+  if(MasterBathToiletFanSwitch.state == ON) {
+    if(timerMasterBathToilet!=null) {
+      logDebug("rules", "Master Bath Toilet Fan Turned On - Cancel Previous Timer")
+      timerMasterBathToilet.cancel
     }
-  end
+
+    logDebug("rules", "Master Bath Toilet Fan Turned On - Start Timer")
+    timerMasterBathToilet = createTimer(now.plusMinutes(15)) [|
+      logDebug("rules", "Master Bath Toilet Fan Timer Expired - Turn Off")
+      sendCommand(MasterBathToiletFanSwitch, OFF)
+      timerMasterBathToilet.cancel
+    ]
+  } else {
+    if(timerMasterBathToilet!=null) {
+      logDebug("rules","Master Bath Toilet Fan Turned Off - Cancel Timer")
+      timerMasterBathToilet.cancel
+    }
+  }
+end
