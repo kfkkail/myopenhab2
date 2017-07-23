@@ -76,6 +76,7 @@ then
     doorTimer.cancel()
     sendCommand(garageDoorEntry_state, 1)
   } else if (garageDoorEntry.state == CLOSED) {
+    logDebug("rules", "start doorTimer")
     doorTimer = createTimer(now.plusSeconds(60)) [|
       logDebug("rules","timer expired - set garageDoorEntry_state to 0")
       sendCommand(garageDoorEntry_state, 0)
