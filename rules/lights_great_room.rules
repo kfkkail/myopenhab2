@@ -55,6 +55,17 @@ then
   }
 end
 
+rule "Great Room PIR Control state transition"
+when
+  Item GreatRoomPIRLightControl changed
+then
+  if (GreatRoomPIRLightControl.state == OFF) {
+    sendCommand(GreatRoomLightState, OFF)
+    sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+    sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+  }
+end
+
 
 rule "GarageDoorEntry_state"
 when
