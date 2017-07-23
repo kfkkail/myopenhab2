@@ -89,9 +89,6 @@ Switch Doorbell "Doorbell" {channel="zwave:device:ebcd2d3b:node14:notification_p
 Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {channel="zwave:device:ebcd2d3b:node14:battery-level"}
 Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 
-/* Use the Astro binding to see when it's dark or light outside. Using a light sensor would be
-  even better, but that's not too hard to hack in later */
-
 DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise> { channel="astro:sun:be04c866:rise#start" }
 DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset> { channel="astro:sun:be04c866:set#start" }
 Text Season "Season" {channel="astro:sun:be04c866:season#name"}
