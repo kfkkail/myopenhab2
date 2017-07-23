@@ -5,7 +5,7 @@ sitemap home label="Falcons Fire Home"
     Group item=dimmers
     Group item=motionDetected
     Switch item=OwnerPresence mappings=[home="Home", away="Away"]
-    Text item=garageDoorEntry_state
+    Text item=garageDoorEntry
   }
   Frame label="Indoor" {
     Group item=IndoorTemperature
