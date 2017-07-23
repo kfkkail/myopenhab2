@@ -6,10 +6,6 @@ rule "doorbell Basement Light Notification"
 when
   Item Doorbell changed from OFF to ON
 then
-  if (doorbellRang == null) {
-    doorbellRang = false
-  }
-  
   if (doorbellRang == false) {
     doorbellRang = true
     sendNotification("kfkkail@gmail.com", "Doorbell Rang!!")
@@ -58,4 +54,11 @@ then
       sendCommand(BasementArt, 0)
     }
   }
+end
+
+rule "System Start Init"
+when
+  System started
+then
+  doorbellRang = false
 end
