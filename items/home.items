@@ -92,8 +92,6 @@ Number Doorbell_Battery_Icon			"Doorbell Battery Icon"
 
 DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise> { channel="astro:sun:be04c866:rise#start" }
 DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset> { channel="astro:sun:be04c866:set#start" }
-Text Season "Season" {channel="astro:sun:be04c866:season#name"}
-Text SunPhase "Sun Phase" {channel="astro:sun:be04c866:phase#name"}
 
 /* Device Presence Detection */
 String OwnerPresence "Owner Presence" <present> (devicePresence, gMyOpenHAB)

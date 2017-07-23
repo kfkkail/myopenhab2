@@ -15,8 +15,6 @@ sitemap home label="Falcons Fire Home"
     Switch item=NestHome_away mappings=[home="Home",away="Away"]
   }
   Frame label="Outdoor" {
-    Text item=Season
-    Text item=SunPhase
     Text item=Temperature_OWM
     Text item=Humidity
   }
