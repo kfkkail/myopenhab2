@@ -101,45 +101,6 @@ rule "Set Home Theater Mode Feedback"
       }
   end
 
-// Sending Commands for Bar Speaker Mode to Receiver
-
-rule "Bar Speaker Mode"
-  when
-    Item Bar_Speaker_Mode changed
-  then
-    logDebug("rules", "Bar Speaker Mode Rule Ran")
-
-    if (Bar_Speaker_Mode.state == 0) {
-      if (integraZ2Power.state != OFF) {
-        sendCommand(integraZ2Power, OFF)
-      }
-    } else if (Bar_Speaker_Mode.state == 4) {
-      if (integraZ2Power.state != ON) {
-        sendCommand(integraZ2Power, ON)
-      }
-      if (integraZ2Source.state != 43) {
-        sendCommand(integraZ2Source, 43)
-      }
-    }
-  end
-
-rule "Set Bar Speaker Mode"
-  when
-    Item integraZ2Power changed or
-    Item integraZ2Source changed
-  then
-    logDebug("rules", "integraZ2Power OR integraZ2Source OR System Start - Set Bar_Speaker_Mode")
-
-    if (integraZ2Power.state == OFF) {
-      sendCommand(Bar_Speaker_Mode, 0)
-    } else if (integraZ2Power.state == ON && integraZ2Source == 43) {
-      sendCommand(Bar_Speaker_Mode, 4)
-    } else {
-      sendCommand(Bar_Speaker_Mode, 6)
-    }
-  end
-
-
 // New Theater States
 
 rule "Starting Up Home Theater State = 3"
