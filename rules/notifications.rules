@@ -12,6 +12,7 @@ then
   sendCommand(GreatRoomSwitch_State, 0)
   sendCommand(Home_Theater_State, 0)
   sendCommand(Bar_Speaker_Mode, 0)
+  sendCommand(garageDoorEntry_state, 0)
   sendCommand(alarmHour,  8)
   sendCommand(alarmMinute, 15)
   sendCommand(alarmMonday,     OFF)
