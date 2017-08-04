@@ -13,7 +13,7 @@ when
 then
   logDebug("rules", "Night Ended")
   sendCommand(GreatRoomPIRLightControl, OFF)
-  
+
   if (GreatRoomSwitch.state == OFF) {
     sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
     sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)

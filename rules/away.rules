@@ -18,11 +18,15 @@ then
         sendNotification("kfkkail@gmail.com", "Setting random lights timer to " + randomTime + " seconds.")
       }
       tRandomLights = createTimer(now.plusSeconds(randomTime)) [|
-        var randLightIndex = (new java.util.Random).nextInt(Lights_Random.members.size)
+        // var randLightIndex = (new java.util.Random).nextInt(Lights_Random.members.size)
         var randLightStateCurrent = Lights_Random.members.get(randLightIndex).state
-        var randLightStateNew = if (randLightStateCurrent == ON) OFF else ON
+        var current = GreatRoomSwitch.state
+
+        // var randLightStateNew = if (randLightStateCurrent == ON) OFF else ON
+        var newLight = if (current == ON) OFF else ON
         logDebug("rules","Switching light " + Lights_Random.members.get(randLightIndex).name + " from " + randLightStateCurrent + " to " + randLightStateNew)
-        sendCommand(Lights_Random.members.get(randLightIndex), randLightStateNew)
+        // sendCommand(Lights_Random.members.get(randLightIndex), randLightStateNew)
+        sendCommand(GreatRoomSwitch, newLight)
       ]
     }
   }
@@ -34,6 +38,7 @@ when
 then
   if (NestHome_away.state == "away") {
     logDebug("rules","Turning all the random lights off.")
-    sendCommand(Lights_Random, OFF)
+    // sendCommand(Lights_Random, OFF)
+    sendCommand(GreatRoomSwitch, OFF)
   }
 end
