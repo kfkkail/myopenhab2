@@ -76,6 +76,7 @@ Dimmer Living_Room_Balls "Light Balls [%d %%]" (dimmers, gMyOpenHAB) {channel="z
 Switch GreatRoomSwitch "Great Room Switch" (Lights_Random, gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node18:switch_binary"}
 Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node20:switch_binary"}
 Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node26:switch_binary"}
+Switch HallwayBathFanSwitch "Hallway Bath Toilet Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node40:switch_binary"}
 Number GreatRoomSwitch_State "Great Room Switch State"
 Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node5:switch_dimmer"}
 Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node6:switch_dimmer"}
