@@ -56,19 +56,19 @@ when
 then
   if(HallwayBathFanSwitch.state == ON) {
     if(timerHallwayBath!=null) {
-      logDebug("rules", "Master Bath Toilet Fan Turned On - Cancel Previous Timer")
+      logDebug("rules", "Hallway Bath Fan Turned On - Cancel Previous Timer")
       timerHallwayBath.cancel
     }
 
-    logDebug("rules", "Master Bath Toilet Fan Turned On - Start Timer")
+    logDebug("rules", "Hallway Bath Fan Turned On - Start Timer")
     timerHallwayBath = createTimer(now.plusMinutes(15)) [|
-      logDebug("rules", "Master Bath Toilet Fan Timer Expired - Turn Off")
+      logDebug("rules", "Hallway Bath Fan Timer Expired - Turn Off")
       sendCommand(HallwayBathFanSwitch, OFF)
       timerHallwayBath.cancel
     ]
   } else {
     if(timerHallwayBath!=null) {
-      logDebug("rules","Master Bath Toilet Fan Turned Off - Cancel Timer")
+      logDebug("rules","Hallway Bath Fan Turned Off - Cancel Timer")
       timerHallwayBath.cancel
     }
   }
