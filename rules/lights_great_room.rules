@@ -30,6 +30,36 @@ then
   }
 end
 
+rule "Great Room Light Switch!"
+when
+  Item GreatRoomSwitch2 received update
+then
+  logDebug("rules", "GreatRoomSwitch_State2 = " + GreatRoomSwitch_State2.state)
+  if (GreatRoomSwitch_State2.state == UNDEF || GreatRoomSwitch_State2.state == NULL) {
+    sendCommand(GreatRoomSwitch_State2, 0)
+  }
+
+  if (GreatRoomSwitch2.state == ON && GreatRoomSwitch_State2.state == 0) {
+    sendCommand(GreatRoomSwitch_State2, 1)
+    logDebug("rules", "GreatRoomSwitch2 ON - Turn ON Living_Room_Lamp_Dimmer")
+    sendCommand(Living_Room_Lamp_Dimmer, 100)
+      sendCommand(Living_Room_Balls, 30)
+    createTimer(now.plusSeconds(1)) [|
+      sendCommand(GreatRoomSwitch_State2, 0)
+    ]
+  } else if (GreatRoomSwitch2.state == OFF  && GreatRoomSwitch_State.state == 0) {
+    sendCommand(GreatRoomSwitch_State2, 1)
+    logDebug("rules", "GreatRoomSwitch2 OFF - Turn OFF Living_Room_Lamp_Dimmer")
+    if (GreatRoomLightState2.state == OFF) {
+      sendCommand(Living_Room_Lamp_Dimmer, 0)
+      sendCommand(Living_Room_Balls, 0)
+    }
+    createTimer(now.plusSeconds(1)) [|
+      sendCommand(GreatRoomSwitch_State2, 0)
+    ]
+  }
+end
+
 rule "Great Room Light PIR Motion"
 when
   Item GREATROOM_PIR_MOTION changed or
