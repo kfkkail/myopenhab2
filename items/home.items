@@ -62,6 +62,9 @@ Switch HomeTheaterSwitch "Turn On Home Theater w/ Switch"
 Switch epsonPower                          <projector_benq> { epsonprojector="hometheaterprojector:Power:60000" }
 //String epsonPowerState                     { epsonprojector="*hometheaterprojector:PowerState:60000" }
 
+
+//Living room tv
+Switch LivingRoomTV "Living Room TV Power" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:power"}
 /* Scene Controller for Home Theater */
 
 Number Home_Theater_Mode        "Home Theater Mode"
