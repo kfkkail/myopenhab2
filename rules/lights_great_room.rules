@@ -41,7 +41,7 @@ then
     sendCommand(GreatRoomSwitch_State2, 1)
     logDebug("rules", "GreatRoomSwitch2 ON - Turn ON Living_Room_Lamp_Dimmer")
     sendCommand(Living_Room_Lamp_Dimmer, 100)
-    sendCommand(Living_Room_B alls, 30)
+    sendCommand(Living_Room_Balls, 30)
     createTimer(now.plusSeconds(1)) [|
       sendCommand(GreatRoomSwitch_State2, 0)
     ]
