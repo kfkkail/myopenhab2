@@ -65,6 +65,14 @@ Switch epsonPower                          <projector_benq> { epsonprojector="ho
 
 //Living room tv
 Switch LivingRoomTV "Living Room TV Power" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:power"}
+Dimmer LivingRoomTVVolume "Volume" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:volume"}
+Switch LivingRoomTVMute "Mute" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:mute"}
+String LivingRoomTVSource "Source" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:sourceName"}
+Number LivingRoomTVChannel "Channel" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:channel"}
+String LivingRoomTVTitle "Title" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:programTitle"}
+String LivingRoomTVName "Name" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:channelName"}
+String LivingRoomTVKeyCode "Key Code" {channel="samsungtv:tv:0c845882_00d2_1000_9130_84a46695f127:keyCode"}
+
 /* Scene Controller for Home Theater */
 
 Number Home_Theater_Mode        "Home Theater Mode"
