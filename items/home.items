@@ -86,7 +86,7 @@ Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmer
 Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:ebcd2d3b:node7:switch_dimmer"}
 Dimmer Living_Room_Balls "Light Balls [%d %%]" (dimmers, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node23:switch_dimmer"}
 Switch GreatRoomSwitch "Kitchen Switch" (Lights_Random, gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node18:switch_binary"}
-Switch GreatRoomSwitch2 "Great Room Switch" (Lights_Random, gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node41:switch_binary"}
+Switch GreatRoomSwitch2 "Great Room Switch" (Lights_Random, gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node43:switch_binary"}
 Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node20:switch_binary"}
 Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node26:switch_binary"}
 Switch HallwayBathFanSwitch "Hallway Bath Toilet Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node40:switch_binary"}
