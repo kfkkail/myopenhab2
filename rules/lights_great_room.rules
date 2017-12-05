@@ -34,7 +34,7 @@ rule "Great Room Light Switch!"
 when
   Item GreatRoomSwitch2 received update
 then
-  logDebug("rules", "GreatRoomSwitch = " + GreatRoomSwitch2.state)
+  logDebug("rules", "GreatRoomSwitch2 = " + GreatRoomSwitch2.state)
   logDebug("rules", "GreatRoomSwitch_State2 = " + GreatRoomSwitch_State2.state)
   if (GreatRoomSwitch_State2.state == UNDEF || GreatRoomSwitch_State2.state == NULL) {
     sendCommand(GreatRoomSwitch_State2, 0)
