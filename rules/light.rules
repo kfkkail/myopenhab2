@@ -8,7 +8,7 @@ rule "Turn Off Lights at Midnight for the Night"
   then
     logDebug("rules", "Midnight - Turn OFF Lights at Midnight")
 
-    //sendCommand(OutdoorModule, OFF)
+    sendCommand(OutdoorModule, OFF)
     sendCommand(GarageDoorShutter, DOWN)
 end
 
@@ -44,13 +44,13 @@ rule "Turn On/Off Lights at Dusk/Dawn"
       logDebug("rules","sunsetTimer ended - Do some stuff at Sunset")
       sendCommand(GreatRoomPIRLightControl, ON)
       sendCommand(TalkControl, OFF)
-      //sendCommand(OutdoorModule, ON)
+      sendCommand(OutdoorModule, ON)
       ]
 
     logDebug("rules","Create preDawnTimer")
     preDawnTimer = createTimer(daystart.minusMinutes(60)) [|
       logDebug("rules","preDawnTimer ended - Turn On Christmas Lights")
-      //sendCommand(OutdoorModule, ON)
+      sendCommand(OutdoorModule, ON)
       ]
 
     logDebug("rules","Create dawnTimer")
@@ -61,7 +61,7 @@ rule "Turn On/Off Lights at Dusk/Dawn"
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
       }
-      //sendCommand(OutdoorModule, OFF)
+      sendCommand(OutdoorModule, OFF)
       ]
 
     logDebug("rules","Sunset Timer: "+sunsetTimer)

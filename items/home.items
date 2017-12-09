@@ -95,7 +95,7 @@ Number GreatRoomSwitch_State2 "Great Room Switch State"
 Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node5:switch_dimmer"}
 Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node6:switch_dimmer"}
 Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node19:switch_dimmer"}
-//Switch OutdoorModule "Outdoor Module" (lightsAtNight) {channel="22:command=SWITCH_BINARY"} //Add channel information
+Switch OutdoorModule "Outdoor Module" (lightsAtNight) {channel="zwave:device:ebcd2d3b:node22:switch_binary"}
 Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:ebcd2d3b:node24:switch_binary"}
 Switch Humidifier "Humidifier" (switches) {channel="zwave:device:ebcd2d3b:node25:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
