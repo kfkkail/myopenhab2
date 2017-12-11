@@ -86,7 +86,7 @@ Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmer
 Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers, dimmers) {channel="zwave:device:ebcd2d3b:node7:switch_dimmer"}
 Dimmer Living_Room_Balls "Light Balls [%d %%]" (dimmers, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node23:switch_dimmer"}
 Switch GreatRoomSwitch "Kitchen Switch" (Lights_Random, gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node18:switch_binary"}
-Switch GreatRoomSwitch2 "Great Room Switch" (gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node43:switch_binary"}
+Switch GreatRoomSwitch2 "Great Room Switch" (gMyOpenHAB, switches) {channel="zwave:device:ebcd2d3b:node45:switch_binary"}
 Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node20:switch_binary"}
 Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node26:switch_binary"}
 Switch HallwayBathFanSwitch "Hallway Bath Toilet Fan" (switches, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node40:switch_binary"}
@@ -96,8 +96,8 @@ Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) {cha
 Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node6:switch_dimmer"}
 Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers, gMyOpenHAB) {channel="zwave:device:ebcd2d3b:node19:switch_dimmer"}
 Switch OutdoorModule "Outdoor Module" (switches, lightsAtNight) {channel="zwave:device:ebcd2d3b:node22:switch_binary"}
-Switch OutdoorModule2 "Outdoor Module 2" (switches, lightsAtNight) {channel="zwave:device:ebcd2d3b:node44:switch_binary"}
-Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:ebcd2d3b:node24:switch_binary"}
+Switch OutdoorModule2 "Outdoor Module 2" (switches, lightsAtNight) {channel="zwave:device:ebcd2d3b:node24:switch_binary"}
+// Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:ebcd2d3b:node24:switch_binary"}
 Switch Humidifier "Humidifier" (switches) {channel="zwave:device:ebcd2d3b:node25:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
 Switch Kitchen_UnderCabinet "Kitchen Undercabinet" (gMyOpenHAB)
