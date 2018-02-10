@@ -18,7 +18,7 @@ Group:Number:AVG IndoorTemperature "Indoor Average Temperature [%.1f °F]" <temp
 Group:Number:AVG IndoorHumidity "Indoor Average Humidity [%.0f %%]" <water>
 /* Nest binding Items */
 
-DateTime Nest_last_connection "Last Nest Connection [%1$tm/%1$td %1$tH:%1$tM]"  {nest="<[last_connection]"}
+// DateTime Nest_last_connection "Last Nest Connection [%1$tm/%1$td %1$tH:%1$tM]"  {nest="<[last_connection]"}
 
 /* Structures - change Home to your structure's name */
 
@@ -26,18 +26,18 @@ DateTime Nest_last_connection "Last Nest Connection [%1$tm/%1$td %1$tH:%1$tM]"  
 //String   NestHome_country_code "Country Code [%s]"    {nest="<[structures(Home).country_code]"}
 //String   NestHome_postal_code "Postal Code [%s]"      {nest="<[structures(Home).postal_code]"}
 //String   NestHome_time_zone "Time Zone [%s]"          {nest="<[structures(Home).time_zone]"}
-String   NestHome_away "Home/Away [%s]"               <present> (nestThermostat) {nest="=[structures(Home).away]"}
+// String   NestHome_away "Home/Away [%s]"               <present> (nestThermostat) {nest="=[structures(Home).away]"}
 //String   NestHome_structure_id "Structure Id [%s]"    {nest="<[structures(Home).structure_id]"}
 
 /* Thermostats - change to your thermostat's name */
 
-Number   Nest_humidity "House Humidity [%d %%]"                                   <water> (IndoorHumidity) {nest="<[thermostats(Hallway).humidity]"}
-Switch   Nest_can_heat "Can Heat [%s]"                                      (nestThermostat) {nest="<[thermostats(Hallway).can_heat]"}
-Switch   Nest_can_cool "Can Cool [%s]"                                      (nestThermostat) {nest="<[thermostats(Hallway).can_cool]"}
-String   Nest_hvac_mode "HVAC Mode [%s]"                                    <climate> (nestThermostat) {nest="=[thermostats(Hallway).hvac_mode]"}
-Number   Nest_target_temperature_f "House Target Temperature [%.1f °F]"         <temperature> (IndoorTemperature) {nest="<[thermostats(Hallway).target_temperature_f]"}
-Number   Nest_ambient_temperature_f "House Temperature [%.1f °F]"         <temperature> (IndoorTemperature) {nest="<[thermostats(Hallway).ambient_temperature_f]"}
-String   Nest_hvac_state "HVAC State [%s]"                                  <temperature> (nestThermostat) {nest="<[thermostats(Hallway).hvac_state]"}
+// Number   Nest_humidity "House Humidity [%d %%]"                                   <water> (IndoorHumidity) {nest="<[thermostats(Hallway).humidity]"}
+// Switch   Nest_can_heat "Can Heat [%s]"                                      (nestThermostat) {nest="<[thermostats(Hallway).can_heat]"}
+// Switch   Nest_can_cool "Can Cool [%s]"                                      (nestThermostat) {nest="<[thermostats(Hallway).can_cool]"}
+// String   Nest_hvac_mode "HVAC Mode [%s]"                                    <climate> (nestThermostat) {nest="=[thermostats(Hallway).hvac_mode]"}
+// Number   Nest_target_temperature_f "House Target Temperature [%.1f °F]"         <temperature> (IndoorTemperature) {nest="<[thermostats(Hallway).target_temperature_f]"}
+// Number   Nest_ambient_temperature_f "House Temperature [%.1f °F]"         <temperature> (IndoorTemperature) {nest="<[thermostats(Hallway).ambient_temperature_f]"}
+// String   Nest_hvac_state "HVAC State [%s]"                                  <temperature> (nestThermostat) {nest="<[thermostats(Hallway).hvac_state]"}
 
 /* Integra Receiver binding Items */
 
