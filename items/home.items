@@ -26,7 +26,7 @@ Group:Number:AVG IndoorHumidity "Indoor Average Humidity [%.0f %%]" <water>
 //String   NestHome_country_code "Country Code [%s]"    {nest="<[structures(Home).country_code]"}
 //String   NestHome_postal_code "Postal Code [%s]"      {nest="<[structures(Home).postal_code]"}
 //String   NestHome_time_zone "Time Zone [%s]"          {nest="<[structures(Home).time_zone]"}
-// String   NestHome_away "Home/Away [%s]"               <present> (nestThermostat) {nest="=[structures(Home).away]"}
+String   NestHome_away "Home/Away [%s]"               <present> (nestThermostat) {channel="nest:structure:b86a5a1a:jFT0oS9iqM0ACEj4XSmDStCJrkfZTckhq9gMgeH71_f1xwzdsbgbsg:away"}
 //String   NestHome_structure_id "Structure Id [%s]"    {nest="<[structures(Home).structure_id]"}
 
 /* Thermostats - change to your thermostat's name */
