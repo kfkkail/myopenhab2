@@ -48,7 +48,7 @@ then
     createTimer(now.plusSeconds(1)) [|
       sendCommand(GreatRoomSwitch_State2, 0)
     ]
-  } else if (GreatRoomSwitch2.state == OFF  && GreatRoomSwitch_State.state == 0) {
+  } else if (GreatRoomSwitch2.state == OFF  && GreatRoomSwitch_State2.state == 0) {
     sendCommand(GreatRoomSwitch_State2, 1)
     logDebug("rules", "GreatRoomSwitch2 OFF - Turn OFF Living_Room_Lamp_Dimmer")
     sendCommand(Living_Room_Lamp_Dimmer, 0)
