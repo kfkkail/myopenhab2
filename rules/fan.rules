@@ -1,6 +1,7 @@
 var Timer timerMasterBathToilet
 var Timer timerMasterBathShower
 var Timer timerHallwayBath
+var Timer timerMainFloorBath
 
 rule "Turn on fan, but only let it run for 15 minutes"
 when
@@ -70,6 +71,30 @@ then
     if(timerHallwayBath!=null) {
       logDebug("rules","Hallway Bath Fan Turned Off - Cancel Timer")
       timerHallwayBath.cancel
+    }
+  }
+end
+
+rule "Turn on fan, but only let it run for 15 minutes"
+when
+  Item MainFloorBathFanSwitch changed
+then
+  if(MainFloorBathFanSwitch.state == ON) {
+    if(timerMainFloorBath!=null) {
+      logDebug("rules", "Main Floor Bath Fan Turned On - Cancel Previous Timer")
+      timerMainFloorBath.cancel
+    }
+
+    logDebug("rules", "Main Floor Bath Fan Turned On - Start Timer")
+    timerMainFloorBath = createTimer(now.plusMinutes(15)) [|
+      logDebug("rules", "Main Floor Bath Fan Timer Expired - Turn Off")
+      sendCommand(MainFloorBathFanSwitch, OFF)
+      timerMainFloorBath.cancel
+    ]
+  } else {
+    if(timerMainFloorBath!=null) {
+      logDebug("rules","Main Floor Bath Fan Turned Off - Cancel Timer")
+      timerMainFloorBath.cancel
     }
   }
 end

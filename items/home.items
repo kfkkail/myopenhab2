@@ -91,6 +91,7 @@ Switch GreatRoomSwitch2 "Great Room Switch" (gMyOpenHAB, switches) ["Lighting"] 
 Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:ebcd2d3b:node20:switch_binary"}
 Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:ebcd2d3b:node26:switch_binary"}
 Switch HallwayBathFanSwitch "Hallway Bath Toilet Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:ebcd2d3b:node40:switch_binary"}
+Switch MainFloorBathFanSwitch "Main Floor Bath Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:ebcd2d3b:node47:switch_binary"}
 Number GreatRoomSwitch_State "Kitchen Switch State"
 Number GreatRoomSwitch_State2 "Great Room Switch State"
 Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:ebcd2d3b:node5:switch_dimmer"}
