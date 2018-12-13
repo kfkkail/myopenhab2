@@ -27,15 +27,15 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     logDebug("rules","Day Ends: "+dayend)
 
     // Cancel Timers to avoid reschedule
-    if(sunsetTimer!=null) {
+    if(sunsetTimer !== null) {
       logDebug("rules", "Timer sunsetTimer Cancelled")
       sunsetTimer.cancel()
     }
-    if(preDawnTimer!=null) {
+    if(preDawnTimer !== null) {
       logDebug("rules", "Timer preDawnTimer Cancelled")
       preDawnTimer.cancel()
     }
-    if(dawnTimer!=null) {
+    if(dawnTimer !== null) {
       logDebug("rules", "Timer dawnTimer Cancelled")
       dawnTimer.cancel()
     }

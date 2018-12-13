@@ -8,7 +8,7 @@ when
   Item MasterBathFanSwitch changed
 then
   if(MasterBathFanSwitch.state == ON) {
-    if(timerMasterBathShower!=null) {
+    if(timerMasterBathShower !== null) {
       logDebug("rules", "Master Bath Shower Fan Turned On - Cancel Previous Timer")
       timerMasterBathShower.cancel
     }
@@ -20,7 +20,7 @@ then
       timerMasterBathShower.cancel
     ]
   } else {
-    if(timerMasterBathShower!=null) {
+    if(timerMasterBathShower !== null) {
       logDebug("rules","Master Bath Shower Fan Turned Off - Cancel Timer")
       timerMasterBathShower.cancel
     }
@@ -32,7 +32,7 @@ when
   Item MasterBathToiletFanSwitch changed
 then
   if(MasterBathToiletFanSwitch.state == ON) {
-    if(timerMasterBathToilet!=null) {
+    if(timerMasterBathToilet !== null) {
       logDebug("rules", "Master Bath Toilet Fan Turned On - Cancel Previous Timer")
       timerMasterBathToilet.cancel
     }
@@ -44,7 +44,7 @@ then
       timerMasterBathToilet.cancel
     ]
   } else {
-    if(timerMasterBathToilet!=null) {
+    if(timerMasterBathToilet !== null) {
       logDebug("rules","Master Bath Toilet Fan Turned Off - Cancel Timer")
       timerMasterBathToilet.cancel
     }
@@ -56,7 +56,7 @@ when
   Item HallwayBathFanSwitch changed
 then
   if(HallwayBathFanSwitch.state == ON) {
-    if(timerHallwayBath!=null) {
+    if(timerHallwayBath !== null) {
       logDebug("rules", "Hallway Bath Fan Turned On - Cancel Previous Timer")
       timerHallwayBath.cancel
     }
@@ -68,7 +68,7 @@ then
       timerHallwayBath.cancel
     ]
   } else {
-    if(timerHallwayBath!=null) {
+    if(timerHallwayBath !== null) {
       logDebug("rules","Hallway Bath Fan Turned Off - Cancel Timer")
       timerHallwayBath.cancel
     }
@@ -80,7 +80,7 @@ when
   Item MainFloorBathFanSwitch changed
 then
   if(MainFloorBathFanSwitch.state == ON) {
-    if(timerMainFloorBath!=null) {
+    if(timerMainFloorBath !== null) {
       logDebug("rules", "Main Floor Bath Fan Turned On - Cancel Previous Timer")
       timerMainFloorBath.cancel
     }
@@ -92,7 +92,7 @@ then
       timerMainFloorBath.cancel
     ]
   } else {
-    if(timerMainFloorBath!=null) {
+    if(timerMainFloorBath !== null) {
       logDebug("rules","Main Floor Bath Fan Turned Off - Cancel Timer")
       timerMainFloorBath.cancel
     }

@@ -47,7 +47,7 @@ then
     if (currentTime1 > alarm1) { delta1 = delta1 + 1440 }
 
     // check if there is already an alarm timer; cancel it if present
-    if (timer1 != null) {
+    if (timer1 !== null) {
        timer1.cancel
        timer1 = null
     }
