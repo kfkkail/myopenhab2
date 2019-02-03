@@ -80,6 +80,7 @@ sitemap home label="Falcons Fire Home"
     Switch item=openhabNotificationsAway
     Switch item=BasementPIRLightControl
     Switch item=GreatRoomPIRLightControl
+    Switch item=PIRControls
     Switch item=PIRMotionDetection
     Switch item=HomeTheaterSwitch
     Text item=Sunrise_Time

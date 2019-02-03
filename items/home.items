@@ -137,6 +137,7 @@ Number UPSTAIRS_PIR_REL_HUMID "Upstairs Humidity [%.0f %%]" <water> (IndoorHumid
 Switch UPSTAIRS_PIR_MOTION "Upstairs Motion [%s]" <motion> (motionDetected) {channel="zwave:device:ebcd2d3b:node21:sensor_binary"}
 
 Switch GreatRoomPIRLightControl "Great Room PIR Light Control"
+Switch PIRControls "PIR Controls"
 Switch GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:ebcd2d3b:node15:alarm_burglar"}
 Number GREATROOM_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:ebcd2d3b:node15:battery-level"}
 Number GREATROOM_PIR_TEMPERATURE "Great Room Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:ebcd2d3b:node15:sensor_temperature"}

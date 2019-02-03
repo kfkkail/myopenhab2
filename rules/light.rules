@@ -43,7 +43,9 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     logDebug("rules","Create sunsetTimer")
     sunsetTimer = createTimer(dayend.minusMinutes(15)) [|
       logDebug("rules","sunsetTimer ended - Do some stuff at Sunset")
-      sendCommand(GreatRoomPIRLightControl, ON)
+      if (PIRControls.state == ON) {
+        sendCommand(GreatRoomPIRLightControl, ON)
+      }
       sendCommand(TalkControl, OFF)
       sendCommand(OutdoorModule, ON)
       sendCommand(OutdoorModule2, ON)
@@ -59,10 +61,12 @@ rule "Turn On/Off Lights at Dusk/Dawn"
     logDebug("rules","Create dawnTimer")
     dawnTimer = createTimer(daystart.plusMinutes(15)) [|
       logDebug("rules","dawnTimer ended - Do some stuff at Sunrise")
-      sendCommand(GreatRoomPIRLightControl, OFF)
-      if (GreatRoomSwitch.state == OFF) {
+      if (PIRControls.state == ON) {
+        sendCommand(GreatRoomPIRLightControl, OFF)
+        if (GreatRoomSwitch.state == OFF) {
         sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
         sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+        }
       }
       sendCommand(OutdoorModule, OFF)
       sendCommand(OutdoorModule2, OFF)

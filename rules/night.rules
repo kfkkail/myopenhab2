@@ -3,7 +3,9 @@ when
   Channel 'astro:sun:be04c866:night#event' triggered START
 then
   logDebug("rules", "Night Started")
-  sendCommand(GreatRoomPIRLightControl, ON)
+  if (PIRControls.state == ON) {
+    sendCommand(GreatRoomPIRLightControl, ON)
+  }
   sendCommand(TalkControl, OFF)
 end
 
@@ -12,7 +14,9 @@ when
   Channel 'astro:sun:be04c866:night#event' triggered END
 then
   logDebug("rules", "Night Ended")
-  sendCommand(GreatRoomPIRLightControl, OFF)
+  if (PIRControls.state == ON) {
+    sendCommand(GreatRoomPIRLightControl, OFF)
+  }
 
   if (GreatRoomSwitch.state == OFF) {
     sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
