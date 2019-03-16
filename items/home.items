@@ -105,6 +105,7 @@ Switch OutdoorModule2 "Outdoor Module 2" (switches, lightsAtNight) ["Lighting"] 
 Switch Humidifier "Humidifier" (switches) ["Lighting"] {channel="zwave:device:ebcd2d3b:node25:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
 Switch Kitchen_UnderCabinet "Kitchen Undercabinet" (gMyOpenHAB)
+Switch Office_Dimmer "Office Light" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:ebcd2d3b:node51:switch_dimmer"}
 
 Switch Doorbell "Doorbell" {channel="zwave:device:ebcd2d3b:node14:notification_power_management"}
 Number FrontDoor_Doorbell_Battery "Doorbell Battery [%d %%]" {channel="zwave:device:ebcd2d3b:node14:battery-level"}
