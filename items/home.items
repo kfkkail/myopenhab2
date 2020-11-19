@@ -170,7 +170,7 @@ Number alarmMinute "Minute [%d]" <clock>
 
 Switch TalkControl "Talk Control"
 
-// Contact garageDoorEntry "Garage Door Entry [%s]" {channel="zwave:device:f331c50f:node39:sensor_door"}
+Contact garageDoorEntry "Garage Door Entry [%s]" {channel="zwave:device:f331c50f:node39:sensor_door"}
 // Number garageDoorEntryBattery "Garage Door Entry Battery" {channel="zwave:device:f331c50f:node39:battery-level"}
 // Switch garageDoorEntrySwitch "Garage Door Entry" {channel="zwave:device:f331c50f:node39:alarm_access"}
 Number garageDoorEntry_state "Garage Door Entry State [%d]"
