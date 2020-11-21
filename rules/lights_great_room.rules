@@ -2,10 +2,10 @@ rule "Great Room Light Switch!"
 when
   Item GreatRoomSwitch received update
 then
+  if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
+    sendCommand(GreatRoomSwitch_State, 0)
+  }
   logDebug("rules", "GreatRoomSwitch_State = " + GreatRoomSwitch_State.state)
-//  if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
-//    sendCommand(GreatRoomSwitch_State, 0)
-//  }
 //
 //  if (GreatRoomSwitch.state == ON && GreatRoomSwitch_State.state == 0) {
 //    sendCommand(GreatRoomSwitch_State, 1)
