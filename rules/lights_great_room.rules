@@ -1,33 +1,31 @@
-var Timer doorTimer
-
 rule "Great Room Light Switch!"
 when
   Item GreatRoomSwitch received update
 then
   logDebug("rules", "GreatRoomSwitch_State = " + GreatRoomSwitch_State.state)
-  if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
-    sendCommand(GreatRoomSwitch_State, 0)
-  }
-
-  if (GreatRoomSwitch.state == ON && GreatRoomSwitch_State.state == 0) {
-    sendCommand(GreatRoomSwitch_State, 1)
-    logDebug("rules", "GreatRoomSwitch ON - Turn ON Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
-    sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
-    sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
-    // sendCommand(Christmas_Tree, 100)
-    createTimer(now.plusSeconds(1)) [|
-      sendCommand(GreatRoomSwitch_State, 0)
-    ]
-  } else if (GreatRoomSwitch.state == OFF  && GreatRoomSwitch_State.state == 0) {
-    sendCommand(GreatRoomSwitch_State, 1)
-    logDebug("rules", "GreatRoomSwitch OFF - Turn OFF Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
-    sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
-    sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
-    // sendCommand(Christmas_Tree, 0)
-    createTimer(now.plusSeconds(1)) [|
-      sendCommand(GreatRoomSwitch_State, 0)
-    ]
-  }
+//  if (GreatRoomSwitch_State.state == UNDEF || GreatRoomSwitch_State.state == NULL) {
+//    sendCommand(GreatRoomSwitch_State, 0)
+//  }
+//
+//  if (GreatRoomSwitch.state == ON && GreatRoomSwitch_State.state == 0) {
+//    sendCommand(GreatRoomSwitch_State, 1)
+//    logDebug("rules", "GreatRoomSwitch ON - Turn ON Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
+//    sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
+//    sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
+//    // sendCommand(Christmas_Tree, 100)
+//    createTimer(now.plusSeconds(1)) [|
+//      sendCommand(GreatRoomSwitch_State, 0)
+//    ]
+//  } else if (GreatRoomSwitch.state == OFF  && GreatRoomSwitch_State.state == 0) {
+//    sendCommand(GreatRoomSwitch_State, 1)
+//    logDebug("rules", "GreatRoomSwitch OFF - Turn OFF Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
+//    sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
+//    sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
+//    // sendCommand(Christmas_Tree, 0)
+//    createTimer(now.plusSeconds(1)) [|
+//      sendCommand(GreatRoomSwitch_State, 0)
+//    ]
+//  }
 end
 
 //rule "Great Room Light Switch!"
