@@ -9,8 +9,6 @@ rule "Turn Off Lights at Midnight for the Night"
     logDebug("rules", "Midnight - Turn OFF Lights at Midnight")
 
     sendCommand(OutdoorModule, OFF)
-    sendCommand(OutdoorModule2, OFF)
-    sendCommand(GarageDoorShutter, DOWN)
 end
 
 

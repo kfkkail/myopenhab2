@@ -9,7 +9,6 @@ then
   }
 end
 
-
 rule "Update Presence to away"
 when
   Item wifi_Kail changed from ON to OFF or
