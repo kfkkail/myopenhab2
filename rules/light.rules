@@ -1,7 +1,3 @@
-var Timer sunsetTimer
-var Timer dawnTimer
-var Timer preDawnTimer
-
 rule "Turn Off Lights at Midnight for the Night"
   when
     Time cron "0 0 0 ? * * *"
@@ -11,4 +7,9 @@ rule "Turn Off Lights at Midnight for the Night"
     sendCommand(OutdoorModule, OFF)
 end
 
-
+rule "Turn Off Lights at Midnight for the Night"
+  when
+    Item GreatRoomSwitch received update
+  then
+    logDebug("rules", "GreatRoomSwitch updated")
+end

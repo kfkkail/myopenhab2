@@ -81,28 +81,28 @@ String Home_Theater_Feedback    "Home Theater Feedback [%s]"
 Number Home_Theater_State       "Home Theater State"
 Number Bar_Speaker_Mode         "Bar Speaker Mode"
 
-// Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers, dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node2:switch_dimmer"}
-// Dimmer Christmas_Tree "Christmas Tree [%d %%]" (plugDimmers, dimmers, gMyOpenHAB ) ["Lighting"] {channel="zwave:device:f331c50f:node42:switch_dimmer"}
+Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers, dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node2:switch_dimmer"}
+Dimmer Christmas_Tree "Christmas Tree [%d %%]" (plugDimmers, dimmers, gMyOpenHAB ) ["Lighting"] {channel="zwave:device:f331c50f:node42:switch_dimmer"}
 Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node3:switch_dimmer"}
 Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node4:switch_dimmer"}
-// Dimmer Sitting_Room_Ball1_Dimmer "Sitting Room Ball 1 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node48:switch_dimmer"}
-// Dimmer Sitting_Room_Ball2_Dimmer "Sitting Room Ball 2 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node49:switch_dimmer"}
-// Dimmer Living_Room_Balls "Light Balls [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node23:switch_dimmer"}
+Dimmer Sitting_Room_Ball1_Dimmer "Sitting Room Ball 1 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node48:switch_dimmer"}
+Dimmer Sitting_Room_Ball2_Dimmer "Sitting Room Ball 2 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node49:switch_dimmer"}
+Dimmer Living_Room_Balls "Light Balls [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node23:switch_dimmer"}
 Dimmer Office_Dimmer "Office" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node5:switch_dimmer"}
 Switch GreatRoomSwitch "Kitchen Switch" (Lights_Random, gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:f331c50f:node8:switch_binary"}
-// Switch GreatRoomSwitch2 "Great Room Switch" (gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:f331c50f:node45:switch_binary"}
-// Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node20:switch_binary"}
-// Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node26:switch_binary"}
-// Switch HallwayBathFanSwitch "Hallway Bath Toilet Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node40:switch_binary"}
-// Switch MainFloorBathFanSwitch "Main Floor Bath Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node47:switch_binary"}
+Switch GreatRoomSwitch2 "Great Room Switch" (gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:f331c50f:node45:switch_binary"}
+Switch MasterBathFanSwitch "Master Bath Shower Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node20:switch_binary"}
+Switch MasterBathToiletFanSwitch "Master Bath Toilet Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node26:switch_binary"}
+Switch HallwayBathFanSwitch "Hallway Bath Toilet Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node40:switch_binary"}
+Switch MainFloorBathFanSwitch "Main Floor Bath Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node47:switch_binary"}
 Number GreatRoomSwitch_State "Kitchen Switch State"
 Number GreatRoomSwitch_State2 "Great Room Switch State"
-// Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:f331c50f:node5:switch_dimmer"}
-// Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node6:switch_dimmer"}
-// Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node19:switch_dimmer"}
+Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:f331c50f:node5:switch_dimmer"}
+Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node6:switch_dimmer"}
+Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node19:switch_dimmer"}
 Switch OutdoorModule "Outdoor Module" (switches, lightsAtNight) ["Lighting"] {channel="zwave:device:f331c50f:node2:switch_binary"}
-// Switch OutdoorModule2 "Outdoor Module 2" (switches, lightsAtNight) ["Lighting"] {channel="zwave:device:f331c50f:node50:switch_binary"}
-// Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:f331c50f:node24:switch_binary"}
+Switch OutdoorModule2 "Outdoor Module 2" (switches, lightsAtNight) ["Lighting"] {channel="zwave:device:f331c50f:node50:switch_binary"}
+Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:f331c50f:node24:switch_binary"}
 Switch GarageLight "Garage Light" (switches) ["Lighting"] {channel="zwave:device:f331c50f:node6:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
 Switch Kitchen_UnderCabinet "Kitchen Undercabinet" (gMyOpenHAB)
@@ -128,31 +128,31 @@ Number   Humidity      "Outside Humidity [%d %%]"        <water> {weather="locat
 Switch PIRMotionDetection "PIR Motion Detection"
 
 Switch UpstairsPIRLightControl "Upstairs PIR Light Control"
-// Switch UPSTAIRS_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f331c50f:node21:alarm_burglar"}
-// Number UPSTAIRS_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f331c50f:node21:battery-level"}
-// Number UPSTAIRS_PIR_TEMPERATURE "Upstairs Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f331c50f:node21:sensor_temperature"}
-// Number UPSTAIRS_PIR_LIGHT "Upstairs Light Level [%.0f %%]" <slider> {channel="zwave:device:f331c50f:node21:sensor_luminance"}
-// Number UPSTAIRS_PIR_REL_HUMID "Upstairs Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f331c50f:node21:sensor_relhumidity"}
-// Switch UPSTAIRS_PIR_MOTION "Upstairs Motion [%s]" <motion> (motionDetected) {channel="zwave:device:f331c50f:node21:sensor_binary"}
+Switch UPSTAIRS_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f331c50f:node21:alarm_burglar"}
+Number UPSTAIRS_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f331c50f:node21:battery-level"}
+Number UPSTAIRS_PIR_TEMPERATURE "Upstairs Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f331c50f:node21:sensor_temperature"}
+Number UPSTAIRS_PIR_LIGHT "Upstairs Light Level [%.0f %%]" <slider> {channel="zwave:device:f331c50f:node21:sensor_luminance"}
+Number UPSTAIRS_PIR_REL_HUMID "Upstairs Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f331c50f:node21:sensor_relhumidity"}
+Switch UPSTAIRS_PIR_MOTION "Upstairs Motion [%s]" <motion> (motionDetected) {channel="zwave:device:f331c50f:node21:sensor_binary"}
 
 Switch GreatRoomPIRLightControl "Great Room PIR Light Control"
 Switch PIRControls "PIR Controls"
-// Switch GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f331c50f:node15:alarm_burglar"}
-// Number GREATROOM_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f331c50f:node15:battery-level"}
-// Number GREATROOM_PIR_TEMPERATURE "Great Room Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f331c50f:node15:sensor_temperature"}
-// Number GREATROOM_PIR_LIGHT "Great Room Light Level [%.0f %%]" <slider> {channel="zwave:device:f331c50f:node15:sensor_luminance"}
-// Number GREATROOM_PIR_REL_HUMID "Great Room Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f331c50f:node15:sensor_relhumidity"}
-// Switch GREATROOM_PIR_MOTION "Great Room Motion [%s]" <motion> (motionDetected) {channel="zwave:device:f331c50f:node15:sensor_binary"}
+Switch GREATROOM_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f331c50f:node15:alarm_burglar"}
+Number GREATROOM_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f331c50f:node15:battery-level"}
+Number GREATROOM_PIR_TEMPERATURE "Great Room Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f331c50f:node15:sensor_temperature"}
+Number GREATROOM_PIR_LIGHT "Great Room Light Level [%.0f %%]" <slider> {channel="zwave:device:f331c50f:node15:sensor_luminance"}
+Number GREATROOM_PIR_REL_HUMID "Great Room Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f331c50f:node15:sensor_relhumidity"}
+Switch GREATROOM_PIR_MOTION "Great Room Motion [%s]" <motion> (motionDetected) {channel="zwave:device:f331c50f:node15:sensor_binary"}
 
 Switch BasementPIRLightControl "Basement PIR Light Control"
-// Switch BASEMENT_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f331c50f:node17:alarm_burglar"}
-// Number BASEMENT_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f331c50f:node17:battery-level"}
-// Number BASEMENT_PIR_TEMPERATURE "Basement Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f331c50f:node17:sensor_temperature"}
-// Number BASEMENT_PIR_LIGHT "Basement Light Level [%.0f %%]" <slider> {channel="zwave:device:f331c50f:node17:sensor_luminance"}
-// Number BASEMENT_PIR_REL_HUMID "Basement Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f331c50f:node17:sensor_relhumidity"}
-// Switch BASEMENT_PIR_MOTION "Basement Motion [%s]" <motion> (motionDetected) {channel="zwave:device:f331c50f:node17:sensor_binary"}
+Switch BASEMENT_PIR_TAMPER "Motion Tamper [%s]" {channel="zwave:device:f331c50f:node17:alarm_burglar"}
+Number BASEMENT_PIR_BATTERY "Motion Battery [%d %%]" <battery> {channel="zwave:device:f331c50f:node17:battery-level"}
+Number BASEMENT_PIR_TEMPERATURE "Basement Temperature [%.1f °F]" <temperature> (IndoorTemperature) {channel="zwave:device:f331c50f:node17:sensor_temperature"}
+Number BASEMENT_PIR_LIGHT "Basement Light Level [%.0f %%]" <slider> {channel="zwave:device:f331c50f:node17:sensor_luminance"}
+Number BASEMENT_PIR_REL_HUMID "Basement Humidity [%.0f %%]" <water> (IndoorHumidity) {channel="zwave:device:f331c50f:node17:sensor_relhumidity"}
+Switch BASEMENT_PIR_MOTION "Basement Motion [%s]" <motion> (motionDetected) {channel="zwave:device:f331c50f:node17:sensor_binary"}
 
-// Rollershutter GarageDoorShutter "Garage Door" <garagedoor> (gMyOpenHAB) {myq="0"}
+Rollershutter GarageDoorShutter "Garage Door" <garagedoor> (gMyOpenHAB) {myq="0"}
 
 //Alarm to set Nest to Home, after being away
 Switch  alarmMonday     "Monday"     <switch>
@@ -171,7 +171,7 @@ Number alarmMinute "Minute [%d]" <clock>
 Switch TalkControl "Talk Control"
 
 Contact garageDoorEntry "Garage Door Entry [%s]" {channel="zwave:device:f331c50f:node39:sensor_door"}
-// Number garageDoorEntryBattery "Garage Door Entry Battery" {channel="zwave:device:f331c50f:node39:battery-level"}
-// Switch garageDoorEntrySwitch "Garage Door Entry" {channel="zwave:device:f331c50f:node39:alarm_access"}
+Number garageDoorEntryBattery "Garage Door Entry Battery" {channel="zwave:device:f331c50f:node39:battery-level"}
+Switch garageDoorEntrySwitch "Garage Door Entry" {channel="zwave:device:f331c50f:node39:alarm_access"}
 Number garageDoorEntry_state "Garage Door Entry State [%d]"
 Switch GreatRoomLightState "Great Room Light State"
