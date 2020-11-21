@@ -14,7 +14,7 @@ then
     logDebug("rules", "GreatRoomSwitch ON - Turn ON Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
     sendCommand(Kitchen_UnderCabinet1_Dimmer, 100)
     sendCommand(Kitchen_UnderCabinet2_Dimmer, 100)
-    sendCommand(Christmas_Tree, 100)
+    // sendCommand(Christmas_Tree, 100)
     createTimer(now.plusSeconds(1)) [|
       sendCommand(GreatRoomSwitch_State, 0)
     ]
@@ -23,38 +23,38 @@ then
     logDebug("rules", "GreatRoomSwitch OFF - Turn OFF Living_Room_Lamp_Dimmer & Kitchen_UndercabinetX_Dimmer")
     sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
     sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
-    sendCommand(Christmas_Tree, 0)
+    // sendCommand(Christmas_Tree, 0)
     createTimer(now.plusSeconds(1)) [|
       sendCommand(GreatRoomSwitch_State, 0)
     ]
   }
 end
 
-rule "Great Room Light Switch!"
-when
-  Item GreatRoomSwitch2 received update
-then
-  logDebug("rules", "GreatRoomSwitch2 = " + GreatRoomSwitch2.state)
-  logDebug("rules", "GreatRoomSwitch_State2 = " + GreatRoomSwitch_State2.state)
-  if (GreatRoomSwitch_State2.state == UNDEF || GreatRoomSwitch_State2.state == NULL) {
-    sendCommand(GreatRoomSwitch_State2, 0)
-  }
-
-  if (GreatRoomSwitch2.state == ON && GreatRoomSwitch_State2.state == 0) {
-    sendCommand(GreatRoomSwitch_State2, 1)
-    logDebug("rules", "GreatRoomSwitch2 ON - Turn ON Living_Room_Lamp_Dimmer")
-    sendCommand(Living_Room_Lamp_Dimmer, 100)
-    sendCommand(Living_Room_Balls, 30)
-    createTimer(now.plusSeconds(1)) [|
-      sendCommand(GreatRoomSwitch_State2, 0)
-    ]
-  } else if (GreatRoomSwitch2.state == OFF  && GreatRoomSwitch_State2.state == 0) {
-    sendCommand(GreatRoomSwitch_State2, 1)
-    logDebug("rules", "GreatRoomSwitch2 OFF - Turn OFF Living_Room_Lamp_Dimmer")
-    sendCommand(Living_Room_Lamp_Dimmer, 0)
-    sendCommand(Living_Room_Balls, 0)
-    createTimer(now.plusSeconds(1)) [|
-      sendCommand(GreatRoomSwitch_State2, 0)
-    ]
-  }
-end
+//rule "Great Room Light Switch!"
+//when
+//  Item GreatRoomSwitch2 received update
+//then
+//  logDebug("rules", "GreatRoomSwitch2 = " + GreatRoomSwitch2.state)
+//  logDebug("rules", "GreatRoomSwitch_State2 = " + GreatRoomSwitch_State2.state)
+//  if (GreatRoomSwitch_State2.state == UNDEF || GreatRoomSwitch_State2.state == NULL) {
+//    sendCommand(GreatRoomSwitch_State2, 0)
+//  }
+//
+//  if (GreatRoomSwitch2.state == ON && GreatRoomSwitch_State2.state == 0) {
+//    sendCommand(GreatRoomSwitch_State2, 1)
+//    logDebug("rules", "GreatRoomSwitch2 ON - Turn ON Living_Room_Lamp_Dimmer")
+//    sendCommand(Living_Room_Lamp_Dimmer, 100)
+//    sendCommand(Living_Room_Balls, 30)
+//    createTimer(now.plusSeconds(1)) [|
+//      sendCommand(GreatRoomSwitch_State2, 0)
+//    ]
+//  } else if (GreatRoomSwitch2.state == OFF  && GreatRoomSwitch_State2.state == 0) {
+//    sendCommand(GreatRoomSwitch_State2, 1)
+//    logDebug("rules", "GreatRoomSwitch2 OFF - Turn OFF Living_Room_Lamp_Dimmer")
+//    sendCommand(Living_Room_Lamp_Dimmer, 0)
+//    sendCommand(Living_Room_Balls, 0)
+//    createTimer(now.plusSeconds(1)) [|
+//      sendCommand(GreatRoomSwitch_State2, 0)
+//    ]
+//  }
+//end

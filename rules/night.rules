@@ -3,10 +3,10 @@ when
   Channel 'astro:sun:be04c866:night#event' triggered START
 then
   logDebug("rules", "Night Started")
+  sendCommand(OutdoorModule, ON)
   if (PIRControls.state == ON) {
     sendCommand(GreatRoomPIRLightControl, ON)
   }
-  sendCommand(TalkControl, OFF)
 end
 
 rule "Night Ended Event"
