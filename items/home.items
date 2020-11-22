@@ -107,8 +107,6 @@ Switch GarageLight "Garage Light" (switches) ["Lighting"] {channel="zwave:device
 Switch TriggerTimer "Light Timer Trigger"
 Switch Kitchen_UnderCabinet "Kitchen Undercabinet" (gMyOpenHAB)
 
-// Switch Doorbell "Doorbell" {channel="zwave:device:f331c50f:node14:notification_power_management"}
-
 DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise> { channel="astro:sun:local:rise#start" }
 DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset> { channel="astro:sun:local:set#start" }
 
