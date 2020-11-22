@@ -109,8 +109,8 @@ Switch Kitchen_UnderCabinet "Kitchen Undercabinet" (gMyOpenHAB)
 
 // Switch Doorbell "Doorbell" {channel="zwave:device:f331c50f:node14:notification_power_management"}
 
-DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise> { channel="astro:sun:be04c866:rise#start" }
-DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset> { channel="astro:sun:be04c866:set#start" }
+DateTime Sunrise_Time  "Sunrise [%1$tH:%1$tM]" <sunrise> { channel="astro:sun:local:rise#start" }
+DateTime Sunset_Time   "Sunset [%1$tH:%1$tM]" <sunset> { channel="astro:sun:local:set#start" }
 
 /* Device Presence Detection */
 String OwnerPresence "Owner Presence" <present> (devicePresence, gMyOpenHAB)

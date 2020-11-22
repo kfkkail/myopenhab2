@@ -6,10 +6,3 @@ rule "Turn Off Lights at Midnight for the Night"
 
     sendCommand(OutdoorModule, OFF)
 end
-
-rule "Turn Off Lights at Midnight for the Night"
-  when
-    Item GreatRoomSwitch received update
-  then
-    logDebug("rules", "GreatRoomSwitch updated")
-end
