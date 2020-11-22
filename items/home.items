@@ -97,9 +97,9 @@ Switch GreatRoomSwitch "Kitchen Switch" (Lights_Random, gMyOpenHAB, switches) ["
 // Switch MainFloorBathFanSwitch "Main Floor Bath Fan" (switches, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node47:switch_binary"}
 Number GreatRoomSwitch_State "Kitchen Switch State"
 Number GreatRoomSwitch_State2 "Great Room Switch State"
-// Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:f331c50f:node5:switch_dimmer"}
-// Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node6:switch_dimmer"}
-// Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node19:switch_dimmer"}
+Switch BasementStairsSwitch "Basement Stairs Switch" (gMyOpenHAB, switches) ["Lighting"] {channel="zwave:device:f331c50f:node5:switch_dimmer"}
+Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node6:switch_dimmer"}
+Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node19:switch_dimmer"}
 Switch OutdoorModule "Outdoor Module" (switches, lightsAtNight) ["Lighting"] {channel="zwave:device:f331c50f:node2:switch_binary"}
 // Switch OutdoorModule2 "Outdoor Module 2" (switches, lightsAtNight) ["Lighting"] {channel="zwave:device:f331c50f:node50:switch_binary"}
 // Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:f331c50f:node24:switch_binary"}

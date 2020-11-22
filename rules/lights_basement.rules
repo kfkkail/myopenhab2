@@ -1,10 +1,10 @@
-//rule "Basement Switch Turn off ProjectorSpotLights"
-//when
-//  Item BasementStairsSwitch received update
-//then
-//  if (BasementStairsSwitch.state == OFF) {
-//    logDebug("rules", "BasementStairsSwitch OFF - Turn Off BasementProjectorSpot")
-//    sendCommand(BasementProjectorSpot, 0)
-//    sendCommand(BasementArt, 0)
-//  }
-//end
+rule "Basement Switch Turn off ProjectorSpotLights"
+when
+  Item BasementStairsSwitch received update
+then
+  if (BasementStairsSwitch.state == OFF) {
+    logDebug("rules", "BasementStairsSwitch OFF - Turn Off BasementProjectorSpot")
+    sendCommand(BasementProjectorSpot, 0)
+    sendCommand(BasementArt, 0)
+  }
+end
