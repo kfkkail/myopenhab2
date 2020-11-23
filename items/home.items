@@ -82,7 +82,7 @@ Number Home_Theater_State       "Home Theater State"
 Number Bar_Speaker_Mode         "Bar Speaker Mode"
 
 // Dimmer Living_Room_Lamp_Dimmer "Living Room Lamp [%d %%]" (plugDimmers, dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node2:switch_dimmer"}
-// Dimmer Christmas_Tree "Christmas Tree [%d %%]" (plugDimmers, dimmers, gMyOpenHAB ) ["Lighting"] {channel="zwave:device:f331c50f:node42:switch_dimmer"}
+Dimmer Christmas_Tree "Christmas Tree [%d %%]" (plugDimmers, dimmers, gMyOpenHAB ) ["Lighting"] {channel="zwave:device:f331c50f:node9:switch_dimmer"}
 Dimmer Kitchen_UnderCabinet1_Dimmer "Kitchen Undercabinet 1 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node3:switch_dimmer"}
 Dimmer Kitchen_UnderCabinet2_Dimmer "Kitchen Undercabinet 2 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node4:switch_dimmer"}
 // Dimmer Sitting_Room_Ball1_Dimmer "Sitting Room Ball 1 [%d %%]" (plugDimmers, dimmers) ["Lighting"] {channel="zwave:device:f331c50f:node48:switch_dimmer"}
