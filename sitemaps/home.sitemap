@@ -74,22 +74,6 @@ sitemap home label="Falcons Fire Home"
     Switch item=HomeTheaterSwitch
     Text item=Sunrise_Time
     Text item=Sunset_Time
-    Switch item=TriggerTimer
-    Text label="Set Nest to Home at [%s]" item=alarmMessage icon="clock" {
-        Frame label="Time" {
-            Setpoint item=alarmHour minValue=0 maxValue=23 step=1
-            Setpoint item=alarmMinute minValue=0 maxValue=55 step=5
-        }
-        Frame label="Weekday" {
-            Switch item=alarmMonday
-            Switch item=alarmTuesday
-            Switch item=alarmWednesday
-            Switch item=alarmThursday
-            Switch item=alarmFriday
-            Switch item=alarmSaturday
-            Switch item=alarmSunday
-        }
-    }
   }
   }
 }

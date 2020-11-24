@@ -102,7 +102,7 @@ Dimmer BasementProjectorSpot "Basement Projector Spot [%d %%]" (dimmers, gMyOpen
 Dimmer BasementArt "Basement Art Dimmer [%d %%]" (dimmers, gMyOpenHAB) ["Lighting"] {channel="zwave:device:f331c50f:node19:switch_dimmer"}
 Switch OutdoorModule "Outdoor Module" (switches, lightsAtNight) ["Lighting"] {channel="zwave:device:f331c50f:node2:switch_binary"}
 // Switch OutdoorModule2 "Outdoor Module 2" (switches, lightsAtNight) ["Lighting"] {channel="zwave:device:f331c50f:node50:switch_binary"}
-// Switch Dehumidifier "Dehumidifier" (switches) {channel="zwave:device:f331c50f:node24:switch_binary"}
+Switch GarageSwitch "Garage Switch" (switches) {channel="zwave:device:f331c50f:node10:switch_binary"}
 Switch GarageLight "Garage Light" (switches) ["Lighting"] {channel="zwave:device:f331c50f:node6:switch_binary"}
 Switch TriggerTimer "Light Timer Trigger"
 Switch Kitchen_UnderCabinet "Kitchen Undercabinet" (gMyOpenHAB)
