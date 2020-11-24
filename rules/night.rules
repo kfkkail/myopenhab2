@@ -1,8 +1,7 @@
 rule "Sunset"
 when
-  Channel 'astro:sun:local:set#start' triggered START
+  Channel 'astro:sun:local:set#event' triggered START
 then
   logDebug("rules", "Sunset start")
-
   sendCommand(OutdoorModule, ON)
 end
