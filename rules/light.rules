@@ -6,12 +6,3 @@ rule "Turn Off Lights at Midnight"
 
     sendCommand(OutdoorModule, OFF)
 end
-
-rule "Turn On Lights at 6pm for the Night"
-  when
-    Time cron "0 18 0 ? * * *"
-  then
-    logDebug("rules", "Midnight - Turn OFF Lights at Midnight")
-
-    sendCommand(OutdoorModule, ON)
-end

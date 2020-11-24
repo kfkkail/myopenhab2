@@ -1,25 +1,8 @@
-rule "Night Started Event"
+rule "Sunset"
 when
-  Channel 'astro:sun:be04c866:night#event' triggered START
+  Channel 'astro:sun:local:set#start' triggered START
 then
-  logDebug("rules", "Night Started")
+  logDebug("rules", "Sunset start")
+
   sendCommand(OutdoorModule, ON)
-  if (PIRControls.state == ON) {
-    sendCommand(GreatRoomPIRLightControl, ON)
-  }
-end
-
-rule "Night Ended Event"
-when
-  Channel 'astro:sun:be04c866:night#event' triggered END
-then
-  logDebug("rules", "Night Ended")
-  if (PIRControls.state == ON) {
-    sendCommand(GreatRoomPIRLightControl, OFF)
-  }
-
-  if (GreatRoomSwitch.state == OFF) {
-    sendCommand(Kitchen_UnderCabinet1_Dimmer, 0)
-    sendCommand(Kitchen_UnderCabinet2_Dimmer, 0)
-  }
 end
