@@ -1,9 +1,0 @@
-rule "Turn Off Lights at Midnight"
-  when
-    Time cron "0 0 0 ? * * *"
-  then
-    logDebug("rules", "Midnight - Turn OFF Lights at Midnight")
-
-    sendCommand(OutdoorModule, OFF)
-    sendCommand(GarageSwitch, OFF)
-end

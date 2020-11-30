@@ -6,3 +6,12 @@ then
   sendCommand(OutdoorModule, ON)
   sendCommand(GarageSwitch, ON)
 end
+
+rule "Sunrise"
+when
+  Channel 'astro:sun:local:rise#event' triggered START
+then
+  logDebug("rules", "Sunrise start")
+  sendCommand(OutdoorModule, OFF)
+  sendCommand(GarageSwitch, OFF)
+end
